@@ -1,0 +1,19 @@
+{
+  "name": "graphql-server",
+  "version": "1.0.0",
+  "description": "This is a graphql server with redis caching.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jay-R Joseph Gabunada",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
+  "dependencies": {
+    "apollo-server-cache-redis": "^1.1.5",
+    "apollo-server-express": "^2.10.0",
+    "express": "^4.17.1"
+  }
+}
