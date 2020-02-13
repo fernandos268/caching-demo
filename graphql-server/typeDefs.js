@@ -7,7 +7,8 @@ const typeDefs = `
     }
 
     type Query {
-        getUsers: [User]
+        users: [User]  @cacheControl(maxAge: 20)
+        user(id: ID!): User  @cacheControl(maxAge: 20)
     }
 `
 

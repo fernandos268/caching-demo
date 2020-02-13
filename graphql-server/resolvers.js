@@ -1,12 +1,3 @@
-const resolvers = {
-    Query: {
-        getUsers() {
-            return
-        }
-    }
-}
-
-
 const users = [
     {
         id: 1,
@@ -21,3 +12,19 @@ const users = [
         password: '12345'
     }
 ]
+
+const resolvers = {
+    Query: {
+        async users(_, __, {dataSources}) {
+            console.log('Getting users.....')
+            return dataSources.usersAPI.getUsers()
+        },
+        async user(_, {id}, {dataSources}) {
+            console.log(`Fetching user with id ${id}`)
+            return dataSources.usersAPI.getUser(id)
+        }
+    }
+}
+
+
+module.exports = resolvers

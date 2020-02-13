@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+    graphql-server:
+        image: node:11
+        volumes:
+            - ./graphql-server:/usr/src/graphql-server
+        environment:
+            - NODE_ENV=development
+        network_mode: host
+        working_dir: /usr/src/graphql-server
+        command: bash -c "npm install && npm start"
+        ports:
+            - 4000:4000
+
