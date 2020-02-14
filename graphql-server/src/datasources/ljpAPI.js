@@ -14,14 +14,13 @@ class LJPAPI {
     }
 
     async getVisits() {
-        const result = await r.table('tbl_Visit').run()
-
-        return result
+        return await r.table('tbl_Visit').run()
     }
 
     async getVisitsByProject(project_id) {
+        console.log('getVisitsByProject --> project_id', project_id)
         const result = await r.table('tbl_Visit').filter({ project_id }).run()
-
+        console.log('getVisitsByProject', result)
         return result
     }
 
