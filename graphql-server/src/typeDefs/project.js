@@ -5,6 +5,10 @@ module.exports = gql`
         projects: [Project]
     }
 
+    extend type Mutation {
+        createProject(input: createProjectInput!): Project
+    }
+
     type Project {
         actual_visit: String,
         actual_visit_date: String,
@@ -37,6 +41,21 @@ module.exports = gql`
         updated_date: String
         sync_date: String
         user_id: String
+        visits: [Visit!]
     }
 
+    input createProjectInput {
+        name: String
+        legal_name: String
+        number: String
+        user_id: String
+        status: String
+        image_url: String
+        type: String
+        type_name: String
+        building_type_id: String
+        client_id: String
+        state_id: String
+        footer_id: String
+    }
 `

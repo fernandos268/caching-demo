@@ -6,7 +6,7 @@ const {
 
 const r = require('rethinkdbdash')({ servers: [{ host: DB_HOST, port: DB_PORT }], db: DB_NAME });
 
-class LJPAPI {
+module.exports = class ljpAPI {
     async getProjects() {
         const result = await r.table('tbl_Project').run()
 
@@ -24,5 +24,3 @@ class LJPAPI {
         return result
     }
 }
-
-module.exports = LJPAPI
