@@ -5,6 +5,12 @@ const responseCachePlugin = require('apollo-server-plugin-response-cache');
 const app = require('express')();
 const httpServer = require('http').createServer(app);
 
+global.config = require('./config')
+
+const {
+  APP_PORT
+} = config
+
 const typeDefs = require('./src/typeDefs');
 const resolvers = require('./src/resolvers');
 const { ljpAPI } = require('./src/datasources');
@@ -13,13 +19,13 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: ctx => ({}),
-  dataSources: () => ({ljpAPI: new ljpAPI()}),
+  dataSources: () => ({ ljpAPI: new ljpAPI() }),
   cache: new RedisCache({
-      host: 'localhost',
+    host: 'localhost',
   }),
   persistedQueries: {
-      cache: new RedisCache({
-        host: 'localhost',
+    cache: new RedisCache({
+      host: 'localhost',
     }),
   },
   cacheControl: true,
@@ -29,7 +35,7 @@ const server = new ApolloServer({
 server.applyMiddleware({ app, path: '/graphql' });
 server.installSubscriptionHandlers(httpServer);
 
-httpServer.listen({ port: 4000 }, () => {
+httpServer.listen({ port: APP_PORT }, () => {
   console.log(
     `Apollo Server websocket on  localhost:4000${server.subscriptionsPath}`
   );
