@@ -12,6 +12,18 @@ class LJPAPI {
 
         return result
     }
+
+    async getVisits() {
+        const result = await r.table('tbl_Visit').run()
+
+        return result
+    }
+
+    async getVisitsByProject(project_id) {
+        const result = await r.table('tbl_Visit').filter({ project_id }).run()
+
+        return result
+    }
 }
 
 module.exports = LJPAPI
