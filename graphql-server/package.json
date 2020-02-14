@@ -9,6 +9,7 @@
   "author": "Jay-R Joseph Gabunada",
   "license": "ISC",
   "devDependencies": {
+    "dotenv": "^8.2.0",
     "nodemon": "^2.0.2"
   },
   "dependencies": {
