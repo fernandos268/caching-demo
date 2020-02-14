@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 
 const GET_USERS = gql`
   query getUsers {
-    getUsers {
+    users {
       username
       email
       password
@@ -18,12 +18,13 @@ const GET_USERS = gql`
 function App() {
   const { loading, error, data } = useQuery(GET_USERS);
   if (loading) return <h2>Loading...</h2>;
-  const { getUsers } = data || sampol;
+  console.log("TCL: App -> data", data)
+  const { users } = data || sampol;
   return (
     <div className="App">
       <header className="App-header">
         <div>
-          {getUsers.map(user => {
+          {users.map(user => {
             return (
               <div>
                 <div>{user.email}</div>
@@ -41,7 +42,7 @@ export default App;
 
 
 const sampol = {
-  getUsers: [
+  users: [
     {
         id: 1,
         username: 'backup goldenjayr',

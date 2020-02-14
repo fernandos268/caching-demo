@@ -1,24 +1,29 @@
 const { ApolloServer } = require('apollo-server-express');
 const { RedisCache } = require('apollo-server-cache-redis');
-const EnhancedRedis = require('./enhancedRedis');
+const r = require('rethinkdbdash')({servers: [{host: '10.110.55.100', port: '28015'}], db: 'ljpv2_db' });
 const responseCachePlugin = require('apollo-server-plugin-response-cache');
 
 const app = require('express')();
 const httpServer = require('http').createServer(app);
 
-const typeDefs = require('./typeDefs');
-const resolvers = require('./resolvers');
-const UsersAPI = require('./datasources');
+const typeDefs = require('./src/typeDefs');
+const resolvers = require('./src/resolvers');
+const UsersAPI = require('./src/datasources');
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  context: ctx => ({
+      r
+    }),
   dataSources: () => ({usersAPI: new UsersAPI()}),
   cache: new RedisCache({
       host: 'localhost',
   }),
   persistedQueries: {
-      cache: new EnhancedRedis(),
+      cache: new RedisCache({
+        host: 'localhost',
+    }),
   },
   cacheControl: true,
   plugins: [responseCachePlugin()],

@@ -7,8 +7,12 @@ const typeDefs = `
     }
 
     type Query {
-        users: [User]  @cacheControl(maxAge: 20)
-        user(id: ID!): User  @cacheControl(maxAge: 20)
+        users: [User]  @cacheControl(maxAge: 10)
+        user(id: ID!): User  @cacheControl(maxAge: 10)
+    }
+
+    type Project {
+
     }
 `
 

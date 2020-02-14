@@ -21,13 +21,11 @@ const wsLink = new WebSocketLink({
 
 const httpLink = createHttpLink({ uri: "http://localhost:4000/graphql", })
 // const link = createPersistedQueryLink().concat(wsLink);
-console.log('ws link', wsLink)
-console.log('create http link ', httpLink)
 const link = createPersistedQueryLink().concat(createHttpLink({ uri: "http://localhost:4000/graphql", }));
 
 
 const GraphQLClient = new ApolloClient({
-  link,
+  link: link,
   cache: new InMemoryCache()
 });
 
