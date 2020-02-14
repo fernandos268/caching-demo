@@ -1,5 +1,7 @@
 const project = require('./project')
+const visit = require('./visit')
 
 module.exports = [
-    project
+    project,
+    visit
 ]

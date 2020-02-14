@@ -37,7 +37,6 @@ module.exports = gql`
         updated_date: String
         sync_date: String
         user_id: String
-
     }
 
 `
