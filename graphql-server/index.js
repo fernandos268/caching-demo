@@ -1,6 +1,5 @@
 const { ApolloServer } = require('apollo-server-express');
 const { RedisCache } = require('apollo-server-cache-redis');
-const r = require('rethinkdbdash')({servers: [{host: '10.110.55.100', port: '28015'}], db: 'ljpv2_db' });
 const responseCachePlugin = require('apollo-server-plugin-response-cache');
 
 const app = require('express')();
@@ -8,15 +7,13 @@ const httpServer = require('http').createServer(app);
 
 const typeDefs = require('./src/typeDefs');
 const resolvers = require('./src/resolvers');
-const UsersAPI = require('./src/datasources');
+const { ljpAPI } = require('./src/datasources');
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ctx => ({
-      r
-    }),
-  dataSources: () => ({usersAPI: new UsersAPI()}),
+  context: ctx => ({}),
+  dataSources: () => ({ljpAPI: new ljpAPI()}),
   cache: new RedisCache({
       host: 'localhost',
   }),
