@@ -1,0 +1,171 @@
+{"level":"info","message":"server started - "}
+{"level":"info","message":"server started - "}
+{"message":"\u001b[0mGET / \u001b[32m200 \u001b[0m2.243 ms - 17\u001b[0m\n","level":"info"}
+{"message":"\u001b[0mGET /favicon.ico \u001b[33m404 \u001b[0m1.511 ms - 150\u001b[0m\n","level":"info"}
+{"message":"\u001b[0mGET /cars \u001b[33m404 \u001b[0m0.684 ms - 143\u001b[0m\n","level":"info"}
+{"message":"Error in getting cars- TypeError: thinky_loader__WEBPACK_IMPORTED_MODULE_0___default.a.models.getAll is not a function","level":"error"}
+{"message":"\u001b[0mGET /cars/allcars \u001b[32m200 \u001b[0m1.016 ms - 19\u001b[0m\n","level":"info"}
+{"message":"Error in getting cars- TypeError: thinky_loader__WEBPACK_IMPORTED_MODULE_0___default.a.models.getAll is not a function","level":"error"}
+{"message":"\u001b[0mGET /cars/allcars \u001b[36m304 \u001b[0m1.110 ms - -\u001b[0m\n","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Error in getting cars- TypeError: Cannot read property 'getAll' of undefined","level":"error"}
+{"message":"\u001b[0mGET /cars/allcars \u001b[36m304 \u001b[0m3.507 ms - -\u001b[0m\n","level":"info"}
+{"level":"info","message":"server started - "}
+{"level":"info","message":"server started - "}
+{"message":"Error in getting cars- TypeError: Cannot read property 'getAll' of undefined","level":"error"}
+{"message":"\u001b[0mGET /cars/allcars \u001b[36m304 \u001b[0m6.968 ms - -\u001b[0m\n","level":"info"}
+{"level":"info","message":"server started - "}
+{"level":"info","message":"server started - "}
+{"level":"info","message":"server started - "}
+{"level":"info","message":"server started - "}
+{"level":"info","message":"server started - "}
+{"level":"info","message":"server started - "}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: ENOENT: no such file or directory, scandir 'schemas'","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: ENOENT: no such file or directory, scandir 'schemas'","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/schemas/car.js'\nRequire stack:\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/require-all/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/thinky-loader/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/build/main.js","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/schemas/car.js'\nRequire stack:\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/require-all/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/thinky-loader/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/build/main.js","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: ENOENT: no such file or directory, scandir '../schemas'","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/schemas/car.js'\nRequire stack:\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/require-all/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/thinky-loader/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/build/main.js","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/schemas//car.js'\nRequire stack:\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/require-all/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/thinky-loader/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/build/main.js","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/schemas/car.js'\nRequire stack:\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/require-all/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/thinky-loader/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/build/main.js","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/schemas/Car.js'\nRequire stack:\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/require-all/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/thinky-loader/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/build/main.js","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/db/schemas/Car.js'\nRequire stack:\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/require-all/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/thinky-loader/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/build/main.js","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/db/schemas/Car.js'\nRequire stack:\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/require-all/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/thinky-loader/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/build/main.js","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/db/schemas/Car.js'\nRequire stack:\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/require-all/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/thinky-loader/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/build/main.js","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/db/schemas/Car.js'\nRequire stack:\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/require-all/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/thinky-loader/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/build/main.js","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/db/schemas/Car.js'\nRequire stack:\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/require-all/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/thinky-loader/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/build/main.js","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/db/schemas/Car.js'\nRequire stack:\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/require-all/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/thinky-loader/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/build/main.js","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/db/schemas/Car.js'\nRequire stack:\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/require-all/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/build/main.js","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/db/schemas/Car.js'\nRequire stack:\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/require-all/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/build/main.js","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/schemas/Car.js'\nRequire stack:\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/require-all/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/build/main.js","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/db/connect.js'\nRequire stack:\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/require-all/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/build/main.js","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: ENOTDIR: not a directory, scandir 'src/schemas/Car.js'","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/schemas//Car.js'\nRequire stack:\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/require-all/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/build/main.js","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/schemas//Car.js'\nRequire stack:\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/require-all/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/build/main.js","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/schemas/Car.js'\nRequire stack:\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/require-all/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/build/main.js","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/schemas/Car.js'\nRequire stack:\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/require-all/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/build/main.js","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- ReferenceError: definitions is not defined","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/schemas/Car.js'\nRequire stack:\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/require-all/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/build/main.js","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/schemas/Car.js'","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/schemas/Car.js'\nRequire stack:\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/require-all/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/build/main.js","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/schemas/Car.js'\nRequire stack:\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/require-all/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/build/main.js","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/schemas/Car.js'","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module './src/schemas/Car.js'","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module './src/schemas/Car.js'","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module './src/schemas/car.model.js'","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/schemas/car.model.js'","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/schemas/car.model.js'","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: ENOENT: no such file or directory, scandir '../schemas'","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: ENOENT: no such file or directory, scandir '../schemas'","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- ReferenceError: testReq is not defined","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/schemas/car.model.js'\nRequire stack:\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/require-all/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/build/main.js","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- Error: Cannot find module 'src/schemas/car.model.js'\nRequire stack:\n- /home/developer/Desktop/Spikes/caching-demo/api/node_modules/require-all/index.js\n- /home/developer/Desktop/Spikes/caching-demo/api/build/main.js","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError [ERR_INVALID_ARG_TYPE]: The \"path\" argument must be of type string or an instance of Buffer or URL. Received undefined","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError [ERR_INVALID_ARG_TYPE]: The \"path\" argument must be of type string or an instance of Buffer or URL. Received undefined","level":"error"}
+{"level":"info","message":"server started - "}
+{"level":"info","message":"server started - "}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError [ERR_INVALID_ARG_TYPE]: The \"path\" argument must be of type string or an instance of Buffer or URL. Received an instance of Object","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError [ERR_INVALID_ARG_TYPE]: The \"path\" argument must be of type string or an instance of Buffer or URL. Received an instance of Object","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError: DefinitionModel is not a constructor","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError: Cannot read property 'thinky' of undefined","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError: Cannot read property 'thinky' of undefined","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- ValidationError: The schema must be a plain object.","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- ValidationError: The schema must be a plain object.","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- ValidationError: The schema must be a plain object.","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- ValidationError: The schema must be a plain object.","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError: Cannot read property 'thinky' of undefined","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError: Cannot read property 'thinky' of undefined","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError: Cannot read property 'tableName' of undefined","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError: Cannot read property 'tableName' of undefined","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError: Cannot read property 'thinky' of undefined","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError: Cannot read property 'thinky' of undefined","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError: Cannot read property 'thinky' of undefined","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError: Cannot read property 'thinky' of undefined","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError: Cannot read property 'thinky' of undefined","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError: Cannot read property 'thinky' of undefined","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- ValidationError: The schema must be a plain object.","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- ValidationError: The schema must be a plain object.","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError: definition.initialize is not a function","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError: definition.initialize is not a function","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError: model.ensureIndex is not a function","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError: model.define is not a function","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError: model.define is not a function","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"message":"\u001b[0mGET /cars/getAllCars \u001b[33m404 \u001b[0m3.562 ms - 154\u001b[0m\n","level":"info"}
+{"message":"sending all cars...","level":"info"}
+{"message":"\u001b[0mGET /cars/allcars \u001b[32m200 \u001b[0m8.283 ms - 2\u001b[0m\n","level":"info"}
