@@ -9,15 +9,35 @@ module.exports = gql`
         actual_visit: String,
         actual_visit_date: String,
         all_assemblies_assigned: Boolean
+        carrier_id: String
+        client_id: String
         contracted_visit: String
+        created_date: String
         file_path: String
         footer_id: String
         id: String
         include_deficiency_photo: Boolean
         include_photo: Boolean
+        is_assemblies_shared: Boolean
+        is_capture_app: Boolean
+        is_capture_qa: Boolean
+        is_single_reporting: Boolean
+        legal_name: String
+        master_project_id: String
+        name: String
+        number: String
+        phase: String
+        region_id: String
+        secondary_user_id: String
+        state_id: String
+        trip_tracker: Int
+        type: String
+        type_name: String
         status: String
+        updated_date: String
         sync_date: String
         user_id: String
+
     }
 
 `
