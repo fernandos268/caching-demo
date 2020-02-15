@@ -10,6 +10,7 @@ import connectToDb from './db/connect';
 
 import project from './routes/project.route'
 import visit from './routes/visit.route'
+import photo from './routes/photo.route'
 
 const port = config.serverPort;
 logger.stream = {
@@ -25,8 +26,9 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev", { "stream": logger.stream }));
-app.use('/project', project)
-app.use('/visit', visit)
+app.use('/project', project);
+app.use('/visit', visit);
+app.use('/photo', photo);
 
 //Index route
 app.get('/', (req, res) => {

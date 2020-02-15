@@ -362,3 +362,5 @@
 {"message":"\u001b[0mGET /visit/001ED73F-B907-4ADE-9F6F-CD2000D7050E \u001b[32m200 \u001b[0m10.186 ms - 13790\u001b[0m\n","level":"info"}
 {"message":"Adding node (4385105e-2983-4f4a-8325-a1bb9b06a9f0)...","level":"info"}
 {"message":"\u001b[0mPOST /visit \u001b[32m200 \u001b[0m6190.853 ms - 2229\u001b[0m\n","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
