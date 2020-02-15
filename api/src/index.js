@@ -9,6 +9,7 @@ import config from './core/config/config.dev'
 import connectToDb from './db/connect';
 
 import project from './routes/project.route'
+import visit from './routes/visit.route'
 
 const port = config.serverPort;
 logger.stream = {
@@ -25,6 +26,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev", { "stream": logger.stream }));
 app.use('/project', project)
+app.use('/visit', visit)
 
 //Index route
 app.get('/', (req, res) => {

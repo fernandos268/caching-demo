@@ -1,4 +1,4 @@
-import fields from '../schema-raws/project'
+import fields from '../schema-raws/visit'
 import schemaStitcher from '../utils/schemaStitcher';
 
 export default function() {
@@ -7,8 +7,8 @@ export default function() {
   let models = this.models; // access to other models (for creating relationships)
 
   return {
-    modelName: 'Project',
-    tableName: "tbl_Project",
+    modelName: 'Visit',
+    tableName: "tbl_Visit",
     schema: schemaStitcher(fields, type),
     options: {
       enforce_extra: "none"
