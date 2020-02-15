@@ -1,11 +1,13 @@
 import 'dotenv/config';
 import express from 'express';
+// import { createServer, plugins } from 'restify'
 import cors from 'cors';
 import morgan from 'morgan'
 import bodyParser from "body-parser";
 import logger from './core/logger/app-logger'
 import config from './core/config/config.dev'
-import cars from './routes/cars.route'
+// import cars from './routes/cars.route'
+import project from './routes/project.route'
 import connectToDb from './db/connect';
 
 const port = config.serverPort;
@@ -22,7 +24,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev", { "stream": logger.stream }));
-app.use('/cars', cars)
+app.use('/project', project)
 
 //Index route
 app.get('/', (req, res) => {

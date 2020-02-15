@@ -1,14 +1,12 @@
 // import Mongoose from 'mongoose';
 import orm from '../utils/thinky-loader-fork'
-import path from 'path';
 import models from '../schemas'
 import logger from '../core/logger/app-logger'
 import config from '../core/config/config.dev'
 
 const connectToDb = async () => {
     let ormConfig = {
-        debug: false,
-        modelsPath: path.join(__dirname, '../schemas'),
+        // modelsPath: path.join(__dirname, '../schemas'),
         models,
         debug: true,
         thinky: {

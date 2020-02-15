@@ -169,3 +169,188 @@
 {"message":"\u001b[0mGET /cars/getAllCars \u001b[33m404 \u001b[0m3.562 ms - 154\u001b[0m\n","level":"info"}
 {"message":"sending all cars...","level":"info"}
 {"message":"\u001b[0mGET /cars/allcars \u001b[32m200 \u001b[0m8.283 ms - 2\u001b[0m\n","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError: Cannot read property 'ensureIndex' of undefined","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError: Cannot read property 'ensureIndex' of undefined","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError: Cannot read property 'ensureIndex' of undefined","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError: Cannot read property 'ensureIndex' of undefined","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError: Cannot read property 'ensureIndex' of undefined","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError: Cannot read property 'ensureIndex' of undefined","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Error in connecting- TypeError: Cannot read property 'define' of undefined","level":"error"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"message":"Sending 0 nodes...","level":"info"}
+{"message":"\u001b[0mGET /project \u001b[32m200 \u001b[0m15.667 ms - 2\u001b[0m\n","level":"info"}
+{"message":"Error in getting nodes- TypeError: _utils_thinky_loader_fork__WEBPACK_IMPORTED_MODULE_0__.default.models.Project.getById is not a function","level":"error"}
+{"message":"\u001b[0mGET /project/aef87e66-f4f2-455e-a150-67e9bb54be30 \u001b[32m200 \u001b[0m2.443 ms - 20\u001b[0m\n","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"message":"Error in getting nodes- TypeError: _utils_thinky_loader_fork__WEBPACK_IMPORTED_MODULE_0__.default.models.Project.getById is not a function","level":"error"}
+{"message":"\u001b[0mGET /project/aef87e66-f4f2-455e-a150-67e9bb54be30 \u001b[36m304 \u001b[0m9.064 ms - -\u001b[0m\n","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"message":"Error in getting nodes- TypeError: _utils_thinky_loader_fork__WEBPACK_IMPORTED_MODULE_0__.default.models.Project.getById is not a function","level":"error"}
+{"message":"\u001b[0mGET /project/aef87e66-f4f2-455e-a150-67e9bb54be30 \u001b[36m304 \u001b[0m6.409 ms - -\u001b[0m\n","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"message":"Sending 0 nodes...","level":"info"}
+{"message":"\u001b[0mGET /project/aef87e66-f4f2-455e-a150-67e9bb54be30 \u001b[32m200 \u001b[0m39036.114 ms - 2\u001b[0m\n","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"message":"Error in getting nodes- TypeError: _utils_thinky_loader_fork__WEBPACK_IMPORTED_MODULE_0__.default.models.Project.getById is not a function","level":"error"}
+{"message":"\u001b[0mGET /project/aef87e66-f4f2-455e-a150-67e9bb54be30 \u001b[32m200 \u001b[0m9.054 ms - 20\u001b[0m\n","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"message":"Error in getting nodes- ReqlLogicError: Expected type TABLE but found SELECTION:\nSELECTION ON table(tbl_Project) in:\nr.table(\"tbl_Project\").filter({\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    id: \"aef87e66-f4f2-455e-a150-67e9bb54be30\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n}).get(1).default(r.error(\"The query did not find a document and returned null.\"))\n^^                                                                                \n","level":"error"}
+{"message":"\u001b[0mGET /project/aef87e66-f4f2-455e-a150-67e9bb54be30 \u001b[36m304 \u001b[0m23.972 ms - -\u001b[0m\n","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"message":"Sending 1 nodes...","level":"info"}
+{"message":"\u001b[0mGET /project/0750da69-2880-4515-b36d-cf931115b489 \u001b[32m200 \u001b[0m3497.331 ms - 8817\u001b[0m\n","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"message":"Got node 0750da69-2880-4515-b36d-cf931115b489...","level":"info"}
+{"message":"\u001b[0mGET /project/0750da69-2880-4515-b36d-cf931115b489 \u001b[32m200 \u001b[0m19780.956 ms - 8815\u001b[0m\n","level":"info"}
+{"message":"Error in getting nodes- Error: Node no found","level":"error"}
+{"message":"\u001b[0mGET /project/0750da69-2880-4515-b36d-cf931115b48 \u001b[32m200 \u001b[0m960.065 ms - 20\u001b[0m\n","level":"info"}
+{"message":"Got node 0750da69-2880-4515-b36d-cf931115b489...","level":"info"}
+{"message":"\u001b[0mGET /project/0750da69-2880-4515-b36d-cf931115b489 \u001b[36m304 \u001b[0m2192.398 ms - -\u001b[0m\n","level":"info"}
+{"message":"Sending 0 nodes...","level":"info"}
+{"message":"\u001b[0mGET /project \u001b[36m304 \u001b[0m11.268 ms - -\u001b[0m\n","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"message":"Sending 2242 nodes...","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"message":"\u001b[0mGET /project/0750da69-2880-4515-b36d-cf931115b489 \u001b[0m- \u001b[0m- ms - -\u001b[0m\n","level":"info"}
+{"message":"Got node 0750da69-2880-4515-b36d-cf931115b489...","level":"info"}
+{"message":"Got node 0750da69-2880-4515-b36d-cf931115b489...","level":"info"}
+{"message":"\u001b[0mGET /project/0750da69-2880-4515-b36d-cf931115b489 \u001b[32m200 \u001b[0m11771.615 ms - 8815\u001b[0m\n","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"message":"Error in Node creation- Error: Test Error","level":"error"}
+{"message":"\u001b[0mPOST /project \u001b[32m200 \u001b[0m7.864 ms - 24\u001b[0m\n","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"message":"Error in Node creation- TypeError: Cannot read property 'addCar' of undefined","level":"error"}
+{"message":"\u001b[0mPOST /project \u001b[32m200 \u001b[0m9.049 ms - 24\u001b[0m\n","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"message":"Error in Node creation- TypeError: Cannot read property 'addNode' of undefined","level":"error"}
+{"message":"\u001b[0mPOST /project \u001b[32m200 \u001b[0m7.794 ms - 24\u001b[0m\n","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"message":"Error in Node creation- TypeError: Cannot read property 'addNode' of undefined","level":"error"}
+{"message":"\u001b[0mPOST /project \u001b[32m200 \u001b[0m22.547 ms - 24\u001b[0m\n","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"message":"Error in Node creation- ValidationError: Value for [legal_name] must be defined.","level":"error"}
+{"message":"\u001b[0mPOST /project \u001b[32m200 \u001b[0m59.171 ms - 24\u001b[0m\n","level":"info"}
+{"message":"Error in Node creation- ValidationError: Value for [legal_name] must be defined.","level":"error"}
+{"message":"\u001b[0mPOST /project \u001b[32m200 \u001b[0m5.194 ms - 24\u001b[0m\n","level":"info"}
+{"message":"Error in Node creation- ValidationError: Value for [legal_name] must be defined.","level":"error"}
+{"message":"\u001b[0mPOST /project \u001b[32m200 \u001b[0m5.084 ms - 24\u001b[0m\n","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"message":"Error in Node creation- ValidationError: Value for [type] must be defined.","level":"error"}
+{"message":"\u001b[0mPOST /project \u001b[32m200 \u001b[0m24.939 ms - 24\u001b[0m\n","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"message":"Error in Node creation- ValidationError: Value for [type] must be defined.","level":"error"}
+{"message":"\u001b[0mPOST /project \u001b[32m200 \u001b[0m14.807 ms - 57\u001b[0m\n","level":"info"}
+{"message":"Error in Node creation- ValidationError: Value for [type_name] must be defined.","level":"error"}
+{"message":"\u001b[0mPOST /project \u001b[32m200 \u001b[0m4.780 ms - 62\u001b[0m\n","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"message":"Error in Node creation- ValidationError: Value for [name] must be defined.","level":"error"}
+{"message":"\u001b[0mPOST /project \u001b[32m200 \u001b[0m23.755 ms - 57\u001b[0m\n","level":"info"}
+{"message":"Adding node...","level":"info"}
+{"message":"\u001b[0mPOST /project \u001b[32m200 \u001b[0m4101.582 ms - 24\u001b[0m\n","level":"info"}
+{"message":"Got node a704578d-7e7a-4aee-9ce2-809349e9913e...","level":"info"}
+{"message":"\u001b[0mGET /project/a704578d-7e7a-4aee-9ce2-809349e9913e \u001b[32m200 \u001b[0m6609.897 ms - 1290\u001b[0m\n","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"message":"Error in Node deletion- TypeError: this.remove is not a function","level":"error"}
+{"message":"\u001b[0mDELETE /project/a704578d-7e7a-4aee-9ce2-809349e9913e \u001b[32m200 \u001b[0m5.839 ms - 16\u001b[0m\n","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"message":"Deleted Node- [object Object]","level":"info"}
+{"message":"\u001b[0mDELETE /project/a704578d-7e7a-4aee-9ce2-809349e9913e \u001b[32m200 \u001b[0m12963.349 ms - 25\u001b[0m\n","level":"info"}
+{"message":"Error in getting nodes- Error: Node no found","level":"error"}
+{"message":"\u001b[0mGET /project/a704578d-7e7a-4aee-9ce2-809349e9913e \u001b[32m200 \u001b[0m7439.302 ms - 20\u001b[0m\n","level":"info"}
+{"message":"Got node 0750da69-2880-4515-b36d-cf931115b489...","level":"info"}
+{"message":"\u001b[0mGET /project/0750da69-2880-4515-b36d-cf931115b489 \u001b[36m304 \u001b[0m16.898 ms - -\u001b[0m\n","level":"info"}
+{"message":"Got node 0750da69-2880-4515-b36d-cf931115b489...","level":"info"}
+{"message":"\u001b[0mGET /project/0750da69-2880-4515-b36d-cf931115b489 \u001b[32m200 \u001b[0m1060.819 ms - 8815\u001b[0m\n","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"message":"Adding node (c79426bd-dcba-400b-9d81-4beec93a0aa9)...","level":"info"}
+{"message":"\u001b[0mPOST /project \u001b[32m200 \u001b[0m4210.839 ms - 1290\u001b[0m\n","level":"info"}
+{"message":"Got node c79426bd-dcba-400b-9d81-4beec93a0aa9...","level":"info"}
+{"message":"\u001b[0mGET /project/c79426bd-dcba-400b-9d81-4beec93a0aa9 \u001b[32m200 \u001b[0m5639.165 ms - 1290\u001b[0m\n","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"message":"Updated Node- c79426bd-dcba-400b-9d81-4beec93a0aa9","level":"info"}
+{"message":"\u001b[0mPUT /project/c79426bd-dcba-400b-9d81-4beec93a0aa9 \u001b[32m200 \u001b[0m30543.661 ms - 1290\u001b[0m\n","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}
+{"message":"Updated Node- c79426bd-dcba-400b-9d81-4beec93a0aa9","level":"info"}
+{"message":"\u001b[0mPUT /project/c79426bd-dcba-400b-9d81-4beec93a0aa9 \u001b[32m200 \u001b[0m8077.743 ms - 1291\u001b[0m\n","level":"info"}
+{"level":"info","message":"server started - "}
+{"message":"Okay connection","level":"info"}

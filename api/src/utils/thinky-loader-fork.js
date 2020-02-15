@@ -62,13 +62,13 @@ loader.initialize = (config, thinky) => {
       }
 
       let model = loader.thinky.createModel(modelId, definition.schema, definition.options);
-      loader.models[modelId] = model;
+      loader.models[definition.modelName || modelId] = model;
     });
 
     // Loop over each class and run the initialize method, usually to set up
     // relationships or hooks
     _.each(definitions, (definition) => {
-      let modelId = definition.tableName || definition.globalId;
+      let modelId = definition.modelName || definition.tableName || definition.globalId;
 
       if (config.debug) {
         console.dir("Initializing model id: " + modelId);
