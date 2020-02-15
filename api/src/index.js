@@ -6,9 +6,9 @@ import morgan from 'morgan'
 import bodyParser from "body-parser";
 import logger from './core/logger/app-logger'
 import config from './core/config/config.dev'
-// import cars from './routes/cars.route'
-import project from './routes/project.route'
 import connectToDb from './db/connect';
+
+import project from './routes/project.route'
 
 const port = config.serverPort;
 logger.stream = {
