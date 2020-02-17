@@ -20,5 +20,11 @@ module.exports = {
         async deleteVisit(_, { input }, { dataSources }) {
 
         }
+    },
+    Visit: {
+        photos(parent, args, ctx) {
+        console.log("TCL: photos -> parent", parent)
+
+        }
     }
 }
