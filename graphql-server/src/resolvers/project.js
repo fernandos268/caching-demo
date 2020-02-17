@@ -17,5 +17,10 @@ module.exports = {
         async deleteProject(_, { input }, { dataSources }) {
 
         }
+    },
+    Project: {
+        async visits(project, args, { dataSources }) {
+            return []
+        }
     }
 }
