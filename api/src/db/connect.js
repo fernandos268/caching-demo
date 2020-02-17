@@ -8,7 +8,7 @@ const connectToDb = async () => {
     let ormConfig = {
         // modelsPath: path.join(__dirname, '../schemas'),
         models,
-        debug: true,
+        // debug: true,
         thinky: {
             rethinkdb: {
                 host: config.dbHost,
