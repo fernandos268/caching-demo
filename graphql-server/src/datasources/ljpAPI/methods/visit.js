@@ -18,10 +18,23 @@ async function getVisits(params) {
     return result
 }
 
-async function getVisitsByProject(project_id) {
-    console.log('getVisitsByProject --> project_id', project_id)
-    const result = await rethink.table('tbl_Visit').filter({ project_id }).run()
-    console.log('getVisitsByProject', result)
+async function getVisitsByProject({id, params}) {
+    let result
+    try {
+        const {
+            limit,
+            limitless,
+            page
+        } = params
+
+        const query_string = `?limit=${limit}&page=${page}`
+        result = await this.get(`/project/${id}/visits${query_string}`)
+
+
+    } catch(err) {
+        console.log('Error in getting visits by projects', err)
+        throw err
+    }
     return result
 }
 

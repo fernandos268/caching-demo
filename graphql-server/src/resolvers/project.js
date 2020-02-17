@@ -19,9 +19,9 @@ module.exports = {
         }
     },
     Project: {
-        async visits(project, args, { dataSources }) {
-            console.log("TCL: visits -> project", project)
-            return []
+        async visits({id}, __, { dataSources }, {variableValues: {params}}) {
+            console.log(`Fetching visits by project id ${id}`)
+            return await dataSources.ljpAPI.getVisitsByProject({id, params});
         }
     }
 }
