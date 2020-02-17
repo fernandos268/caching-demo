@@ -1,15 +1,7 @@
 async function getPhotos(params) {
     let result
     try{
-        const {
-            limit,
-            limitless,
-            page
-        } = params
-
-        const query_string = `?limit=${limit}&page=${page}`
-
-        result = await this.get(`/photo${query_string}`)
+        result = await this.get(`/photo`, params)
     }catch(err) {
         console.log('Error in fetching photos: ', err)
         throw err
