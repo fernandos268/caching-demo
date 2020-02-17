@@ -6,22 +6,26 @@ module.exports = class ljpAPI extends RESTDataSource {
     }
 
     async getProjects(params) {
-        // const result = await rethink.table('tbl_Project').run()
-        // return result
+        let result
+        try{
+            const {
+                limit,
+                limitless,
+                page
+            } = params
 
-        const {
-            limit,
-            limitless,
-            page
-        } = params
+            const query_string = `?limit=${limit}&page=${page}`
 
-        const query_string = `?limit=${limit}&page=${page}`
+            result = await this.get(`/project${query_string}`)
+        }catch(err) {
+            console.log('Error in fetching projects: ', err)
+            throw err
+        }
 
-        const result = await this.get(`/project${query_string}`)
         return result
     }
 
-    async getVisits() {
+    async getVisits(params) {
         let result
         try {
             const {
