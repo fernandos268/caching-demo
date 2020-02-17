@@ -9,6 +9,7 @@ controller.getAll = async (req, res) => {
     limit = 25,
     page = 1
   } = req.query
+
   try {
     const nodes = await (!limitless ? orm.models.Project.getLimited(limit, page) : orm.models.Project);
     logger.info(`Sending ${nodes.length} nodes...`);
