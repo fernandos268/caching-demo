@@ -1,5 +1,4 @@
 async function getPhotos(params) {
-
     try {
         return await this.get(`/photo`, params)
     } catch (err) {
