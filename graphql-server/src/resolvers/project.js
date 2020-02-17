@@ -6,7 +6,8 @@ module.exports = {
     },
     Mutation: {
         async createProject(_, { input }, { dataSources }) {
-
+            console.log('Creating project.....')
+           return await dataSources.ljpAPI.createProject(input)
         },
         async updateProject(_, { input }, { dataSources }) {
 
@@ -16,11 +17,9 @@ module.exports = {
         }
     },
     Project: {
-        async visits(project, args, { dataSources }) {
-            return []
-        },
-        async photos(project, args, { dataSources }) {
-            return []
+        async visits({id}, __, { dataSources }, {variableValues: {params}}) {
+            console.log(`Fetching visits by project id ${id}`)
+            return await dataSources.ljpAPI.getVisitsByProject({id, params});
         }
     }
 }

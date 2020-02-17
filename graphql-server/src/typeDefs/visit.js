@@ -2,8 +2,7 @@ const { gql } = require('apollo-server-express')
 
 module.exports = gql`
     extend type Query {
-        visits: [Visit!]!
-        visit(id: String!): Visit
+        visits(params: QueryParams): [Visit!]!
         visitsByProject(project_id: String!): [Visit!]!
     }
 
