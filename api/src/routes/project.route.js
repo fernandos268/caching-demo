@@ -10,6 +10,10 @@ router.get('/:id', (req, res) => {
   projectController.getById(req, res);
 });
 
+router.get('/:id/visits', (req, res) => {
+  projectController.getVisits(req, res);
+});
+
 router.post('/', (req, res) => {
   projectController.addNode(req, res);
 });

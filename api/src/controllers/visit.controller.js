@@ -37,6 +37,31 @@ controller.getById = async (req, res) => {
   }
 }
 
+controller.getPhotos = async (req, res) => {
+  const { id } = req.params
+  try {
+    // console.log('req.params: ', req.params);
+    // console.log('orm.models: ', orm.models);
+    const [visit] = await orm.models.Visit.getById(req.params.id);
+    if (!visit) {
+      throw new Error('Visit noy found');
+    }
+
+    const visits = await orm.models.Photo.filter({ visit_id: id });
+    console.log('visits: ', visits);
+    // if (!visits.length) {
+    //   throw new Error('Node no found')
+    // }
+    logger.info(`Found visits: ${visits.length}`);
+    res.send(node);
+  }
+  catch (err) {
+    logger.error('Error in getting nodes- ' + err);
+    // res.send('Got error in getById');
+    res.status(500).send(err);
+  }
+}
+
 controller.addNode = async (req, res) => {
   let node = orm.models.Visit({ ...req.body });
   try {

@@ -17,7 +17,7 @@ export default function() {
 
     // set up any relationships, indexes or function definitions here
     initialize: function(model) {
-      // model.belongsTo(models.Person, "owner", "idOwner", "id"); // note the reference to another model `Person`
+      model.hasMany(models.Visit, "visits", "id", "project_id"); // note the reference to another model `Person`
 
       model.ensureIndex("id");
 
