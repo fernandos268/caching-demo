@@ -22,8 +22,10 @@ export default function() {
       model.ensureIndex("id");
 
 
-      model.define("getAll", function() {
-        return this.find({});
+      model.defineStatic("getLimited", function(limit, page) {
+        const pageLimit = limit || 10
+        const endIndex = ((page || 1) * (pageLimit)) + 1
+        return this.slice(endIndex - pageLimit, endIndex);
       });
 
       model.defineStatic("getById", function(id = '') {

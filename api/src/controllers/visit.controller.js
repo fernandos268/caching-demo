@@ -4,8 +4,13 @@ import logger from '../core/logger/app-logger'
 const controller = {};
 
 controller.getAll = async (req, res) => {
+  const {
+    limitless,
+    limit = 25,
+    page = 1
+  } = req.query
   try {
-    const nodes = await orm.models.Visit;
+    const nodes = await (!limitless ? orm.models.Visit.getLimited(limit, page) : orm.models.Visit);
     logger.info(`Sending ${nodes.length} nodes...`);
     res.send(nodes);
   }
