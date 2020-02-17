@@ -1,8 +1,10 @@
 module.exports = {
     Query: {
-        async projects(_, __, { dataSources }) {
+        async projects(_, { params }, { dataSources }) {
             console.log('Fetching projects....');
-            return await dataSources.ljpAPI.getProjects();
+            return await dataSources.ljpAPI.getProjects(params);
+
+
         }
     },
     Mutation: {
@@ -16,4 +18,4 @@ module.exports = {
 
         }
     }
-};
+}

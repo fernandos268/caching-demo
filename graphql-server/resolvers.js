@@ -15,16 +15,16 @@ const users = [
 
 const resolvers = {
     Query: {
-        async users(_, __, {dataSources, r }, info) {
+        async users(_, __, { dataSources, r }, info) {
             console.log('Getting users.....')
 
-            r.table('tbl_Project').run().then(function(data) {
+            r.table('tbl_Project').run().then(function (data) {
                 console.log(data)
-              }).error(e => console.log(e))
+            }).error(e => console.log(e))
 
             return dataSources.usersAPI.getUsers()
         },
-        async user(_, {id}, {dataSources}) {
+        async user(_, { id }, { dataSources }) {
             console.log(`Fetching user with id ${id}`)
             return dataSources.usersAPI.getUser(id)
         }
