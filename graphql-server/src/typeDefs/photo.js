@@ -2,8 +2,8 @@ const { gql } = require('apollo-server-express')
 
 module.exports = gql`
     extend type Query {
-        photos: [Photo!]!
-        photosByVisit(visit_id: String!): [Photo!]!
+        photos: [Photo!]! @cacheControl(maxAge: 500)
+        photosByVisit(visit_id: String!): [Photo!]! @cacheControl(maxAge: 500)
     }
 
     extend type Mutation {

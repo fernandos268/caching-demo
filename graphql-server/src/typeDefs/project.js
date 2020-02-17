@@ -2,7 +2,7 @@ const { gql } = require('apollo-server-express')
 
 module.exports = gql`
     extend type Query {
-        projects: [Project]
+        projects: [Project] @cacheControl(maxAge: 20)
     }
 
     extend type Mutation {

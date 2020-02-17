@@ -4,7 +4,7 @@ const {
     DB_PORT
 } = config
 
-const r = require('rethinkdbdash')({ servers: [{ host: DB_HOST, port: DB_PORT, timeout: 10000 }], db: DB_NAME });
+const r = require('rethinkdbdash')({ servers: [{ host: DB_HOST, port: DB_PORT }], db: DB_NAME, timeout: 10000 });
 
 module.exports = class ljpAPI {
     async getProjects() {
