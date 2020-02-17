@@ -20,6 +20,7 @@ module.exports = {
     },
     Project: {
         async visits(project, args, { dataSources }) {
+            console.log("TCL: visits -> project", project)
             return []
         }
     }

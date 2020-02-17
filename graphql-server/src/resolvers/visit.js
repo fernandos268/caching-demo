@@ -1,7 +1,7 @@
 
 module.exports = {
     Query: {
-        async visits(_, __, { dataSources }) {
+        async visits(_, {params}, { dataSources }) {
             console.log('Fetchingu ...')
             return await dataSources.ljpAPI.getVisits()
         },
