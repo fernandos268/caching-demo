@@ -37,7 +37,7 @@ server.installSubscriptionHandlers(httpServer);
 
 httpServer.listen({ port: APP_PORT }, () => {
   console.log(
-    `Apollo Server websocket on  localhost:4000${server.subscriptionsPath}`
+    `Apollo Server websocket on  localhost:${APP_PORT}${server.subscriptionsPath}`
   )
-  console.log(`Apollo Server http on localhost:4000${server.graphqlPath}`)
+  console.log(`Apollo Server http on localhost:${APP_PORT}${server.graphqlPath}`)
 })
