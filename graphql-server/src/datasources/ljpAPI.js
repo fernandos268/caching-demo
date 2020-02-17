@@ -6,7 +6,7 @@ const {
 
 const r = require('rethinkdbdash')({ servers: [{ host: DB_HOST, port: DB_PORT }], db: DB_NAME, timeout: 10000 });
 
-class LJPAPI {
+module.exports = class ljpAPI {
     async getProjects() {
         const result = await r.table('tbl_Project').run()
 
@@ -14,7 +14,9 @@ class LJPAPI {
     }
 
     async getVisits() {
-        return await r.table('tbl_Visit').run()
+        const result = await r.table('tbl_Visit').run()
+        console.log('getVisits', result)
+        return result
     }
 
     async getVisitsByProject(project_id) {
@@ -38,12 +40,10 @@ class LJPAPI {
     async getPhotosByVisit(visit_id) {
         let result
         try {
-            result = await r.table('tbl_Photo').filter({visit_id}).run()
+            result = await r.table('tbl_Photo').filter({ visit_id }).run()
         } catch (err) {
             console.log('Error in getting photos by Visit', err)
         }
         return result
     }
 }
-
-module.exports = LJPAPI
