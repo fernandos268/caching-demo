@@ -13,6 +13,7 @@
     "nodemon": "^2.0.2"
   },
   "dependencies": {
+    "apollo-datasource-rest": "^0.7.0",
     "apollo-server": "^2.10.0",
     "apollo-server-cache-redis": "^1.1.5",
     "apollo-server-express": "^2.10.0",
