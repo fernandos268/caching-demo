@@ -16,14 +16,13 @@ controller.getAll = async (req, res) => {
   }
   catch (err) {
     logger.error('Error in getting nodes- ' + err);
-    res.send('Got error in getAll');
+    // res.send('Got error in getAll');
+    res.status(500).send(err);
   }
 }
 
 controller.getById = async (req, res) => {
   try {
-    console.log('req.params: ', req.params);
-    // console.log('orm.models: ', orm.models);
     const [node] = await orm.models.Visit.getById(req.params.id);
     if (!node) {
       throw new Error('Node no found')
@@ -33,14 +32,13 @@ controller.getById = async (req, res) => {
   }
   catch (err) {
     logger.error('Error in getting nodes- ' + err);
-    res.send('Got error in getById');
+    // res.send('Got error in getById');
+    res.status(500).send(err);
   }
 }
 
 controller.addNode = async (req, res) => {
-  console.log('req.body: ', req.body);
   let node = orm.models.Visit({ ...req.body });
-  console.log('nodeToAdd: ', node);
   try {
     // throw new Error('Test Error')
     const savedNode = await orm.models.Visit.addNode(node);
@@ -49,7 +47,8 @@ controller.addNode = async (req, res) => {
   }
   catch (err) {
     logger.error('Error in Node creation- ' + err);
-    res.send(`Error: ${err}`);
+    // res.send(`Error: ${err}`);
+    res.status(500).send(err);
   }
 }
 
@@ -63,7 +62,8 @@ controller.updateNode = async (req, res) => {
   }
   catch (err) {
     logger.error('Error in Node update- ' + err);
-    res.send('Update failed..!');
+    // res.send('Update failed..!');
+    res.status(500).send(err);
   }
 }
 
