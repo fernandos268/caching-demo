@@ -1,14 +1,7 @@
 async function getVisits(params) {
     let result
     try {
-        const {
-            limit,
-            limitless,
-            page
-        } = params
-
-        const query_string = `?limit=${limit}&page=${page}`
-        result = await this.get(`/visit${query_string}`)
+        result = await this.get(`/visit`, params)
 
     } catch(err) {
         console.log('Error in getting visits:', err)
@@ -21,16 +14,7 @@ async function getVisits(params) {
 async function getVisitsByProject({id, params}) {
     let result
     try {
-        const {
-            limit,
-            limitless,
-            page
-        } = params
-
-        const query_string = `?limit=${limit}&page=${page}`
-        result = await this.get(`/project/${id}/visits${query_string}`)
-
-
+        result = await this.get(`/project/${id}/visits`, params)
     } catch(err) {
         console.log('Error in getting visits by projects', err)
         throw err
