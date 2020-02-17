@@ -1,10 +1,7 @@
 module.exports = {
     Query: {
         async projects(_, { params }, { dataSources }) {
-            console.log('Fetching projects....');
             return await dataSources.ljpAPI.getProjects(params);
-
-
         }
     },
     Mutation: {
@@ -20,6 +17,9 @@ module.exports = {
     },
     Project: {
         async visits(project, args, { dataSources }) {
+            return []
+        },
+        async photos(project, args, { dataSources }) {
             return []
         }
     }

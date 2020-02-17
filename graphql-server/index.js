@@ -2,7 +2,11 @@ const { ApolloServer } = require('apollo-server-express')
 const { RedisCache } = require('apollo-server-cache-redis')
 const responseCachePlugin = require('apollo-server-plugin-response-cache')
 
+const cors = require('cors')
+
 const app = require('express')()
+
+
 const httpServer = require('http').createServer(app)
 
 global.config = require('./config')
@@ -32,7 +36,13 @@ const server = new ApolloServer({
   plugins: [responseCachePlugin()]
 })
 
-server.applyMiddleware({ app, path: '/graphql' });
+server.applyMiddleware({
+  app,
+  path: '/graphql',
+  cors: {
+    origin: '*'
+  }
+});
 server.installSubscriptionHandlers(httpServer);
 
 httpServer.listen({ port: APP_PORT }, () => {

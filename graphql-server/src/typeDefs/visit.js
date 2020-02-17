@@ -3,6 +3,7 @@ const { gql } = require('apollo-server-express')
 module.exports = gql`
     extend type Query {
         visits: [Visit!]!
+        visit(id: String!): Visit
         visitsByProject(project_id: String!): [Visit!]!
     }
 
@@ -75,7 +76,10 @@ module.exports = gql`
         user_id: String
         # visit_coordination
         visit_pause_duration: Int
+
+        # RELATIONAL FIELDS
         photos: [Photo]
+        project: Project
     }
 
     input VisitInput {
