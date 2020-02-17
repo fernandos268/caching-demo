@@ -10,6 +10,10 @@ router.get('/:id', (req, res) => {
   visitController.getById(req, res);
 });
 
+router.get('/:id/photos', (req, res) => {
+  visitController.getPhotos(req, res);
+});
+
 router.post('/', (req, res) => {
   visitController.addNode(req, res);
 });

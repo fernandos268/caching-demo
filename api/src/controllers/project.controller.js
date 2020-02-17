@@ -16,13 +16,13 @@ controller.getAll = async (req, res) => {
   }
   catch (err) {
     logger.error('Error in getting nodes- ' + err);
-    res.send('Got error in getAll');
+    res.status(500).send(err);
   }
 }
 
 controller.getById = async (req, res) => {
   try {
-    console.log('req.params: ', req.params);
+    // console.log('req.params: ', req.params);
     // console.log('orm.models: ', orm.models);
     const [node] = await orm.models.Project.getById(req.params.id);
     if (!node) {
@@ -33,14 +33,38 @@ controller.getById = async (req, res) => {
   }
   catch (err) {
     logger.error('Error in getting nodes- ' + err);
-    res.send('Got error in getById');
+    // res.send('Got error in getById');
+    res.status(500).send(err);
+  }
+}
+
+controller.getVisits = async (req, res) => {
+  const { id } = req.params
+  try {
+    // console.log('req.params: ', req.params);
+    // console.log('orm.models: ', orm.models);
+    const [project] = await orm.models.Project.getById(req.params.id);
+    if (!project) {
+      throw new Error('Project noy found');
+    }
+
+    const visits = await orm.models.Visit.filter({ project_id: id });
+    console.log('visits: ', visits);
+    // if (!visits.length) {
+    //   throw new Error('Node no found')
+    // }
+    logger.info(`Found visits: ${visits.length}`);
+    res.send(visits);
+  }
+  catch (err) {
+    logger.error('Error in getting nodes- ' + err);
+    // res.send('Got error in getById');
+    res.status(500).send(err);
   }
 }
 
 controller.addNode = async (req, res) => {
-  console.log('req.body: ', req.body);
   let node = orm.models.Project({ ...req.body });
-  console.log('nodeToAdd: ', node);
   try {
     // throw new Error('Test Error')
     const savedNode = await orm.models.Project.addNode(node);
@@ -49,7 +73,8 @@ controller.addNode = async (req, res) => {
   }
   catch (err) {
     logger.error('Error in Node creation- ' + err);
-    res.send(`Error: ${err}`);
+    // res.send(`Error: ${err}`);
+    res.status(500).send(err);
   }
 }
 
@@ -63,7 +88,8 @@ controller.updateNode = async (req, res) => {
   }
   catch (err) {
     logger.error('Error in Node update- ' + err);
-    res.send('Update failed..!');
+    // res.send('Update failed..!');
+    res.status(500).send(err);
   }
 }
 
@@ -76,7 +102,8 @@ controller.deleteNode = async (req, res) => {
   }
   catch (err) {
     logger.error('Error in Node deletion- ' + err);
-    res.send('Delete failed..!');
+    // res.send('Delete failed..!');
+    res.status(500).send(err);
   }
 }
 
