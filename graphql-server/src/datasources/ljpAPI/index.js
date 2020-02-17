@@ -7,9 +7,9 @@ module.exports = class ljpAPI extends RESTDataSource {
         super()
         this.baseURL = 'http://localhost:4000'
 
-        //methods
-        Object.entries(methods).forEach(([key, func]) => {
-            this[key] = func.bind(this)
+        //bind methods to this
+        Object.entries(methods).forEach(([key, method]) => {
+            this[key] = method.bind(this)
         })
     }
 }

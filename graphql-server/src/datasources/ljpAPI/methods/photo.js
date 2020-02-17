@@ -1,4 +1,4 @@
-async function getPhotos() {
+async function getPhotos(params) {
     let result
     try{
         const {
