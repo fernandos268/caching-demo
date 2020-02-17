@@ -4,24 +4,24 @@ const {
     DB_PORT
 } = config
 
-const r = require('rethinkdbdash')({ servers: [{ host: DB_HOST, port: DB_PORT }], db: DB_NAME, timeout: 10000 });
+const rethink = require('rethinkdbdash')({ servers: [{ host: DB_HOST, port: DB_PORT }], db: DB_NAME, timeout: 10000 });
 
 module.exports = class ljpAPI {
     async getProjects() {
-        const result = await r.table('tbl_Project').run()
+        const result = await rethink.table('tbl_Project').run()
 
         return result
     }
 
     async getVisits() {
-        const result = await r.table('tbl_Visit').run()
+        const result = await rethink.table('tbl_Visit').run()
         console.log('getVisits', result)
         return result
     }
 
     async getVisitsByProject(project_id) {
         console.log('getVisitsByProject --> project_id', project_id)
-        const result = await r.table('tbl_Visit').filter({ project_id }).run()
+        const result = await rethink.table('tbl_Visit').filter({ project_id }).run()
         console.log('getVisitsByProject', result)
         return result
     }
@@ -29,7 +29,7 @@ module.exports = class ljpAPI {
     async getPhotos() {
         let result
         try {
-            result = await r.table('tbl_Photo').run()
+            result = await rethink.table('tbl_Photo').run()
         } catch (err) {
             console.log('Error in getting photos', err)
             throw err
@@ -40,7 +40,7 @@ module.exports = class ljpAPI {
     async getPhotosByVisit(visit_id) {
         let result
         try {
-            result = await r.table('tbl_Photo').filter({ visit_id }).run()
+            result = await rethink.table('tbl_Photo').filter({ visit_id }).run()
         } catch (err) {
             console.log('Error in getting photos by Visit', err)
         }
