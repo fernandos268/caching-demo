@@ -9,7 +9,7 @@ module.exports = gql`
     extend type Mutation {
         createProject(input: ProjectInput!): Project
         updateProject(input: ProjectInput!): Project
-        deleteProject(id: String!): Project
+        deleteProject(id: String!): String
     }
 
     type Project {

@@ -1,40 +1,55 @@
 async function getProjects(params) {
-    let result
-    try{
-        result = await this.get(`/project`, params)
-    }catch(err) {
+
+    try {
+        return await this.get(`/project`, params)
+    } catch (err) {
         console.log('Error in fetching projects: ', err)
         throw err
     }
-
-    return result
 }
 
 async function getProjectById(id) {
-    let result
-    try{
-        result = await this.get(`/project/${id}`)
-    }catch(err) {
+    try {
+        return await this.get(`/project/${id}`)
+    } catch (err) {
         console.log('Error in fetching projects: ', err)
         throw err
     }
-
-    return result
 }
 
 async function createProject(input) {
-    let result
     try {
-        result = await this.post(`project`, input)
+        return await this.post(`project`, input)
     } catch (err) {
         console.log('Error in creating project', err)
         throw err
     }
-    return result
 }
+
+async function updateProject(input) {
+    const { id } = input
+    try {
+        return await this.put(`project/${id}`, input)
+    } catch (err) {
+        console.log('Error in updating project', err)
+        throw err
+    }
+}
+
+async function deleteProject(id) {
+    try {
+        return await this.delete(`project/${id}`)
+    } catch (err) {
+        console.log('Error in deleting project', err)
+        throw err
+    }
+}
+
 
 module.exports = {
     getProjects,
     getProjectById,
-    createProject
+    createProject,
+    updateProject,
+    deleteProject
 }
