@@ -18,6 +18,21 @@ async function getProjects(params) {
     return result
 }
 
+async function createProject(input) {
+    let result
+    try {
+        result = await this.post(
+            `project`,
+            input
+        )
+    } catch (err) {
+        console.log('Error in creating project', err)
+        throw err
+    }
+    return result
+}
+
 module.exports = {
-    getProjects
+    getProjects,
+    createProject
 }

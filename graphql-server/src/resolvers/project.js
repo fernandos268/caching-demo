@@ -9,7 +9,8 @@ module.exports = {
     },
     Mutation: {
         async createProject(_, { input }, { dataSources }) {
-
+            console.log('Creating project.....')
+           return await dataSources.ljpAPI.createProject(input)
         },
         async updateProject(_, { input }, { dataSources }) {
 
