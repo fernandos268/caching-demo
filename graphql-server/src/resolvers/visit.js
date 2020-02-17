@@ -9,5 +9,16 @@ module.exports = {
             console.log('Fetchingu ...')
             return await dataSources.ljpAPI.getVisitsByProject(project_id)
         }
+    },
+    Mutation: {
+        async createVisit(_, { input }, { dataSources }) {
+
+        },
+        async updateVisit(_, { input }, { dataSources }) {
+
+        },
+        async deleteVisit(_, { input }, { dataSources }) {
+
+        }
     }
 }

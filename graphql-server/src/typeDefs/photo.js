@@ -6,6 +6,12 @@ module.exports = gql`
         photosByVisit(visit_id: String!): [Photo!]!
     }
 
+    extend type Mutation {
+        addPhotoToVisit(input: VisitInput!): Visit
+        updatePhoto(input: VisitInput!): Visit
+        deletePhoto(id: String!): Visit
+    }
+
     type Photo {
         client_id: String
         client_provided_photo_tag: String

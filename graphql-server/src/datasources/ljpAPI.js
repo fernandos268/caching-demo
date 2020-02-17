@@ -14,7 +14,9 @@ module.exports = class ljpAPI {
     }
 
     async getVisits() {
-        return await r.table('tbl_Visit').run()
+        const result = await r.table('tbl_Visit').run()
+        console.log('getVisits', result)
+        return result
     }
 
     async getVisitsByProject(project_id) {
@@ -38,7 +40,7 @@ module.exports = class ljpAPI {
     async getPhotosByVisit(visit_id) {
         let result
         try {
-            result = await r.table('tbl_Photo').filter({visit_id}).run()
+            result = await r.table('tbl_Photo').filter({ visit_id }).run()
         } catch (err) {
             console.log('Error in getting photos by Visit', err)
         }
