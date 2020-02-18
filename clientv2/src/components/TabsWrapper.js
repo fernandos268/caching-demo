@@ -48,7 +48,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function SimpleTabs(props) {
+export default function TabsWrapper(props) {
   const classes = useStyles();
   const theme = useTheme()
   const [value, setValue] = React.useState(0);
@@ -68,6 +68,7 @@ export default function SimpleTabs(props) {
   const handleChangeIndex = index => {
     setValue(index);
   };
+
   return (
     <div className={classes.root}>
       <AppBar position="static" color='inherit'>
@@ -77,7 +78,7 @@ export default function SimpleTabs(props) {
           value={value} onChange={handleChange} 
         >
            {
-              tabs.map((e, i) => (<Tab label={e.label} {...a11yProps(i)}/>))
+              tabs.map((e, i) => (<Tab label={e.label} key={e.label + i} {...a11yProps(i)}/>))
            }
         </Tabs>
       </AppBar>
@@ -90,13 +91,15 @@ export default function SimpleTabs(props) {
         {
           tabs.map((e, i) => (
           <TabPanel value={value} index={i} dir={theme.direction}>
-            {e.component}
+            {
+              e.component
+            }
           </TabPanel>))
         }
       </SwipeableViews>
     </div>
   );
 }
-SimpleTabs.defaultProps = {
+TabsWrapper.defaultProps = {
   tabs: []
 }

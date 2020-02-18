@@ -92,7 +92,7 @@ function App(props) {
       <Divider />
       <List>
         {links.map(({ label, path, icon}, index) => (
-          <Link to={path}>
+          <Link to={path} key={path + label}>
             <ListItem button key={label}>
               <ListItemIcon>{icon}</ListItemIcon>
               <ListItemText primary={label} />

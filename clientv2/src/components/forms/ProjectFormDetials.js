@@ -54,25 +54,25 @@ const useStyles = makeStyles(theme => ({
             <Grid item xs={12} spacing={4} className={classes.grid}>
                <Paper className={classes.paper}>
                   <Grid container spacing={2} className={classes.grid}>
-                     <Grid xs={12} sm={1}>
+                     <Grid item xs={12} sm={1}>
                         <Avatar alt={fieldValues.legal_name} src="/static/images/avatar/1.jpg" className={classes.large} />
                      </Grid>
-                     <Grid xs={12} sm={6}>
+                     <Grid item xs={12} sm={6}>
                         <TextField id="name" value={fieldValues.name} label="Name" style ={{ width: '400px'}} onChange={handleInputChange}/>
                      </Grid>
                   </Grid>
                   <Grid container spacing={1} className={classes.grid}>
                      <Grid item xs={6} sm={3}>
-                        <TextField id="name" value={fieldValues.name} label="Name" />
+                        <TextField id="legal_name" value={fieldValues.legal_name} label="Legal Name" onChange={handleInputChange}/>
                      </Grid>
                      <Grid item xs={6} sm={3}>
-                        <TextField id="legal_name" value={fieldValues.legal_name} label="Legal Name" />
+                        <TextField id="number" value={fieldValues.number} label="Number" onChange={handleInputChange}/>
                      </Grid>
                      <Grid item xs={6} sm={3}>
-                        <TextField id="name" value={fieldValues.name} label="Name" onChange={handleInputChange}/>
+                        <TextField id="type" value={fieldValues.type} label="Type" onChange={handleInputChange}/>
                      </Grid>
                      <Grid item xs={6} sm={3}>
-                        <TextField id="legal_name" value={fieldValues.legal_name} label="Legal Name" />
+                        <TextField id="legal_name" value={fieldValues.legal_name} label="Legal Name" onChange={handleInputChange}/>
                      </Grid>
                   </Grid>
               </Paper>

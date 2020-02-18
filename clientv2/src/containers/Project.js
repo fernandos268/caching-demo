@@ -4,8 +4,12 @@ import PageWrappers from '../hocs/PageWrappers'
 import MaterialTable from 'material-table'
 import { PROJECTS } from '../request/query'
 import axios from 'axios'
-import Dialog from '../components/FullDialogWrapper'
+import DialogWrapper from '../components/DialogWrapper'
+import FullDialogWrapper from '../components/FullDialogWrapper'
 import ProjectFormDetails from '../components/forms/ProjectFormDetials'
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button'
+
 const entity = 'Project'
 
 function Project(props) {
@@ -17,7 +21,8 @@ function Project(props) {
       }
     }
    })
-
+   const [selected, setSelected] = useState({})
+   const [isOpenDialog, setDialogOpen] = useState(false)
    const [isOpen, setOpen] = useState(false)
    const [list, setList] = useState([{
      name: 'aaron',
@@ -26,8 +31,7 @@ function Project(props) {
      type: 'Male',
      status: 'Single'
    }])
-   console.log('list: ', list);
-   const [selected, setSelected] = useState({})
+
    const [state, setState] = useState({
       columns: [
         { title: 'Name', field: 'name' },
@@ -37,77 +41,115 @@ function Project(props) {
         { title: 'Status', field: 'status'},
       ]
     });
-
+    
     useEffect(() => {
       if(data) {
         console.log('data: ', data);
         setList(data.projects)
       }
     }, [data])
+
     return (
       <div>
+        <Grid container spacing={2}>
+            <Grid item container xs={12} spacing={4} >
+               <Button variant="contained" onClick={handleNew}>Save</Button>
+            </Grid>
+        </Grid>
         <MaterialTable
-          title="Editable Example"
-          columns={state.columns}
           data={list}
           isLoading={loading}
-          onChangePage={(...args) => {console.log(args)}}
+          editable={editable()}
+          columns={state.columns}
+          title="Editable Example"
           onRowClick={(evt, data) => {
             setSelected(data)
             setOpen(!isOpen)
           }}
+          onChangePage={(...args) => {console.log(args)}}
           options={{ pageSize: 10, actionsColumnIndex: -1}}
-          editable={{
-            onRowAdd: newData =>
-              new Promise(resolve => {
-                setTimeout(() => {
-                  resolve();
-                  setState(prevState => {
-                    const data = [...prevState.data];
-                    data.push(newData);
-                    return { ...prevState, data };
-                  });
-                }, 600);
-              }),
-            onRowUpdate: (newData, oldData) =>
-              new Promise(resolve => {
-                setTimeout(() => {
-                  resolve();
-                  if (oldData) {
-                    setState(prevState => {
-                      const data = [...prevState.data];
-                      data[data.indexOf(oldData)] = newData;
-                      return { ...prevState, data };
-                    });
-                  }
-                }, 600);
-              }),
-            onRowDelete: oldData =>
-              new Promise(resolve => {
-                setTimeout(() => {
-                  resolve();
-                  setState(prevState => {
-                    const data = [...prevState.data];
-                    data.splice(data.indexOf(oldData), 1);
-                    return { ...prevState, data };
-                  });
-                }, 600);
-              }),
-          }}
         />
-        <Dialog
+        
+        <FullDialogWrapper
           name='Project'
           isOpen={isOpen}
           onClose={() => setOpen(false)}
+          handleSave={handleSave}
         >
           <div>
             <ProjectFormDetails
               fieldValues={selected}
             />
           </div>
-        </Dialog>
+        </FullDialogWrapper>
+        
+        <DialogWrapper
+          title='New Project'
+          isOpen={isOpenDialog}
+          handleClose={() => { setDialogOpen(false) }}
+          handleCreateProject={handleCreateProject}
+        >
+          <div>
+            <h1>Welcome to dialog</h1>
+          </div>
+        </DialogWrapper>
       </div>
     );
+
+    
+    function handleNew() {
+      setDialogOpen(true)
+    }
+
+    function handleCreateProject(fieldValues) {
+      console.log('do something...')      
+    }
+
+    function handleSave(fieldValues) {
+      console.log('do something...');
+    }
+
+    function editable() {
+      return( 
+        {
+          onRowAdd: newData =>
+            new Promise(resolve => {
+              setTimeout(() => {
+                resolve();
+                setState(prevState => {
+                  const data = [...prevState.data];
+                  data.push(newData);
+                  return { ...prevState, data };
+                });
+              }, 600);
+            }),
+          onRowUpdate: (newData, oldData) =>
+            new Promise(resolve => {
+              setTimeout(() => {
+                resolve();
+                if (oldData) {
+                  setState(prevState => {
+                    const data = [...prevState.data];
+                    data[data.indexOf(oldData)] = newData;
+                    return { ...prevState, data };
+                  });
+                }
+              }, 600);
+            }),
+          onRowDelete: oldData =>
+            new Promise(resolve => {
+              setTimeout(() => {
+                resolve();
+                setState(prevState => {
+                  const data = [...prevState.data];
+                  data.splice(data.indexOf(oldData), 1);
+                  return { ...prevState, data };
+                });
+              }, 600);
+            }),
+        }
+      )
+    }
 }
 
 export default PageWrappers(Project, 'Project')
