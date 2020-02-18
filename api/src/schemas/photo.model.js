@@ -28,11 +28,12 @@ export default function() {
       //   const query = filterFn ? this.filter(filterFn) : this;
       //   return query.slice(endIndex - pageLimit, endIndex)
       // });
-      model.defineStatic("getLimited", function(limit, page, [filterKey, filterVal]) {
+      model.defineStatic("getLimited", function(limit, page, filter) {
+        const [filterKey, filterVal] = filter || []
         console.log('filterKey: ', { filterKey, filterVal });
         const pageLimit = limit || 10
         const endIndex = ((page || 1) * (pageLimit)) + 1
-        const query = filterKey ? this.getAll(filterVal, { index: filterKey }) : this;
+        const query = filter ? this.getAll(filterVal, { index: filterKey }) : this;
         return query.slice(endIndex - pageLimit, endIndex)
       });
 
