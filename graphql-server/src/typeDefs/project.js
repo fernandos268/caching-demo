@@ -12,6 +12,11 @@ module.exports = gql`
         deleteProject(id: String!): String
     }
 
+    type ProjectsResponse {
+        count: Int!
+        list: [Project!]!
+    }
+
     type Project {
         actual_visit: String,
         actual_visit_date: String,
