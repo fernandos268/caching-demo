@@ -32,9 +32,9 @@ module.exports = {
         }
     },
     Visit: {
-        async photos(parent, args, { dataSources }) {
+        async photos(parent, { params }, { dataSources }, info) {
             const { id } = parent
-            return await dataSources.ljpAPI.getPhotosByVisit(id)
+            return await dataSources.ljpAPI.getPhotosByVisit({ visit_id: id, ...params })
         },
         async project(parent, args, { dataSources }) {
             const { project_id } = parent

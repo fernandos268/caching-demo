@@ -25,6 +25,15 @@ async function addPhotoToVisit(input) {
     }
 }
 
+async function getPhotosByVisit({ visit_id, ...params }) {
+    try {
+        return await this.get(`visit/${visit_id}/photos`, params)
+    } catch (err) {
+        console.log('Error in fetching Photos: ', err)
+        throw err
+    }
+}
+
 async function updatePhoto(input) {
     const { id } = input
     try {
@@ -48,6 +57,7 @@ async function deletePhoto(id) {
 module.exports = {
     getPhotos,
     getPhotoById,
+    getPhotosByVisit,
     addPhotoToVisit,
     updatePhoto,
     deletePhoto
