@@ -1,9 +1,18 @@
 async function getVisits(params) {
     try {
         return await this.get(`/visit`, params)
-
     } catch(err) {
         console.log('Error in getting visits:', err)
+        throw err
+    }
+}
+
+
+async function getVisitById(id) {
+    try {
+        return await this.get(`/visit/${id}`)
+    } catch (err) {
+        console.log('Error in fetching visit: ', err)
         throw err
     }
 }
@@ -17,8 +26,38 @@ async function getVisitsByProject({id, params}) {
     }
 }
 
+async function createVisit(input) {
+    try {
+        return await this.post(`visit`, input)
+    } catch (err) {
+        console.log('Error in creating visit', err)
+        throw err
+    }
+}
+
+async function updateVisit({id, ...input}) {
+    try {
+        return await this.put(`project/${id}`, input)
+    } catch (err) {
+        console.log('Error in updating visit', err)
+        throw err
+    }
+}
+
+async function deleteVisit(id) {
+    try {
+        return await this.delete(`project/${id}`)
+    } catch (err) {
+        console.log('Error in deleting visit', err)
+        throw err
+    }
+}
 
 module.exports = {
     getVisits,
-    getVisitsByProject
+    getVisitById,
+    getVisitsByProject,
+    createVisit,
+    updateVisit,
+    deleteVisit
 }
