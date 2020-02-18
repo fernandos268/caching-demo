@@ -2,6 +2,7 @@ module.exports = {
     Query: {
         async projects(_, { params }, { dataSources }) {
             console.log('Fetching projects....')
+            // Create a readable stream (object mode)
             return await dataSources.ljpAPI.getProjects(params);
         },
         async project(_, {id}, { dataSources }) {
@@ -12,14 +13,17 @@ module.exports = {
     Mutation: {
         async createProject(_, { input }, { dataSources }) {
             console.log('Creating project.....')
+            await dataSources.redis.deleteAllKeys()
             return await dataSources.ljpAPI.createProject(input)
         },
         async updateProject(_, { input }, { dataSources }) {
             console.log('Updating project....')
+            await dataSources.redis.deleteAllKeys()
             return await dataSources.ljpAPI.updateProject(input)
         },
         async deleteProject(_, { id }, { dataSources }) {
             console.log(`Deleting project id ${id}`)
+            await dataSources.redis.deleteAllKeys()
             return await dataSources.ljpAPI.deleteProject(id)
         }
     },
