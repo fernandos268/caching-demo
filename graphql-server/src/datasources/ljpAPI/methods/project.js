@@ -1,5 +1,4 @@
 async function getProjects(params) {
-
     try {
         return await this.get(`/project`, params)
     } catch (err) {
@@ -27,7 +26,6 @@ async function createProject(input) {
 }
 
 async function updateProject({id, ...input}) {
-    console.log("TCL: updateProject -> input", input)
     try {
         return await this.put(`project/${id}`, input)
     } catch (err) {
