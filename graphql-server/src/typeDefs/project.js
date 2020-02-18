@@ -46,7 +46,7 @@ module.exports = gql`
         user_id: String
 
         # RELATIONAL FIELDS
-        visits: [Visit] @cacheControl(maxAge: 100)
+        visits(params: GetListInput!): [Visit] @cacheControl(maxAge: 100)
     }
 
     input ProjectInput {

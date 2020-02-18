@@ -22,7 +22,7 @@ module.exports = {
         }
     },
     Project: {
-        async visits({ id }, __, { dataSources }, { variableValues: { params } }) {
+        async visits({ id }, { params }, { dataSources }) {
             console.log(`Fetching visits by project id ${id}`)
             return await dataSources.ljpAPI.getVisitsByProject({ id, params });
         }
