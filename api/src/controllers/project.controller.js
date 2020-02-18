@@ -48,10 +48,11 @@ controller.getVisits = async (req, res) => {
   try {
     const [project] = await orm.models.Project.getById(id);
     if (!project) {
-      throw new Error('Project noy found');
+      throw new Error('Project not found');
     }
 
-    const visits = await orm.models.Visit.getLimited(limit, page, { project_id: id });
+    // const visits = await orm.models.Visit.getLimited(limit, page, { project_id: id });
+    const visits = await orm.models.Visit.getLimited(limit, page, ['project_id', id]);
 
     logger.info(`Found visits: ${visits.length}`);
     res.send(visits);

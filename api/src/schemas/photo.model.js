@@ -20,12 +20,19 @@ export default function() {
       model.belongsTo(models.Visit, "visit", "visit_id", "id"); // note the reference to another model `Person`
 
       model.ensureIndex("id");
+      model.ensureIndex("visit_id");
 
-
-      model.defineStatic("getLimited", function(limit, page, filterFn) {
+      // model.defineStatic("getLimited", function(limit, page, filterFn) {
+      //   const pageLimit = limit || 10
+      //   const endIndex = ((page || 1) * (pageLimit)) + 1
+      //   const query = filterFn ? this.filter(filterFn) : this;
+      //   return query.slice(endIndex - pageLimit, endIndex)
+      // });
+      model.defineStatic("getLimited", function(limit, page, [filterKey, filterVal]) {
+        console.log('filterKey: ', { filterKey, filterVal });
         const pageLimit = limit || 10
         const endIndex = ((page || 1) * (pageLimit)) + 1
-        const query = filterFn ? this.filter(filterFn) : this;
+        const query = filterKey ? this.getAll(filterVal, { index: filterKey }) : this;
         return query.slice(endIndex - pageLimit, endIndex)
       });
 
