@@ -4,7 +4,7 @@ import { readdirSync } from 'fs'
 import path from 'path'
 const _ = require('lodash');
 const Thinky = require('thinky');
-const requireAll = require('require-all');
+// const requireAll = require('require-all');
 
 let loader = {
   thinky: null,
