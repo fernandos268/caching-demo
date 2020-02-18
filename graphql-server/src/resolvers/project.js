@@ -1,10 +1,10 @@
 module.exports = {
     Query: {
-        async projects(_, { params }, { dataSources }) {
-            console.log('Fetching projects....')
+        async projects(_, { params }, { dataSources, cache }) {
+            console.log('Fetching projects....', cache)
             return await dataSources.ljpAPI.getProjects(params);
         },
-        async project(_, {id}, { dataSources }) {
+        async project(_, { id }, { dataSources }) {
             console.log(`Fetching project by id ${id}`)
             return await dataSources.ljpAPI.getProjectById(id)
         }

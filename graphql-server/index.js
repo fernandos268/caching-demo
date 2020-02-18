@@ -20,27 +20,27 @@ const resolvers = require('./src/resolvers')
 const { ljpAPI } = require('./src/datasources')
 
 class CustomRedis extends RedisCache {
-  async get(key) {
-    console.log("TCL: CustomRedis -> get -> key", key)
-    let supRes = await super.get(key)
-    console.log("TCL: CustomRedis -> get -> supRes", supRes)
-    if (supRes != undefined) {
-      // this.refresh(key)
-    }
-    return supRes
-  }
+  // async get(key) {
+  //   console.log("TCL: CustomRedis -> get -> key", key)
+  //   let supRes = await super.get(key)
+  //   console.log("TCL: CustomRedis -> get -> supRes", supRes)
+  //   if (supRes != undefined) {
+  //     // this.refresh(key)
+  //   }
+  //   return supRes
+  // }
 }
 
-
+const cache = new CustomRedis({
+  host: 'localhost',
+})
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ctx => ({}),
+  context: ctx => ({ cache }),
   dataSources: () => ({ ljpAPI: new ljpAPI() }),
-  cache: new CustomRedis({
-    host: 'localhost',
-  }),
+  cache,
   persistedQueries: {
     cache: new RedisCache({
       host: 'localhost',
