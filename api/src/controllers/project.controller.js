@@ -41,19 +41,19 @@ controller.getById = async (req, res) => {
 
 controller.getVisits = async (req, res) => {
   const { id } = req.params
+  const {
+    limitless,
+    limit = 25,
+    page = 1
+  } = req.query
   try {
-    // console.log('req.params: ', req.params);
-    // console.log('orm.models: ', orm.models);
-    const [project] = await orm.models.Project.getById(req.params.id);
+    const [project] = await orm.models.Project.getById(id);
     if (!project) {
       throw new Error('Project noy found');
     }
 
-    const visits = await orm.models.Visit.filter({ project_id: id });
-    console.log('visits: ', visits);
-    // if (!visits.length) {
-    //   throw new Error('Node no found')
-    // }
+    const visits = await orm.models.Visit.getLimited(limit, page, { project_id: id });
+
     logger.info(`Found visits: ${visits.length}`);
     res.send(visits);
   }
