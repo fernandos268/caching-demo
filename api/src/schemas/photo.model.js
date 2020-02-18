@@ -22,10 +22,11 @@ export default function() {
       model.ensureIndex("id");
 
 
-      model.defineStatic("getLimited", function(limit, page) {
+      model.defineStatic("getLimited", function(limit, page, filterFn) {
         const pageLimit = limit || 10
         const endIndex = ((page || 1) * (pageLimit)) + 1
-        return this.slice(endIndex - pageLimit, endIndex);
+        const query = filterFn ? this.filter(filterFn) : this;
+        return query.slice(endIndex - pageLimit, endIndex)
       });
 
       model.defineStatic("getById", function(id = '') {
