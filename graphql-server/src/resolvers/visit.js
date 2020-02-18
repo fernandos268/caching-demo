@@ -1,11 +1,11 @@
 
 module.exports = {
     Query: {
-        async visits(_, {params}, { dataSources }) {
+        async visits(_, { params }, { dataSources }) {
             console.log('Fetchingu visitu ...')
             return await dataSources.ljpAPI.getVisits(params)
         },
-        async visit(_, {id}, { dataSources }) {
+        async visit(_, { id }, { dataSources }) {
             console.log(`Fetching visit by id ${id}`)
             return await dataSources.ljpAPI.getVisitById(id)
         },
@@ -31,6 +31,12 @@ module.exports = {
     Visit: {
         photos(parent, args, ctx) {
 
-        }
+        },
+        async project(parent, args, { dataSources }) {
+            const { project_id } = parent
+            const result = await dataSources.ljpAPI.getProjectById(project_id)
+            console.log('Visit --> project', result)
+            return result
+        },
     }
 }

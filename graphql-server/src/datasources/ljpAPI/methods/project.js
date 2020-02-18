@@ -8,9 +8,9 @@ async function getProjects(params) {
     }
 }
 
-async function getProjectById(id) {
+async function getProjectById(project_id) {
     try {
-        return await this.get(`/project/${id}`)
+        return await this.get(`/project/${project_id}`)
     } catch (err) {
         console.log('Error in fetching projects: ', err)
         throw err
