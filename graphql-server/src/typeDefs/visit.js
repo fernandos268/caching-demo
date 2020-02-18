@@ -2,14 +2,15 @@ const { gql } = require('apollo-server-express')
 
 module.exports = gql`
     extend type Query {
-        visits(params: GetListInput): [Visit!]!
+        visits(params: GetListInput): [Visit!]! @cacheControl(maxAge: 20)
+        visit(id: String!): Visit @cacheControl(maxAge: 20)
         visitsByProject(project_id: String!): [Visit!]!
     }
 
     extend type Mutation {
         createVisit(input: VisitInput!): Visit
         updateVisit(input: VisitInput!): Visit
-        deleteVisit(id: String!): Visit
+        deleteVisit(id: String!): String
     }
 
     type Visit {

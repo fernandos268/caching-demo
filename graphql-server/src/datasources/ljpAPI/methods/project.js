@@ -26,8 +26,8 @@ async function createProject(input) {
     }
 }
 
-async function updateProject(input) {
-    const { id } = input
+async function updateProject({id, ...input}) {
+    console.log("TCL: updateProject -> input", input)
     try {
         return await this.put(`project/${id}`, input)
     } catch (err) {
