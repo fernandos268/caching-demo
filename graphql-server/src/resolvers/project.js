@@ -15,9 +15,11 @@ module.exports = {
             return await dataSources.ljpAPI.createProject(input)
         },
         async updateProject(_, { input }, { dataSources }) {
+            console.log('Updating project....')
             return await dataSources.ljpAPI.updateProject(input)
         },
         async deleteProject(_, { id }, { dataSources }) {
+            console.log(`Deleting project id ${id}`)
             return await dataSources.ljpAPI.deleteProject(id)
         }
     },
