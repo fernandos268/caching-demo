@@ -26,6 +26,15 @@ async function getVisitsByProject({id, params}) {
     }
 }
 
+async function getPhotosByVisit(visit_id) {
+    try {
+        return await this.get(`visit/${visit_id}/photos`)
+    } catch (err) {
+        console.log('Error in fetching Photos: ', err)
+        throw err
+    }
+}
+
 async function createVisit(input) {
     try {
         return await this.post(`visit`, input)
@@ -57,6 +66,7 @@ module.exports = {
     getVisits,
     getVisitById,
     getVisitsByProject,
+    getPhotosByVisit,
     createVisit,
     updateVisit,
     deleteVisit

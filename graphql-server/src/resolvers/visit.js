@@ -29,14 +29,13 @@ module.exports = {
         }
     },
     Visit: {
-        photos(parent, args, ctx) {
-
+        async photos(parent, args, { dataSources }) {
+            const { id } = parent
+            return await dataSources.ljpAPI.getPhotosByVisit(id)
         },
         async project(parent, args, { dataSources }) {
             const { project_id } = parent
-            const result = await dataSources.ljpAPI.getProjectById(project_id)
-            console.log('Visit --> project', result)
-            return result
+            return await dataSources.ljpAPI.getProjectById(project_id)
         },
     }
 }

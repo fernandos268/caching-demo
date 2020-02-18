@@ -78,7 +78,7 @@ module.exports = gql`
         visit_pause_duration: Int
 
         # RELATIONAL FIELDS
-        photos: [Photo]
+        photos (params: GetListInput!): [Photo]
         project: Project
     }
 

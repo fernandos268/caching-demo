@@ -4,9 +4,9 @@ module.exports = {
       console.log('Fetching photos....');
       return await dataSources.ljpAPI.getPhotos(params);
     },
-    async photo(_, {id}, { dataSources }) {
-        console.log(`Fetching photo by id ${id}`)
-        return await dataSources.ljpAPI.getPhotoById(id)
+    async photo(_, { id }, { dataSources }) {
+      console.log(`Fetching photo by id ${id}`)
+      return await dataSources.ljpAPI.getPhotoById(id)
     },
     async photosByVisit(_, { visit_id }, { dataSources }) {
       console.log(`Fetching photos by visit id ${visit_id}....`);
@@ -23,6 +23,12 @@ module.exports = {
     },
     async deletePhoto(_, { id }, { dataSources }) {
       return await dataSources.ljpAPI.deletePhoto(id)
+    }
+  },
+  Photo: {
+    async visit(parent, args, { dataSources }) {
+      const { visit_id } = parent
+      return await dataSources.ljpAPI.getVisitById(visit_id)
     }
   }
 };
