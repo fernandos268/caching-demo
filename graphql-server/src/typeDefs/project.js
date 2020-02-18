@@ -47,7 +47,6 @@ module.exports = gql`
 
         # RELATIONAL FIELDS
         visits: [Visit]
-        photos: [Photo]
     }
 
     input ProjectInput {
