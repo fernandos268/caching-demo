@@ -2,11 +2,19 @@ const { gql } = require('apollo-server-express')
 
 module.exports = gql`
     extend type Query {
-        projects: [Project]
+        projects(params: GetListInput!): [Project] @cacheControl(maxAge: 20)
+        project(id: String!): Project @cacheControl(maxAge: 20)
     }
 
     extend type Mutation {
-        createProject(input: createProjectInput!): Project
+        createProject(input: ProjectInput!): Project
+        updateProject(input: ProjectInput!): Project
+        deleteProject(id: String!): String
+    }
+
+    type ProjectsResponse {
+        count: Int!
+        list: [Project!]!
     }
 
     type Project {
@@ -41,21 +49,41 @@ module.exports = gql`
         updated_date: String
         sync_date: String
         user_id: String
-        visits: [Visit!]
+
+        # RELATIONAL FIELDS
+        visits: [Visit]
+        photos: [Photo]
     }
 
-    input createProjectInput {
+    input ProjectInput {
+        id: String
+        master_project_id: String
         name: String
         legal_name: String
         number: String
+        address: String
         user_id: String
+        secondary_user_id: String
+        city: String
+        zip_code: String
+        state: String
         status: String
         image_url: String
         type: String
         type_name: String
         building_type_id: String
         client_id: String
+        carrier_id: String
         state_id: String
+        region_id: String
         footer_id: String
+        include_deficiency_photo: Boolean
+        include_photo: Boolean
+        is_single_reporting: Boolean
+        is_capture_app: Boolean
+        is_capture_qa: Boolean
+        created_date: String
+        updated_date: String
+        contracted_visit: String
     }
 `
