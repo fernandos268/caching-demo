@@ -44,16 +44,15 @@ controller.getPhotos = async (req, res) => {
     page = 1
   } = req.query
   try {
-    // console.log('req.params: ', req.params);
-    // console.log('orm.models: ', orm.models);
     const [visit] = await orm.models.Visit.getById(req.params.id);
     if (!visit) {
-      throw new Error('Visit noy found');
+      throw new Error('Visit not found');
     }
 
-    const photos = await orm.models.Photo.getLimited(limit, page, { visit_id: id });
+    // const photos = await orm.models.Photo.getLimited(limit, page, { visit_id: id });
+    const photos = await orm.models.Photo.getLimited(limit, page, ['visit_id', id]);
     logger.info(`Found photos: ${photos.length}`);
-    res.send(node);
+    res.send(photos);
   }
   catch (err) {
     logger.error('Error in getting nodes- ' + err);

@@ -4,7 +4,7 @@ import models from '../schemas'
 import logger from '../core/logger/app-logger'
 import config from '../core/config/config.dev'
 
-const connectToDb = async () => {
+const connectToRethink = async () => {
     let ormConfig = {
         // modelsPath: path.join(__dirname, '../schemas'),
         models,
@@ -29,4 +29,4 @@ const connectToDb = async () => {
         .catch((err) => logger.error('Error in connecting- ' + err));
 }
 
-export default connectToDb;
+export default connectToRethink;

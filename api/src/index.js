@@ -6,7 +6,7 @@ import morgan from 'morgan'
 import bodyParser from "body-parser";
 import logger from './core/logger/app-logger'
 import config from './core/config/config.dev'
-import connectToDb from './db/connect';
+import connectToRethink from './db/connectToRethink';
 
 import project from './routes/project.route'
 import visit from './routes/visit.route'
@@ -19,7 +19,7 @@ logger.stream = {
   }
 };
 
-connectToDb();
+connectToRethink();
 
 const app = express();
 app.use(cors());
