@@ -3,6 +3,7 @@ const { gql } = require('apollo-server-express')
 module.exports = gql`
     extend type Query {
         photos(params: GetListInput): [Photo!]! @cacheControl(maxAge: 500)
+        photo(id: String!): Photo @cacheControl(maxAge: 500)
         photosByVisit(visit_id: String!): [Photo!]! @cacheControl(maxAge: 500)
     }
 

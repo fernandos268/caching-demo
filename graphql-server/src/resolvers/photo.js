@@ -4,6 +4,10 @@ module.exports = {
       console.log('Fetching photos....');
       return await dataSources.ljpAPI.getPhotos(params);
     },
+    async photo(_, {id}, { dataSources }) {
+        console.log(`Fetching photo by id ${id}`)
+        return await dataSources.ljpAPI.getPhotoById(id)
+    },
     async photosByVisit(_, { visit_id }, { dataSources }) {
       console.log(`Fetching photos by visit id ${visit_id}....`);
       return await dataSources.ljpAPI.getPhotosByVisit(visit_id);
