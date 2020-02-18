@@ -9,7 +9,7 @@ module.exports = gql`
     extend type Mutation {
         addPhotoToVisit(input: VisitInput!): Visit
         updatePhoto(input: VisitInput!): Visit
-        deletePhoto(id: String!): Visit
+        deletePhoto(id: String!): String
     }
 
     type Photo {

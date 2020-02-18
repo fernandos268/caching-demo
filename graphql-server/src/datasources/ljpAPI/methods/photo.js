@@ -16,7 +16,7 @@ async function getPhotoById(id) {
     }
 }
 
-async function createPhoto(input) {
+async function addPhotoToVisit(input) {
     try {
         return await this.post(`photo`, input)
     } catch (err) {
@@ -48,7 +48,7 @@ async function deletePhoto(id) {
 module.exports = {
     getPhotos,
     getPhotoById,
-    createPhoto,
+    addPhotoToVisit,
     updatePhoto,
     deletePhoto
 }
