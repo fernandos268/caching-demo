@@ -4,8 +4,8 @@ import PageWrappers from '../hocs/PageWrappers'
 import MaterialTable from 'material-table'
 import { USERS} from '../request/query'
 const entity = 'Project'
-function LandingPage(props) {
+function Home(props) {
    return <h1> hi this is ladning</h1>  
 }
 
-export default PageWrappers(LandingPage, 'Home')
+export default PageWrappers(Home, 'Home')

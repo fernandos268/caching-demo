@@ -1,10 +1,10 @@
 import React from 'react' 
 import Loadable from 'react-loadable'
 import { Switch, Route } from "react-router-dom";
+import Loading from './components/Skeleton'
 
-
-const LandingPage = Loadable({
-   loader: ()=> import('./containers/LandingPage'),
+const Home = Loadable({
+   loader: ()=> import('./containers/Home'),
    loading: MyLoadingComponent
 })
 
@@ -33,14 +33,14 @@ const NotFound = () => {
 }
 
 function MyLoadingComponent() {
-   return <div>Loading...</div>;
+   return <Loading/>;
 }
 
 const routes = [  
    {
       path: '/',
       exact: true,
-      component: LandingPage,
+      component: Home,
 
    }, {
       path: '/project/:id?',

@@ -41,9 +41,6 @@ function DialogWrapper(props) {
             <Typography variant="h6" className={classes.title}>
               { props.name }
             </Typography>
-            <Button autoFocus color="inherit" onClick={() => {}}>
-              save
-            </Button>
           </Toolbar>
         </AppBar>
         <div>

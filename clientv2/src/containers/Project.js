@@ -2,15 +2,30 @@ import React, { useState, useEffect } from 'react'
 import { useQuery } from '@apollo/react-hooks';
 import PageWrappers from '../hocs/PageWrappers'
 import MaterialTable from 'material-table'
-import { USERS} from '../request/query'
+import { PROJECTS } from '../request/query'
 import axios from 'axios'
 import Dialog from '../components/FullDialogWrapper'
 import ProjectFormDetails from '../components/forms/ProjectFormDetials'
 const entity = 'Project'
-function LandingPage(props) {
-   const { loading, data, error } = useQuery(USERS)
+
+function Project(props) {
+   const { loading, data, error } = useQuery(PROJECTS, { 
+    variables: {
+      "params": {
+        "limit": 25,
+        "page": 1
+      }
+    }
+   })
+
    const [isOpen, setOpen] = useState(false)
-   const [list, setList] = useState([])
+   const [list, setList] = useState([{
+     name: 'aaron',
+     legal_name: 'aaron zambrano chua',
+     number: '100100022',
+     type: 'Male',
+     status: 'Single'
+   }])
    console.log('list: ', list);
    const [selected, setSelected] = useState({})
    const [state, setState] = useState({
@@ -18,30 +33,30 @@ function LandingPage(props) {
         { title: 'Name', field: 'name' },
         { title: 'Legal Name', field: 'legal_name' },
         { title: 'Number', field: 'number' },
-        { title: 'Type', field: 'number'},
+        { title: 'Type', field: 'type'},
         { title: 'Status', field: 'status'},
       ]
     });
 
     useEffect(() => {
-      (async () => {
-        const data = await axios.get('http://10.110.3.31:4001/project')
-        if(data.data) {
-          setList(data.data)
-        }
-      })()
-    }, [])
+      if(data) {
+        console.log('data: ', data);
+        setList(data.projects)
+      }
+    }, [data])
     return (
       <div>
         <MaterialTable
           title="Editable Example"
           columns={state.columns}
           data={list}
+          isLoading={loading}
           onChangePage={(...args) => {console.log(args)}}
           onRowClick={(evt, data) => {
             setSelected(data)
             setOpen(!isOpen)
           }}
+          options={{ pageSize: 10, actionsColumnIndex: -1}}
           editable={{
             onRowAdd: newData =>
               new Promise(resolve => {
@@ -95,4 +110,4 @@ function LandingPage(props) {
     );
 }
 
-export default PageWrappers(LandingPage, 'Home')
+export default PageWrappers(Project, 'Project')

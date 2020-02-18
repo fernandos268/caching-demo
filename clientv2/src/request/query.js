@@ -1,13 +1,20 @@
 
 import gql from 'graphql-tag';
 
-const USERS = gql`
-   query {
-      users
+const PROJECTS = gql`
+   query($params: QueryParams) {
+      projects(params: $params) {
+         id
+         name
+         legal_name
+         number
+         type
+         status
+      }
    }
 `
 
 
 export {
-   USERS
+   PROJECTS
 }

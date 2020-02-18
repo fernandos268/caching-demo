@@ -5,11 +5,15 @@ import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
+import HomeIcon from '@material-ui/icons/Home';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MailIcon from '@material-ui/icons/Mail';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import PhotoIcon from '@material-ui/icons/Photo';
+import PlaceIcon from '@material-ui/icons/Place';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Routes from './Routes'
 import { BrowserRouter as Router, Link } from "react-router-dom";
@@ -61,19 +65,24 @@ function App(props) {
   const links = [
     {
       label: 'Home',
-      path: '/'
+      path: '/',
+      icon: <HomeIcon/>
     },
     {
       label: 'Projects',
-      path: '/project'
+      path: '/project',
+      icon: <AssignmentIcon/>
     },
     {
       label: 'Visit',
-      path: '/visit'
+      path: '/visit',
+      icon: <PlaceIcon/>
+
     },
     {
       label: 'Photos',
-      path: '/photos'
+      path: '/photos',
+      icon: <PhotoIcon/>
     }
   ]
 
@@ -82,11 +91,11 @@ function App(props) {
       <div className={classes.toolbar}>LJP SAMPLE SPIKE</div>
       <Divider />
       <List>
-        {links.map((e, index) => (
-          <Link to={e.path}>
-            <ListItem button key={e.label}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={e.label} />
+        {links.map(({ label, path, icon}, index) => (
+          <Link to={path}>
+            <ListItem button key={label}>
+              <ListItemIcon>{icon}</ListItemIcon>
+              <ListItemText primary={label} />
             </ListItem>
           </Link>
         ))}
