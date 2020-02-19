@@ -21,6 +21,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "ioredis": "^4.14.1",
+    "redis": "^3.0.2",
     "rethinkdbdash": "^2.3.31"
   }
 }
