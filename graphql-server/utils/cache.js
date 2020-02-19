@@ -11,20 +11,52 @@ const client = redis.createClient({
     host: REDIS_HOST
 })
 
+
 module.exports = {
     async set(key, value, maxAge) {
-        return await client.set(key, value, 'ex', maxAge)
+        const val = JSON.stringify(value)
+        return await client.set(key, val, 'ex', maxAge)
     },
 
-    async get(key) {
-        console.log('CACHE --> set', key)
-    },
+    async get(key, params) {
+        const {
+            limit,
+            page,
+            limitless
+        } = params
 
-    async check(key) {
         if (key) {
             console.log('CACHE --> set:', key)
-            const val = await client.get(key)
-            console.log('val --> ', val)
+            const data = await client.get(key)
+            const parsed_data = JSON.parse(data)
+            console.log('parsed_data: ', parsed_data);
+            if (data) {
+                if ((parsed_data.length - 1) <= limit) {
+                    return parsed_data
+                }
+
+                const limited_data = [...parsed_data].slice(0, (limit + 1))
+                return limited_data
+            }
+        }
+    },
+
+    async remove(key) {
+        if (key) {
+            return await client.del('key')
+        }
+    },
+
+    async check(key, params) {
+        console.log('params: ', params);
+        const { limit } = params
+        if (key) {
+            const data = await client.get(key)
+            const parsed_data = JSON.parse(data)
+            if (data && (parsed_data.length - 1) > limit) {
+                return false
+            }
+            return true
         }
 
         return false
