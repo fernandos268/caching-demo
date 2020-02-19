@@ -3,7 +3,7 @@ const { RedisCache } = require('apollo-server-cache-redis')
 // const Redis = require('ioredis')
 const responseCachePlugin = require('apollo-server-plugin-response-cache')
 const cors = require('cors')
-
+const redis = require('redis')
 const app = require('express')()
 
 
@@ -21,31 +21,41 @@ const { ljpAPI, CustomRedis } = require('./src/datasources')
 
 const CustomRedisCache = require('./CustomRedisCache')
 
+const {
+  cacheFunctions
+} = require('./utils')
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ctx => ({}),
+  context: ctx => {
+    return {
+      cacheFunctions
+    }
+  },
   dataSources: () => ({
     ljpAPI: new ljpAPI(),
     redis: new CustomRedis()
   }),
-  cache: new CustomRedisCache({
-    host: 'localhost',
-  }),
+  // cache: new CustomRedisCache({
+  //   host: 'localhost',
+  // }),
   persistedQueries: {
     cache: new RedisCache({
       host: 'localhost',
     }),
   },
-  cacheControl: true,
-  plugins: [responseCachePlugin()]
+  // cacheControl: true,
+  // plugins: [responseCachePlugin()]
 })
 
 server.applyMiddleware({
   app,
-  path: '/graphql',
   cors: {
     origin: '*'
+  },
+  cache: (param1, param2, param3) => {
+    console.log('applyMiddleware -->', { param1, param2, param3 })
   }
 });
 server.installSubscriptionHandlers(httpServer);

@@ -18,7 +18,6 @@ async function getVisitById(id) {
 }
 
 async function getVisitsByProject(args) {
-    console.log('getVisitsByProject: ', args);
     const { project_id, params } = args
     try {
         return await this.get(`/project/${project_id}/visits`, params)

@@ -37,7 +37,6 @@ module.exports = {
             return await dataSources.ljpAPI.getPhotosByVisit({ visit_id: id, ...params })
         },
         async project(parent, args, { dataSources }) {
-            console.log('project: ', parent);
             const { project_id } = parent
             return await dataSources.ljpAPI.getProjectById(project_id)
         },
