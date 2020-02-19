@@ -1,5 +1,4 @@
 async function getProjects(params) {
-
     try {
         return await this.get(`/project`, params)
     } catch (err) {
@@ -8,9 +7,9 @@ async function getProjects(params) {
     }
 }
 
-async function getProjectById(id) {
+async function getProjectById(project_id) {
     try {
-        return await this.get(`/project/${id}`)
+        return await this.get(`/project/${project_id}`)
     } catch (err) {
         console.log('Error in fetching projects: ', err)
         throw err
@@ -27,7 +26,6 @@ async function createProject(input) {
 }
 
 async function updateProject({id, ...input}) {
-    console.log("TCL: updateProject -> input", input)
     try {
         return await this.put(`project/${id}`, input)
     } catch (err) {

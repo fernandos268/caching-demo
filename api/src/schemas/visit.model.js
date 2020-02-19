@@ -20,11 +20,21 @@ export default function() {
       model.belongsTo(models.Project, "project", "project_id", "id");
 
       model.ensureIndex("id");
+      model.ensureIndex("project_id");
 
-      model.defineStatic("getLimited", function(limit, page) {
+      // model.defineStatic("getLimited", function(limit, page, filterFn) {
+      //   const pageLimit = limit || 10
+      //   const endIndex = ((page || 1) * (pageLimit)) + 1
+      //   const query = filterFn ? this.filter(filterFn) : this;
+      //   return query.slice(endIndex - pageLimit, endIndex)
+      // });
+      model.defineStatic("getLimited", function(limit, page, filter) {
+        const [filterKey, filterVal] = filter || []
+        console.log('filterKey: ', { filterKey, filterVal });
         const pageLimit = limit || 10
         const endIndex = ((page || 1) * (pageLimit)) + 1
-        return this.slice(endIndex - pageLimit, endIndex);
+        const query = filter ? this.getAll(filterVal, { index: filterKey }) : this;
+        return query.slice(endIndex - pageLimit, endIndex)
       });
 
       model.defineStatic("getById", function(id = '') {

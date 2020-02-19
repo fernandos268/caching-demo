@@ -2,8 +2,8 @@ const { gql } = require('apollo-server-express')
 
 module.exports = gql`
     extend type Query {
-        projects(params: GetListInput!): [Project] @cacheControl(maxAge: 20)
-        project(id: String!): Project @cacheControl(maxAge: 20)
+        projects(params: GetListInput!): [Project] @cacheControl(maxAge: 100)
+        project(id: String!): Project @cacheControl(maxAge: 100)
     }
 
     extend type Mutation {
@@ -51,8 +51,7 @@ module.exports = gql`
         user_id: String
 
         # RELATIONAL FIELDS
-        visits: [Visit]
-        photos: [Photo]
+        visits(params: GetListInput!): [Visit] @cacheControl(maxAge: 100)
     }
 
     input ProjectInput {

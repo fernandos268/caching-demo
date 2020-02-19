@@ -32,28 +32,27 @@ controller.getById = async (req, res) => {
   }
   catch (err) {
     logger.error('Error in getting nodes- ' + err);
-    // res.send('Got error in getById');
     res.status(500).send(err);
   }
 }
 
 controller.getPhotos = async (req, res) => {
   const { id } = req.params
+  const {
+    limitless,
+    limit = 25,
+    page = 1
+  } = req.query
   try {
-    // console.log('req.params: ', req.params);
-    // console.log('orm.models: ', orm.models);
     const [visit] = await orm.models.Visit.getById(req.params.id);
     if (!visit) {
-      throw new Error('Visit noy found');
+      throw new Error('Visit not found');
     }
 
-    const visits = await orm.models.Photo.filter({ visit_id: id });
-    console.log('visits: ', visits);
-    // if (!visits.length) {
-    //   throw new Error('Node no found')
-    // }
-    logger.info(`Found visits: ${visits.length}`);
-    res.send(node);
+    // const photos = await orm.models.Photo.getLimited(limit, page, { visit_id: id });
+    const photos = await orm.models.Photo.getLimited(limit, page, ['visit_id', id]);
+    logger.info(`Found photos: ${photos.length}`);
+    res.send(photos);
   }
   catch (err) {
     logger.error('Error in getting nodes- ' + err);

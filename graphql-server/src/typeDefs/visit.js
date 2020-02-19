@@ -2,9 +2,9 @@ const { gql } = require('apollo-server-express')
 
 module.exports = gql`
     extend type Query {
-        visits(params: GetListInput): [Visit!]! @cacheControl(maxAge: 20)
-        visit(id: String!): Visit @cacheControl(maxAge: 20)
-        visitsByProject(project_id: String!): [Visit!]!
+        visits(params: GetListInput): [Visit!]! @cacheControl(maxAge: 100)
+        visit(id: String!): Visit @cacheControl(maxAge: 100)
+        visitsByProject(project_id: String!, params: GetListInput!): [Visit!]! @cacheControl(maxAge: 100)
     }
 
     extend type Mutation {
@@ -78,8 +78,8 @@ module.exports = gql`
         visit_pause_duration: Int
 
         # RELATIONAL FIELDS
-        photos: [Photo]
-        project: Project
+        photos (params: GetListInput!): [Photo] @cacheControl(maxAge: 100)
+        project: Project @cacheControl(maxAge: 100)
     }
 
     input VisitInput {

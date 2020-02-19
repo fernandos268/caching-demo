@@ -3,6 +3,7 @@ const { gql } = require('apollo-server-express')
 module.exports = gql`
     extend type Query {
         photos(params: GetListInput): [Photo!]! @cacheControl(maxAge: 500)
+        photo(id: String!): Photo @cacheControl(maxAge: 500)
         photosByVisit(visit_id: String!): [Photo!]! @cacheControl(maxAge: 500)
     }
 
@@ -48,8 +49,8 @@ module.exports = gql`
         visit_type: String
 
         # RELATIONAL FIELDS
-        project: Project
-        visit: Visit
+        project: Project @cacheControl(maxAge: 100)
+        visit: Visit @cacheControl(maxAge: 100)
     }
 
     input PhotoInput {
