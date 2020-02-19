@@ -78,8 +78,8 @@ module.exports = gql`
         visit_pause_duration: Int
 
         # RELATIONAL FIELDS
-        photos (params: GetListInput!): [Photo]
-        project: Project
+        photos (params: GetListInput!): [Photo] @cacheControl(maxAge: 100)
+        project: Project @cacheControl(maxAge: 100)
     }
 
     input VisitInput {

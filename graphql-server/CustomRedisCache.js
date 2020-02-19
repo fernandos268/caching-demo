@@ -1,6 +1,10 @@
 const { RedisCache } = require('apollo-server-cache-redis')
 
+const CustomRedis = require('./src/datasources/redis/CustomRedis')
+
 class CustomRedisCache extends RedisCache {
+
+  // intercepts incoming cache key for concatenation
   async set(key, value, options = {}) {
     const cacheValue = JSON.parse(value)
     const { data } = cacheValue
@@ -16,6 +20,13 @@ class CustomRedisCache extends RedisCache {
       const newKey = key.concat('?photo')
       return super.set(newKey, value, 'ex', options.ttl)
     }
+  }
+
+  async get(key) {
+    // intercepts key to get the concatenated key from redis
+    const redis = new CustomRedis()
+    const cacheKey = await redis.getKey(key)
+    return super.get(cacheKey)
   }
 }
 
