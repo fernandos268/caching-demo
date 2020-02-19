@@ -1,3 +1,4 @@
+
 async function getVisits(params) {
     try {
         return await this.get(`/visit`, params)
@@ -10,7 +11,7 @@ async function getVisits(params) {
 
 async function getVisitById(id) {
     try {
-        return await this.get(`/visit/${id}`)
+        return this.visitsLoader.load(id)
     } catch (err) {
         console.log('Error in fetching visit: ', err)
         throw err

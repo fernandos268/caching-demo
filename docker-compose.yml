@@ -2,7 +2,7 @@ version: '3'
 
 services:
     graphql-server:
-        image: node:11
+        image: node:latest
         volumes:
             - ./graphql-server:/usr/src/graphql-server
         environment:
