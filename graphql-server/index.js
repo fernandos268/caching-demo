@@ -28,25 +28,21 @@ const {
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ctx => {
-    return {
-      cacheFunctions
-    }
-  },
+  context: ctx => ({ ...ctx }),
   dataSources: () => ({
     ljpAPI: new ljpAPI(),
     redis: new CustomRedis()
   }),
-  // cache: new CustomRedisCache({
-  //   host: 'localhost',
-  // }),
+  cache: new CustomRedisCache({
+    host: 'localhost',
+  }),
   persistedQueries: {
     cache: new RedisCache({
       host: 'localhost',
     }),
   },
-  // cacheControl: true,
-  // plugins: [responseCachePlugin()]
+  cacheControl: true,
+  plugins: [responseCachePlugin()]
 })
 
 server.applyMiddleware({

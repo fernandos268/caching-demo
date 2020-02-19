@@ -1,13 +1,7 @@
 module.exports = {
     Query: {
         async projects(_, { params }, { dataSources, cache, cacheFunctions }) {
-            const isCached = await cacheFunctions.check('projects')
-            if (isCached) {
-                console.log({ isCached })
-            }
-            const result = await dataSources.ljpAPI.getProjects(params)
-            await cacheFunctions.set('projects', JSON.parse(result), 100)
-            return result
+            return await dataSources.ljpAPI.getProjects(params)
         },
         async project(_, { id }, { dataSources }) {
             console.log(`Fetching project by id ${id}`)
