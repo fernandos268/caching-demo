@@ -41,8 +41,8 @@ const server = new ApolloServer({
       host: 'localhost',
     }),
   },
-  cacheControl: true,
-  plugins: [responseCachePlugin()]
+  // cacheControl: true,
+  // plugins: [responseCachePlugin()]
 })
 
 server.applyMiddleware({
