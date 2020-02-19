@@ -49,8 +49,8 @@ module.exports = gql`
         visit_type: String
 
         # RELATIONAL FIELDS
-        project: Project
-        visit: Visit
+        project: Project @cacheControl(maxAge: 100)
+        visit: Visit @cacheControl(maxAge: 100)
     }
 
     input PhotoInput {
