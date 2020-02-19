@@ -27,7 +27,6 @@ module.exports = {
     },
     GetListResult: {
         __isTypeOf(obj, context, info) {
-            console.log(obj)
             const input = info.variableValues.input
             if (input.entity === 'Project') {
                 return obj instanceof GetListResult
