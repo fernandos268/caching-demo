@@ -34,11 +34,11 @@ const server = new ApolloServer({
     redis: new CustomRedis()
   }),
   cache: new CustomRedisCache({
-    host: 'localhost',
+    host: '10.110.55.101',
   }),
   persistedQueries: {
     cache: new RedisCache({
-      host: 'localhost',
+      host: '10.110.55.101',
     }),
   },
   cacheControl: true,
