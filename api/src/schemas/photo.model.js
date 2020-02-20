@@ -1,5 +1,6 @@
 import fields from '../schema-raws/photo'
 import schemaStitcher from '../utils/schemaStitcher';
+import logger from '../core/logger/app-logger';
 
 export default function() {
   let thinky = this.thinky; // access to thinky instance
@@ -30,10 +31,11 @@ export default function() {
       // });
       model.defineStatic("getLimited", function(limit, page, filter) {
         const [filterKey, filterVal] = filter || []
-        console.log('filterKey: ', { filterKey, filterVal });
+        // console.log('filterKey: ', { filterKey, filterVal });
         const pageLimit = limit || 10
-        const endIndex = ((page || 1) * (pageLimit)) + 1
+        const endIndex = ((page || 1) * (pageLimit))
         const query = filter ? this.getAll(filterVal, { index: filterKey }) : this;
+        logger.info(`Photo limit: ${pageLimit} - end: ${endIndex}`)
         return query.slice(endIndex - pageLimit, endIndex)
       });
 

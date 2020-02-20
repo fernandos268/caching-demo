@@ -7,13 +7,14 @@ import bodyParser from "body-parser";
 import logger from './core/logger/app-logger'
 import config from './core/config/config.dev'
 import connectToRethink from './db/connectToRethink';
+import connectToOrient from './db/connectToOrient';
 
+import orientRoute from './routes/orient.route';
 import project from './routes/project.route'
 import visit from './routes/visit.route'
 import photo from './routes/photo.route'
-import connectToOrient from './db/connectToOrient';
-import migrate from './db/migrate';
-import orientRoute from './routes/orient.route';
+// import migrate from './db/migrate';
+// import migration from './migration'
 
 const port = config.serverPort;
 logger.stream = {
@@ -27,6 +28,7 @@ const run = async () => {
   await connectToRethink();
   const orient = await connectToOrient()
   // await migrate(orient);
+  // await migration(orient);
   // console.log('After Migrate');
 
   app.use(cors());
