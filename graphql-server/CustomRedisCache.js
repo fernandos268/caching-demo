@@ -26,8 +26,7 @@ class CustomRedisCache extends RedisCache {
     // intercepts key to get the concatenated key from redis
     const redis = new CustomRedis()
     const cacheKey = await redis.getKey(key)
-    const value = await super.get(cacheKey)
-    return value
+    return super.get(cacheKey)
   }
 }
 

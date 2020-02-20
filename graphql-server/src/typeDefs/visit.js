@@ -3,14 +3,14 @@ const { gql } = require('apollo-server-express')
 module.exports = gql`
     extend type Query {
         visits(params: GetListInput): [Visit!]! @cacheControl(maxAge: 100)
-        visit(id: String!): Visit @cacheControl(maxAge: 100)
-        visitsByProject(project_id: String!, params: GetListInput!): [Visit!]! @cacheControl(maxAge: 100)
+        visit(id: ID!): Visit @cacheControl(maxAge: 100)
+        visitsByProject(project_id: ID): [Visit!]! @cacheControl(maxAge: 100)
     }
 
     extend type Mutation {
         createVisit(input: VisitInput!): Visit
         updateVisit(input: VisitInput!): Visit
-        deleteVisit(id: String!): String
+        deleteVisit(id: ID!): String
     }
 
     type Visit {
@@ -29,7 +29,7 @@ module.exports = gql`
         event_id: String
         event_time: Int
         file_path: String
-        id: String
+        id: ID
         ios_version: String
         is_deficiency: Boolean
         is_old_visit: Boolean
@@ -44,11 +44,11 @@ module.exports = gql`
         message_body: String
         # metadata
         next_visit_date: String
-        next_visit_id: String
+        next_visit_id: ID
         original_start_date: String
         outstanding_open_items: [String]
         # previous_tags
-        project_id: String
+        project_id: ID
         project_scope_id: String
         purpose: String
         repeat_frequency: String
@@ -98,7 +98,7 @@ module.exports = gql`
         event_id: String
         event_time: Int
         file_path: String
-        id: String
+        id: ID
         ios_version: String
         is_deficiency: Boolean
         is_old_visit: Boolean
@@ -113,11 +113,11 @@ module.exports = gql`
         message_body: String
         # metadata
         next_visit_date: String
-        next_visit_id: String
+        next_visit_id: ID
         original_start_date: String
         outstanding_open_items: [String]
         # previous_tags
-        project_id: String
+        project_id: ID
         project_scope_id: String
         purpose: String
         repeat_frequency: String

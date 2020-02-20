@@ -9,7 +9,7 @@ async function getPhotos(params) {
 
 async function getPhotoById(id) {
     try {
-        return await this.get(`/photo/${id}`)
+        return this.photosLoader.load(id)
     } catch (err) {
         console.log('Error in fetching Photos: ', err)
         throw err
