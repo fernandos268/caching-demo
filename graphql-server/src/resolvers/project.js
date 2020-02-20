@@ -1,3 +1,5 @@
+const util = require('util')
+
 module.exports = {
     Query: {
         async projects(_, { params }, { dataSources, cache, cacheFunctions }, info) {
@@ -15,10 +17,14 @@ module.exports = {
            redis.deleteAllKeysByKeyword('project')
             return await dataSources.ljpAPI.createProject(input)
         },
-        async updateProject(_, { input }, { dataSources, redis }) {
+        async updateProject(_, { input }, { dataSources, redis }, info) {
+            // console.log(util.inspect(info.fieldNodes.find(({selectionSet}) => selectionSet).selectionSet, false, null, true))
+            // console.log("TCL: updateProject -> input", input)
             console.log('Updating project....')
-            redis.deleteAllKeysByKeyword('project')
-            return await dataSources.ljpAPI.updateProject(input)
+            // redis.deleteAllKeysByKeyword('project')
+            const result = await dataSources.ljpAPI.updateProject(input)
+            console.log("TCL: updateProject -> result", result)
+            return
         },
         async deleteProject(_, { id }, { dataSources, redis }) {
             console.log(`Deleting project id ${id}`)
