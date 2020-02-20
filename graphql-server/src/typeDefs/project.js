@@ -49,6 +49,7 @@ module.exports = gql`
         updated_date: String
         sync_date: String
         user_id: String
+        metadata: ScalarObject
 
         # RELATIONAL FIELDS
         visits(params: GetListInput!): [Visit] @cacheControl(maxAge: 100)
