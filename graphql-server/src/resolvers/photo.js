@@ -16,15 +16,15 @@ module.exports = {
   Mutation: {
     async addPhotoToVisit(_, { input }, { dataSources }) {
       console.log('Adding Photo to Visit.....')
-      await dataSources.redis.deleteAllKeysByKeyword('photo')
+      dataSources.redis.deleteAllKeysByKeyword('photo')
       return await dataSources.ljpAPI.addPhotoToVisit(input)
     },
     async updatePhoto(_, { input }, { dataSources }) {
-      await dataSources.redis.deleteAllKeysByKeyword('photo')
+      dataSources.redis.deleteAllKeysByKeyword('photo')
       return await dataSources.ljpAPI.updatePhoto(input)
     },
     async deletePhoto(_, { id }, { dataSources }) {
-      await dataSources.redis.deleteAllKeysByKeyword('photo')
+      dataSources.redis.deleteAllKeysByKeyword('photo')
       return await dataSources.ljpAPI.deletePhoto(id)
     }
   },

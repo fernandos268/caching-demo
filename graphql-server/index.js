@@ -12,14 +12,16 @@ const httpServer = require('http').createServer(app)
 global.config = require('./config')
 
 const {
-  APP_PORT
+  APP_PORT,
+  REDIS_HOST,
+  REDIS_PORT
 } = config
 
 const typeDefs = require('./src/typeDefs')
 const resolvers = require('./src/resolvers')
 const { ljpAPI, CustomRedis } = require('./src/datasources')
 
-const CustomRedisCache = require('./CustomRedisCache')
+const CustomRedisCache = require('./utils/CustomRedisCache')
 
 const {
   cacheFunctions
@@ -31,14 +33,14 @@ const server = new ApolloServer({
   context: ctx => ({ ...ctx }),
   dataSources: () => ({
     ljpAPI: new ljpAPI(),
-    redis: new CustomRedis()
+    redis: new CustomRedis({
+      host: REDIS_HOST
+    })
   }),
-  cache: new CustomRedisCache({
-    host: 'localhost',
-  }),
+  cache: new CustomRedisCache(REDIS_HOST),
   persistedQueries: {
     cache: new RedisCache({
-      host: 'localhost',
+      host: REDIS_HOST,
     }),
   },
   cacheControl: true,

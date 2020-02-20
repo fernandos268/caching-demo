@@ -17,17 +17,17 @@ module.exports = {
     Mutation: {
         async createVisit(_, { input }, { dataSources }) {
             console.log('Creating visit.....')
-            await dataSources.redis.deleteAllKeysByKeyword('visit')
+            dataSources.redis.deleteAllKeysByKeyword('visit')
             return await dataSources.ljpAPI.createVisit(input)
         },
         async updateVisit(_, { input }, { dataSources }) {
             console.log('Updating visitu....')
-            await dataSources.redis.deleteAllKeysByKeyword('visit')
+            dataSources.redis.deleteAllKeysByKeyword('visit')
             return await dataSources.ljpAPI.updateVisit(input)
         },
         async deleteVisit(_, { id }, { dataSources }) {
             console.log('Deleting visitu....')
-            await dataSources.redis.deleteAllKeysByKeyword('visit')
+            dataSources.redis.deleteAllKeysByKeyword('visit')
             return await dataSources.ljpAPI.deleteVisit(id)
         }
     },
