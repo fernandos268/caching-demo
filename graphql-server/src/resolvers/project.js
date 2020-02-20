@@ -11,17 +11,17 @@ module.exports = {
     Mutation: {
         async createProject(_, { input }, { dataSources }) {
             console.log('Creating project.....')
-            await dataSources.redis.deleteAllKeysByKeyword('project')
+           dataSources.redis.deleteAllKeysByKeyword('project')
             return await dataSources.ljpAPI.createProject(input)
         },
         async updateProject(_, { input }, { dataSources }) {
             console.log('Updating project....')
-            await dataSources.redis.deleteAllKeysByKeyword('project')
+            dataSources.redis.deleteAllKeysByKeyword('project')
             return await dataSources.ljpAPI.updateProject(input)
         },
         async deleteProject(_, { id }, { dataSources }) {
             console.log(`Deleting project id ${id}`)
-            await dataSources.redis.deleteAllKeysByKeyword('project')
+            dataSources.redis.deleteAllKeysByKeyword('project')
             return await dataSources.ljpAPI.deleteProject(id)
         }
     },
