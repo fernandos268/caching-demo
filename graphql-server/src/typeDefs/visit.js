@@ -4,7 +4,7 @@ module.exports = gql`
     extend type Query {
         visits(params: GetListInput): [Visit!]! @cacheControl(maxAge: 100)
         visit(id: ID!): Visit @cacheControl(maxAge: 100)
-        visitsByProject(project_id: ID): [Visit!]! @cacheControl(maxAge: 100)
+        visitsByProject(project_id: ID, params: GetListInput): [Visit!]! @cacheControl(maxAge: 100)
     }
 
     extend type Mutation {

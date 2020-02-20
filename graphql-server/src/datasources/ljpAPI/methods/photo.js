@@ -25,7 +25,8 @@ async function addPhotoToVisit(input) {
     }
 }
 
-async function getPhotosByVisit({ visit_id, ...params }) {
+async function getPhotosByVisit(args) {
+    const { visit_id, params } = args
     try {
         return await this.get(`visit/${visit_id}/photos`, params)
     } catch (err) {
