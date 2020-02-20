@@ -14,17 +14,17 @@ module.exports = {
     }
   },
   Mutation: {
-    async addPhotoToVisit(_, { input }, { dataSources }) {
+    async addPhotoToVisit(_, { input }, { dataSources, redis }) {
       console.log('Adding Photo to Visit.....')
-      await dataSources.redis.deleteAllKeysByKeyword('photo')
+      redis.deleteAllKeysByKeyword('photo')
       return await dataSources.ljpAPI.addPhotoToVisit(input)
     },
-    async updatePhoto(_, { input }, { dataSources }) {
-      await dataSources.redis.deleteAllKeysByKeyword('photo')
+    async updatePhoto(_, { input }, { dataSources, redis }) {
+      redis.deleteAllKeysByKeyword('photo')
       return await dataSources.ljpAPI.updatePhoto(input)
     },
-    async deletePhoto(_, { id }, { dataSources }) {
-      await dataSources.redis.deleteAllKeysByKeyword('photo')
+    async deletePhoto(_, { id }, { dataSources, redis }) {
+      redis.deleteAllKeysByKeyword('photo')
       return await dataSources.ljpAPI.deletePhoto(id)
     }
   },

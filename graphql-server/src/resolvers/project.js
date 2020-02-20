@@ -10,19 +10,19 @@ module.exports = {
         }
     },
     Mutation: {
-        async createProject(_, { input }, { dataSources }) {
+        async createProject(_, { input }, { dataSources, redis }) {
             console.log('Creating project.....')
-            await dataSources.redis.deleteAllKeysByKeyword('project')
+           redis.deleteAllKeysByKeyword('project')
             return await dataSources.ljpAPI.createProject(input)
         },
-        async updateProject(_, { input }, { dataSources }) {
+        async updateProject(_, { input }, { dataSources, redis }) {
             console.log('Updating project....')
-            await dataSources.redis.deleteAllKeysByKeyword('project')
+            redis.deleteAllKeysByKeyword('project')
             return await dataSources.ljpAPI.updateProject(input)
         },
-        async deleteProject(_, { id }, { dataSources }) {
+        async deleteProject(_, { id }, { dataSources, redis }) {
             console.log(`Deleting project id ${id}`)
-            await dataSources.redis.deleteAllKeysByKeyword('project')
+            redis.deleteAllKeysByKeyword('project')
             return await dataSources.ljpAPI.deleteProject(id)
         }
     },

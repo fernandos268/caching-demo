@@ -1,12 +1,16 @@
 const Redis = require('ioredis');
 
-class CustomRedis extends Redis {
-
+class CustomRedis {
+    constructor(options) {
+        const client = new Redis(options)
+        this.client = client
+        // this.client(options)
+    }
     // deletes all keys in redis with keyword fqc
     deleteAllKeys() {
-        const stream = super.scanStream({match: `fqc:*`});
+        const stream = this.client.scanStream({match: `fqc:*`});
         stream.on('data', (keys) => {
-            super.unlink(keys)
+            this.client.unlink(keys)
         });
         stream.on('end', function() {
         console.log('done');
@@ -15,19 +19,19 @@ class CustomRedis extends Redis {
 
     // deletes all keys in redis by keyword
     deleteAllKeysByKeyword(keyword) {
-        const stream = super.scanStream({match: `*${keyword}*`});
+        const stream = this.client.scanStream({match: `*${keyword}*`});
         stream.on('data', (keys) => {
-            super.unlink(keys)
+            this.client.unlink(keys)
         });
         stream.on('end', function() {
-        console.log('done');
+        console.log('Deleted keys');
         });
     }
 
     // gets the concatenated key that matches the original key hash
     async getKey(key) {
         return new Promise(async (resolve, reject) => {
-            const keys = await super.keys(`${key}*`)
+            const keys = await this.client.keys(`${key}*`)
             if(keys.length) {
                 keys.forEach(cacheKey => {
                     if(cacheKey.includes(key)) {

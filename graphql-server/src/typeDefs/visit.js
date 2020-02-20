@@ -1,6 +1,8 @@
 const { gql } = require('apollo-server-express')
 
 module.exports = gql`
+    scalar PrevTags
+
     extend type Query {
         visits(params: GetListInput): [Visit!]! @cacheControl(maxAge: 100)
         visit(id: ID!): Visit @cacheControl(maxAge: 100)
@@ -47,7 +49,7 @@ module.exports = gql`
         next_visit_id: ID
         original_start_date: String
         outstanding_open_items: [String]
-        # previous_tags
+        previous_tags: PrevTags
         project_id: ID
         project_scope_id: String
         purpose: String
