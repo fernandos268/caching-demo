@@ -2,7 +2,7 @@
 async function getVisits(params) {
     try {
         return await this.get(`/visit`, params)
-    } catch(err) {
+    } catch (err) {
         console.log('Error in getting visits:', err)
         throw err
     }
@@ -18,10 +18,11 @@ async function getVisitById(id) {
     }
 }
 
-async function getVisitsByProject({id, params}) {
+async function getVisitsByProject(args) {
+    const { project_id, params } = args
     try {
-        return await this.get(`/project/${id}/visits`, params)
-    } catch(err) {
+        return await this.get(`/project/${project_id}/visits`, params)
+    } catch (err) {
         console.log('Error in getting visits by projects', err)
         throw err
     }
@@ -37,7 +38,7 @@ async function createVisit(input) {
     }
 }
 
-async function updateVisit({id, ...input}) {
+async function updateVisit({ id, ...input }) {
     try {
         return await this.put(`visit/${id}`, input)
     } catch (err) {

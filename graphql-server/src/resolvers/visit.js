@@ -9,9 +9,9 @@ module.exports = {
             console.log(`Fetching visit by id ${id}`)
             return await dataSources.ljpAPI.getVisitById(id)
         },
-        async visitsByProject(_, { project_id }, { dataSources }) {
-            console.log('Fetchingu visitu by id...')
-            return await dataSources.ljpAPI.getVisitsByProject(project_id)
+        async visitsByProject(_, args, { dataSources }) {
+            console.log('Fetchingu visitu by id...', args)
+            return await dataSources.ljpAPI.getVisitsByProject(args)
         }
     },
     Mutation: {

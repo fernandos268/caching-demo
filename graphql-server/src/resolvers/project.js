@@ -1,8 +1,7 @@
 module.exports = {
     Query: {
-        async projects(_, { params }, { dataSources, cache }) {
-            console.log('Fetching projects....', cache)
-            return await dataSources.ljpAPI.getProjects(params);
+        async projects(_, { params }, { dataSources, cache, cacheFunctions }) {
+            return await dataSources.ljpAPI.getProjects(params)
         },
         async project(_, { id }, { dataSources }) {
             console.log(`Fetching project by id ${id}`)
@@ -29,7 +28,7 @@ module.exports = {
     Project: {
         async visits({ id }, { params }, { dataSources }) {
             console.log(`Fetching visits by project id ${id}`)
-            return await dataSources.ljpAPI.getVisitsByProject({ id, params });
+            return await dataSources.ljpAPI.getVisitsByProject({ project_id: id, params });
         }
     }
 }

@@ -8,9 +8,9 @@ module.exports = {
       console.log(`Fetching photo by id ${id}`)
       return await dataSources.ljpAPI.getPhotoById(id)
     },
-    async photosByVisit(_, { visit_id }, { dataSources }) {
+    async photosByVisit(_, { visit_id, params }, { dataSources }) {
       console.log(`Fetching photos by visit id ${visit_id}....`);
-      return await dataSources.ljpAPI.getPhotosByVisit(visit_id);
+      return await dataSources.ljpAPI.getPhotosByVisit({ visit_id, params });
     }
   },
   Mutation: {
