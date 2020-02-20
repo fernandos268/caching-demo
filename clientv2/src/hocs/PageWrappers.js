@@ -5,6 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { SnackbarProvider, useSnackbar } from 'notistack' 
 
 const drawerWidth = 240;
 
@@ -30,23 +31,24 @@ const Bar = (props) => {
   const classes = useStyles();
    return(
       <AppBar position="fixed" className={classes.appBar}>
-      <Toolbar>
-         <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            // onClick={handleDrawerToggle}
-            className={classes.menuButton}
-         >
-            <MenuIcon />
-         </IconButton>
-         <Typography variant="h6" noWrap>
-            {props.name}
-         </Typography>
-      </Toolbar>
+         <Toolbar>
+            <IconButton
+               color="inherit"
+               aria-label="open drawer"
+               edge="start"
+               // onClick={handleDrawerToggle}
+               className={classes.menuButton}
+            >
+               <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap>
+               {props.name}
+            </Typography>
+         </Toolbar>
       </AppBar>
    )
 }
+
 const PageWrappers = (Component, name) => {
    return class extends React.PureComponent {
       constructor(props){
@@ -59,7 +61,9 @@ const PageWrappers = (Component, name) => {
                   <Bar name={name}/>
                </div>
                <div style={{ marginTop: '50px'}}>
-                  <Component {...this.props}/>
+                  <SnackbarProvider maxSnack={3}>
+                     <Component {...this.props}/>
+                  </SnackbarProvider>
                </div>
             </div>
          )

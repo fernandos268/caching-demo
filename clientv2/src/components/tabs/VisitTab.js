@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import PageWrappers from '../hocs/PageWrappers'
-import debounce from 'lodash/debounce'
-import DialogWrapper from '../components/DialogWrapper'
-import { VISITS } from '../request/query'
+import { VISITS, VISITSBYPROJECT } from '../../request/query'
 import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 import Paper from '@material-ui/core/Paper';
-import VirtualizedTable from '../components/VirtualizedTable'
-import FullDialogWrapper from '../components/FullDialogWrapper'
-import VisitFormDetails from '../components/forms/VisitFormDetails'
-import GeneratFields from '../components/Generators'
-
-function Visit(props) {
+import VirtualizedTable from '../VirtualizedTable'
+import FullDialogWrapper from '../FullDialogWrapper'
+import VisitFormDetails from '../forms/VisitFormDetails'
+import GeneratFields from '../Generators'
+import PaginatedTable from 'mui-table'
+function VisitTab(props) {
    const { parent_node, parent_node_id } = props
    const [number, setGenerate] = useState(25)
    const [fetchGrid, { loading, data, error }] = useLazyQuery(VISITS)
@@ -23,19 +20,13 @@ function Visit(props) {
    const [fieldValues, setFieldValues] = useState({})
 
    useEffect(() => {
-      if(parent_node_id) {
-         console.log('do something visit tabs...')
-      }
-   }, [parent_node, parent_node_id]);
-
-   useEffect(() => {
       if(data) {
          setList(data.visits || [])
       }
    }, [data]);
    
    useEffect(() => {
-      fetchGrid(getFetchParams())
+      fetchGrid(getFetchParams(25, parent_node, parent_node_id))
    }, []);
 
    return (
@@ -83,16 +74,6 @@ function Visit(props) {
                <VisitFormDetails fieldValues={selected}/>
             </div>
          </FullDialogWrapper>
-         
-         <DialogWrapper
-            title='New Visit'
-            isOpen={isOpenDialog}
-            handleClose={() => { setDialog(false) }}
-         >
-            <div>
-               <h1>Welcome to dialog</h1>
-            </div>
-         </DialogWrapper>
         </div>
    )
 
@@ -129,10 +110,11 @@ function Visit(props) {
       fetchGrid(getFetchParams(number))
    }
 
-   function getFetchParams(limit = 25, refetch) {
+   function getFetchParams(limit = 25, parent_node, parent_node_id) {
       limit = Number(limit)
       return { 
         variables: {
+          project_id: parent_node_id,
           "params": {
             limit,
             "page": 1
@@ -142,4 +124,4 @@ function Visit(props) {
     }
 }
    
-export default PageWrappers(Visit, 'Visit')
+export default VisitTab

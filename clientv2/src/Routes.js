@@ -18,6 +18,10 @@ const Visit = Loadable({
    loading: MyLoadingComponent
 })
 
+const Photos = Loadable({
+   loader: ()=> import('./containers/Photos'),
+   loading: MyLoadingComponent
+})
 
 const NotFound = () => {
    return (
@@ -49,6 +53,10 @@ const routes = [
    }, {
       path: '/visit/:id?',
       component: Visit,
+      exact: true
+   }, {
+      path: '/photos/:id?',
+      component: Photos,
       exact: true
    }, {
       component: NotFound

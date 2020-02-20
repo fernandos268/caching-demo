@@ -90,7 +90,7 @@ export default function TabsWrapper(props) {
       >
         {
           tabs.map((e, i) => (
-          <TabPanel value={value} index={i} dir={theme.direction}>
+          <TabPanel value={value} key={e.label + i} index={i} dir={theme.direction}>
             {
               e.component
             }

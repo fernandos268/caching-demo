@@ -8,11 +8,13 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
+import { width } from '@material-ui/system';
 
 const styles = theme => ({
    root: {
      margin: 0,
      padding: theme.spacing(2),
+     width: 1000
    },
    closeButton: {
      position: 'absolute',
@@ -50,23 +52,25 @@ const styles = theme => ({
  }))(MuiDialogActions);
 
 function DialogWrapper(props) {
-   const { actions, title, isOpen, handleClose, children } = props
-
+   const { actions, title, isOpen, handleClose, children, handleSave, isLoading } = props
    return (
-      <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={isOpen}>
-         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-            { title }
-         </DialogTitle>
-         <DialogContent dividers>
-            {
-               children
-            }
-         </DialogContent>
-         <DialogActions>
-            <Button autoFocus onClick={handleClose} color="primary">
-               Save changes
-            </Button>
-         </DialogActions>
+      <Dialog 
+         onClose={handleClose} 
+         aria-labelledby="customized-dialog-title" 
+         open={isOpen}
+         maxWidth={false}
+      >
+            <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+               { title }
+            </DialogTitle>
+            <DialogContent dividers>
+               { children }
+            </DialogContent>
+            <DialogActions>
+               <Button autoFocus onClick={handleSave} disabled={isLoading} color="primary">
+                  Save changes
+               </Button>
+            </DialogActions>
       </Dialog>
    )
 }

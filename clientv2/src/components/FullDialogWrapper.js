@@ -28,7 +28,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 function DialogWrapper(props) {
-  console.log('propsDialog: ', props);
   const classes = useStyles();
   return (
     <div>
