@@ -39,7 +39,7 @@ async function createVisit(input) {
 
 async function updateVisit({id, ...input}) {
     try {
-        return await this.put(`project/${id}`, input)
+        return await this.put(`visit/${id}`, input)
     } catch (err) {
         console.log('Error in updating visit', err)
         throw err
@@ -48,7 +48,7 @@ async function updateVisit({id, ...input}) {
 
 async function deleteVisit(id) {
     try {
-        return await this.delete(`project/${id}`)
+        return await this.delete(`visit/${id}`)
     } catch (err) {
         console.log('Error in deleting visit', err)
         throw err
