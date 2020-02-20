@@ -15,19 +15,19 @@ module.exports = {
         }
     },
     Mutation: {
-        async createVisit(_, { input }, { dataSources }) {
+        async createVisit(_, { input }, { dataSources, redis }) {
             console.log('Creating visit.....')
-            dataSources.redis.deleteAllKeysByKeyword('visit')
+            redis.deleteAllKeysByKeyword('visit')
             return await dataSources.ljpAPI.createVisit(input)
         },
-        async updateVisit(_, { input }, { dataSources }) {
+        async updateVisit(_, { input }, { dataSources, redis }) {
             console.log('Updating visitu....')
-            dataSources.redis.deleteAllKeysByKeyword('visit')
+            redis.deleteAllKeysByKeyword('visit')
             return await dataSources.ljpAPI.updateVisit(input)
         },
-        async deleteVisit(_, { id }, { dataSources }) {
+        async deleteVisit(_, { id }, { dataSources, redis }) {
             console.log('Deleting visitu....')
-            dataSources.redis.deleteAllKeysByKeyword('visit')
+            redis.deleteAllKeysByKeyword('visit')
             return await dataSources.ljpAPI.deleteVisit(id)
         }
     },

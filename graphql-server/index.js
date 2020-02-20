@@ -19,7 +19,8 @@ const {
 
 const typeDefs = require('./src/typeDefs')
 const resolvers = require('./src/resolvers')
-const { ljpAPI, CustomRedis } = require('./src/datasources')
+const { ljpAPI } = require('./src/datasources')
+const { CustomRedis } = require('./src/context')
 
 const CustomRedisCache = require('./utils/CustomRedisCache')
 
@@ -30,12 +31,15 @@ const {
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ctx => ({ ...ctx }),
-  dataSources: () => ({
-    ljpAPI: new ljpAPI(),
+  context: ctx => ({
+    ...ctx,
     redis: new CustomRedis({
       host: REDIS_HOST
     })
+  }),
+  dataSources: () => ({
+    ljpAPI: new ljpAPI(),
+
   }),
   cache: new CustomRedisCache(REDIS_HOST),
   persistedQueries: {

@@ -1,6 +1,6 @@
 const { RedisCache } = require('apollo-server-cache-redis')
 
-const CustomRedis = require('../src/datasources/redis/CustomRedis')
+const CustomRedis = require('../src/context/redis/CustomRedis')
 
 class CustomRedisCache extends RedisCache {
   constructor(options) {
