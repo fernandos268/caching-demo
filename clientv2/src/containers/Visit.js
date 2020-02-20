@@ -9,6 +9,7 @@ import VirtualizedTable from '../components/VirtualizedTable'
 import FullDialogWrapper from '../components/FullDialogWrapper'
 import VisitFormDetails from '../components/forms/VisitFormDetails'
 import GeneratFields from '../components/Generators'
+import Grid from '@material-ui/core/Grid';
 
 function Visit(props) {
    const { parent_node, parent_node_id } = props
@@ -34,13 +35,18 @@ function Visit(props) {
 
    return (
         <div>
-         <GeneratFields 
-            number={number}
-            handleGenerateGrid={handleGenerateGrid}
-            handleChangeGenerate={handleChangeGenerate}
-            style={{ marginTop: 50 }}
-         />
-         <Paper style={{ height: 400, width: '100%', marginTop: 50 }}>
+         <Grid container>
+            <Grid item xs={12} sm={6}> 
+               <GeneratFields 
+                  number={number}
+                  style={{ marginTop: 30 }}
+                  handleGenerateGrid={handleGenerateGrid}
+                  handleChangeGenerate={handleChangeGenerate}
+               />
+            </Grid>
+            <Grid item xs={12} sm={6} style={{ marginTop: 30 }}><h1>Number of List {list.length || 0}</h1></Grid>
+         </Grid>
+         <Paper style={{ height: 600, width: '100%' }}>
             <VirtualizedTable
                rowCount={list.length}
                rowGetter={({ index }) => {

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { VISITS, PHOTOSBYVISIT } from '../../request/query'
 import { useQuery, useLazyQuery } from '@apollo/react-hooks';
+import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper';
 import VirtualizedTable from '../VirtualizedTable'
 import GeneratFields from '../Generators'
+const url = (id) => `https://ljpv2-upload.dnamicro.net/file?entity=photo&id=${id}&force=true`
 function PhotosTab(props) {
    const { parent_node, parent_node_id } = props
    const [number, setGenerate] = useState(25)
@@ -36,35 +38,41 @@ function PhotosTab(props) {
         label: 'File Path',
         dataKey: 'created_date',
       },
-    ]
+   ]
+   
+   const length = list.length || 0
+
    return (
-        <div>
-         <GeneratFields 
-            number={number}
-            handleGenerateGrid={handleGenerateGrid}
-            handleChangeGenerate={handleChangeGenerate}
-            style={{ marginTop: 50 }}
-         />
-         <Paper style={{ height: 400, width: '100%', marginTop: 50 }}>
+      <div>
+         <Grid container style={{ marginLeft: 30}}>
+            <Grid item xs={12} sm={6}> 
+               <GeneratFields 
+                  number={number}
+                  style={{ marginTop: 30 }}
+                  handleGenerateGrid={handleGenerateGrid}
+                  handleChangeGenerate={handleChangeGenerate}
+               />
+            </Grid>
+            <Grid item xs={12} sm={6} style={{ marginTop: 30 }}><h1>Number of List {length}</h1></Grid>
+         </Grid>
+         <Paper style={{ height: 650, width: '100%'}}>
             <VirtualizedTable
-               rowCount={list.length}
-               rowGetter={({ index }) => {
-                  return list[index]
-               }}
-               onRowClick={handleClickRow}
-               rowRenderer={renderRow}
                rowHeight={80}
                headerHeight={70}
                columns={columns}
+               rowCount={list.length}
+               rowRenderer={renderRow}
+               onRowClick={handleClickRow}
+               rowGetter={({ index }) => list[index]}
             />
          </Paper>
-        </div>
+      </div>
    )
 
    function renderRow({ index, rowData, onRowClick, style, ...restProps }) {
       return(
         <div key={rowData.id} style={{ ...style, display: 'flex', alignItems: 'center'}}>
-          <div style={{ padding: 10, width: 150,  margin: 5}}><img src='/Tiger.jpg' height={60} width={70}/></div>
+          <div style={{ padding: 10, width: 150,  margin: 5}}><img src={url(rowData.id)} height={60} width={70}/></div>
           <div style={{ padding: 10, width: 150, margin: 5}}>{rowData.visit_type}</div>
           <div style={{ padding: 10, width: 900, margin: 5}}>{rowData.created_date}</div>
         </div>
@@ -86,10 +94,11 @@ function PhotosTab(props) {
       if(!limit && typeof(limit) === 'number') {
          return alert('invalid input')
       }
-      fetchGrid(getFetchParams(number))
+      fetchGrid(getFetchParams(number, 'visit', parent_node_id))
    }
 
-   function getFetchParams(limit = 25, parent_node, parent_node_id) {
+   function getFetchParams(limit = 25) {
+      console.log('parent_node_id: ', parent_node_id);
       limit = Number(limit)
       return { 
         variables: {

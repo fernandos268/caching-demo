@@ -6,7 +6,8 @@ import VirtualizedTable from '../VirtualizedTable'
 import FullDialogWrapper from '../FullDialogWrapper'
 import VisitFormDetails from '../forms/VisitFormDetails'
 import GeneratFields from '../Generators'
-import PaginatedTable from 'mui-table'
+import Grid from '@material-ui/core/Grid'
+
 function VisitTab(props) {
    const { parent_node, parent_node_id } = props
    const [number, setGenerate] = useState(25)
@@ -29,46 +30,52 @@ function VisitTab(props) {
       fetchGrid(getFetchParams(25, parent_node, parent_node_id))
    }, []);
 
+   const columns = [
+      {
+         width: 200,
+         label: 'Type',
+         dataKey: 'type',
+      },
+      {
+         width: 200,
+         label: 'Category',
+         dataKey: 'category',
+      },
+      {
+         width: 200,
+         label: 'Status',
+         dataKey: 'status',
+      },
+      {
+         width: 200,
+         label: 'Actual Visit Date',
+         dataKey: 'actual_visit_date',
+      },
+   ]
+
+   const length = list.length || 0
    return (
         <div>
-         <GeneratFields 
-            number={number}
-            handleGenerateGrid={handleGenerateGrid}
-            handleChangeGenerate={handleChangeGenerate}
-            style={{ marginTop: 50 }}
-         />
-         <Paper style={{ height: 400, width: '100%', marginTop: 50 }}>
+         <Grid container style={{ marginLeft: 30}}>
+            <Grid item xs={12} sm={6}> 
+               <GeneratFields 
+                  number={number}
+                  style={{ marginTop: 30 }}
+                  handleGenerateGrid={handleGenerateGrid}
+                  handleChangeGenerate={handleChangeGenerate}
+               />
+            </Grid>
+            <Grid item xs={12} sm={6} style={{ marginTop: 30 }}><h1>Number of List {length}</h1></Grid>
+         </Grid>
+
+         <Paper style={{ height: 400, width: '100%' }}>
             <VirtualizedTable
                rowCount={list.length}
-               rowGetter={({ index }) => {
-                  return list[index]
-               }}
+               rowGetter={({ index }) => list[index]}
                onRowClick={handleClickRow}
-               columns={[
-                  {
-                     width: 200,
-                     label: 'Type',
-                     dataKey: 'type',
-                  },
-                  {
-                     width: 200,
-                     label: 'Category',
-                     dataKey: 'category',
-                  },
-                  {
-                     width: 200,
-                     label: 'Status',
-                     dataKey: 'status',
-                  },
-                  {
-                     width: 200,
-                     label: 'Actual Visit Date',
-                     dataKey: 'actual_visit_date',
-                  },
-               ]}
+               columns={columns}
             />
          </Paper>
-
 
          <FullDialogWrapper
             name='Visit'
@@ -102,7 +109,7 @@ function VisitTab(props) {
       fetchGrid(getFetchParams(number))
    }
 
-   function getFetchParams(limit = 25, parent_node, parent_node_id) {
+   function getFetchParams(limit = 25) {
       limit = Number(limit)
       return { 
         variables: {
