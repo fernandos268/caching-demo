@@ -27,7 +27,6 @@ class CustomRedisCache extends RedisCache {
     const redis = new CustomRedis()
     const cacheKey = await redis.getKey(key)
     const value = await super.get(cacheKey)
-    console.log('get(key)', value)
     return value
   }
 }

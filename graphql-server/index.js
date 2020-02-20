@@ -49,11 +49,8 @@ server.applyMiddleware({
   app,
   cors: {
     origin: '*'
-  },
-  cache: (param1, param2, param3) => {
-    console.log('applyMiddleware -->', { param1, param2, param3 })
   }
-});
+})
 server.installSubscriptionHandlers(httpServer);
 
 httpServer.listen({ port: APP_PORT }, () => {
