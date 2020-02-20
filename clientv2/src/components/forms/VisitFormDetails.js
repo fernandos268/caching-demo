@@ -83,7 +83,7 @@ function VisitFormDetails(props){
       </div>
    )
    function tabs(){
-      const passedProps = { parent_node: 'project', parent_node_id: data.id }
+      const passedProps = { parent_node: 'visit', parent_node_id: propFieldValues.id }
       return([
          {
             component: <PhotosTab label={'Photos'} {...passedProps}/>,

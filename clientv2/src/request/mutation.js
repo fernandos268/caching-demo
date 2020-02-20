@@ -15,7 +15,7 @@ const CREATEPROJECT = gql`
 `
 
 const DELETEPROJECT = gql`
-   mutation($id: String!) {
+   mutation($id: ID!) {
       deleteProject(id: $id)
    } 
 `  

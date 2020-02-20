@@ -59,7 +59,12 @@ function VisitTab(props) {
                      width: 200,
                      label: 'Status',
                      dataKey: 'status',
-                  }
+                  },
+                  {
+                     width: 200,
+                     label: 'Actual Visit Date',
+                     dataKey: 'actual_visit_date',
+                  },
                ]}
             />
          </Paper>
@@ -81,19 +86,6 @@ function VisitTab(props) {
    function handleClickRow({ event, index, rowData }) {
       setFullDialog(true)
       setSelected(rowData)
-   }
-
-   function handleInputChange(evt) {
-      const { id, value } = evt.target
-      setFieldValues({...fieldValues, [id]: value})
-   }
-
-   function handleNew() {
-      console.log('do s o m e t h i n g  .  .  .')
-   }
-
-   function handleCreateVisit(fieldValues) {
-      console.log('do something...')      
    }
 
    function handleChangeGenerate(evt) {

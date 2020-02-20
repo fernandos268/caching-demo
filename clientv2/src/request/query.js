@@ -22,6 +22,7 @@ const VISIT = gql`
          type
          status
          category
+         actual_visit_date
       }
    }
 `
@@ -47,6 +48,7 @@ const VISITS = gql`
          type
          status
          category
+         actual_visit_date
       }
    }
 `
@@ -57,6 +59,7 @@ const VISITSBYPROJECT = gql`
          type
          status
          category
+         actual_visit_date
       }
    }
 `
@@ -74,12 +77,29 @@ const PHOTOSBYVISIT = gql`
          type
       }
    }
-}
 `
+
+const PHOTOS = gql`
+   query($params: GetListInput!) {
+      photos(params: $params) {
+         id
+         visit_type
+         file_path
+         created_date
+         inconsistency
+         status
+         thumbnail_path
+         type
+      }
+   }
+`
+
+
 
 export {
    VISIT,
    VISITS,
+   PHOTOS,
    PROJECT,
    PROJECTS,
    PHOTOSBYVISIT,

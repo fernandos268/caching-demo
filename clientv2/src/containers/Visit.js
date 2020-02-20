@@ -23,12 +23,6 @@ function Visit(props) {
    const [fieldValues, setFieldValues] = useState({})
 
    useEffect(() => {
-      if(parent_node_id) {
-         console.log('do something visit tabs...')
-      }
-   }, [parent_node, parent_node_id]);
-
-   useEffect(() => {
       if(data) {
          setList(data.visits || [])
       }
@@ -68,6 +62,11 @@ function Visit(props) {
                      width: 200,
                      label: 'Status',
                      dataKey: 'status',
+                  },
+                  {
+                     width: 200,
+                     label: 'Actual Visit Date',
+                     dataKey: 'actual_visit_date',
                   }
                ]}
             />
@@ -83,16 +82,6 @@ function Visit(props) {
                <VisitFormDetails fieldValues={selected}/>
             </div>
          </FullDialogWrapper>
-         
-         <DialogWrapper
-            title='New Visit'
-            isOpen={isOpenDialog}
-            handleClose={() => { setDialog(false) }}
-         >
-            <div>
-               <h1>Welcome to dialog</h1>
-            </div>
-         </DialogWrapper>
         </div>
    )
 

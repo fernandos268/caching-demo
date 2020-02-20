@@ -88,7 +88,7 @@ function App(props) {
 
   const drawer = (
     <div>
-      <div className={classes.toolbar}>LJP SAMPLE SPIKE</div>
+      <div className={classes.toolbar}>Caching Demo</div>
       <Divider />
       <List>
         {links.map(({ label, path, icon}, index) => (

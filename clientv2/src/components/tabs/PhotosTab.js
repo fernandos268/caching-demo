@@ -1,137 +1,106 @@
-import React from 'react'
-import { List, message, Avatar, Spin } from 'antd';
+import React, { useState, useEffect } from 'react'
+import { VISITS, PHOTOSBYVISIT } from '../../request/query'
+import { useQuery, useLazyQuery } from '@apollo/react-hooks';
+import Paper from '@material-ui/core/Paper';
+import VirtualizedTable from '../VirtualizedTable'
+import GeneratFields from '../Generators'
+function PhotosTab(props) {
+   const { parent_node, parent_node_id } = props
+   const [number, setGenerate] = useState(25)
+   const [fetchGrid, { loading, data, error }] = useLazyQuery(PHOTOSBYVISIT)
+   const [list, setList] = useState([]);
 
-import reqwest from 'reqwest';
+   useEffect(() => {
+      if(data) {
+         setList(data.photosByVisit || [])
+      }
+   }, [data]);
+   
+   useEffect(() => {
+      fetchGrid(getFetchParams(25, parent_node, parent_node_id))
+   }, []);
 
-import WindowScroller from 'react-virtualized/dist/commonjs/WindowScroller';
-import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
-import VList from 'react-virtualized/dist/commonjs/List';
-import InfiniteLoader from 'react-virtualized/dist/commonjs/InfiniteLoader';
-
-const fakeDataUrl = 'https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo';
-
-class VirtualizedExample extends React.Component {
-  state = {
-    data: [],
-    loading: false,
-  };
-
-  loadedRowsMap = {};
-
-  componentDidMount() {
-    this.fetchData(res => {
-      console.log('res: ', res);
-      this.setState({
-        data: res.results,
-      });
-    });
-  }
-
-  fetchData = callback => {
-    reqwest({
-      url: fakeDataUrl,
-      type: 'json',
-      method: 'get',
-      contentType: 'application/json',
-      success: res => {
-        callback(res);
+   const columns = [
+      {
+        width: 150,
+        label: 'Image',
+        dataKey: 'file_path',
       },
-    });
-  };
+      {
+        width: 150,
+        label: 'Visit Type',
+        dataKey: 'visit_type',
+      },
+      {
+        width: 900,
+        label: 'File Path',
+        dataKey: 'created_date',
+      },
+    ]
+   return (
+        <div>
+         <GeneratFields 
+            number={number}
+            handleGenerateGrid={handleGenerateGrid}
+            handleChangeGenerate={handleChangeGenerate}
+            style={{ marginTop: 50 }}
+         />
+         <Paper style={{ height: 400, width: '100%', marginTop: 50 }}>
+            <VirtualizedTable
+               rowCount={list.length}
+               rowGetter={({ index }) => {
+                  return list[index]
+               }}
+               onRowClick={handleClickRow}
+               rowRenderer={renderRow}
+               rowHeight={80}
+               headerHeight={70}
+               columns={columns}
+            />
+         </Paper>
+        </div>
+   )
 
-  handleInfiniteOnLoad = ({ startIndex, stopIndex }) => {
-    let { data } = this.state;
-    this.setState({
-      loading: true,
-    });
-    for (let i = startIndex; i <= stopIndex; i++) {
-      // 1 means loading
-      this.loadedRowsMap[i] = 1;
+   function renderRow({ index, rowData, onRowClick, style, ...restProps }) {
+      return(
+        <div key={rowData.id} style={{ ...style, display: 'flex', alignItems: 'center'}}>
+          <div style={{ padding: 10, width: 150,  margin: 5}}><img src='/Tiger.jpg' height={60} width={70}/></div>
+          <div style={{ padding: 10, width: 150, margin: 5}}>{rowData.visit_type}</div>
+          <div style={{ padding: 10, width: 900, margin: 5}}>{rowData.created_date}</div>
+        </div>
+      )
+   }
+
+   function handleClickRow({ event, index, rowData }) {
+      console.log('do some thing')
+   }
+
+   function handleChangeGenerate(evt) {
+      const { id, value } = evt.target
+      setGenerate(value)
     }
-    if (data.length > 19) {
-      message.warning('Virtualized List loaded all');
-      this.setState({
-        loading: false,
-      });
-      return;
+
+   function handleGenerateGrid() {
+      const limit = Number(number)
+
+      if(!limit && typeof(limit) === 'number') {
+         return alert('invalid input')
+      }
+      fetchGrid(getFetchParams(number))
+   }
+
+   function getFetchParams(limit = 25, parent_node, parent_node_id) {
+      limit = Number(limit)
+      return { 
+        variables: {
+          visit_id: parent_node_id,
+          "params": {
+            limit,
+            "page": 1
+          },
+        }
+       }
     }
-    this.fetchData(res => {
-      data = data.concat(res.results);
-      this.setState({
-        data,
-        loading: false,
-      });
-    });
-  };
-
-  isRowLoaded = ({ index }) => !!this.loadedRowsMap[index];
-
-  renderItem = ({ index, key, style }) => {
-    const { data } = this.state;
-    const item = data[index];
-    return (
-      <div>
-        <img src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' height='300' width='300'/>
-        <div>Content {item.email}</div>
-      </div>
-    );
-  };
-
-  render() {
-    const { data } = this.state;
-    const vlist = ({ height, isScrolling, onChildScroll, scrollTop, onRowsRendered, width }) => (
-      <VList
-        autoHeight
-        height={height}
-        isScrolling={isScrolling}
-        onScroll={onChildScroll}
-        overscanRowCount={2}
-        rowCount={data.length}
-        rowHeight={73}
-        rowRenderer={this.renderItem}
-        onRowsRendered={onRowsRendered}
-        scrollTop={scrollTop}
-        width={width}
-      />
-    );
-    const autoSize = ({ height, isScrolling, onChildScroll, scrollTop, onRowsRendered }) => (
-      <AutoSizer disableHeight>
-        {({ width }) =>
-          vlist({
-            height,
-            isScrolling,
-            onChildScroll,
-            scrollTop,
-            onRowsRendered,
-            width,
-          })
-        }
-      </AutoSizer>
-    );
-    const infiniteLoader = ({ height, isScrolling, onChildScroll, scrollTop }) => (
-      <InfiniteLoader
-        isRowLoaded={this.isRowLoaded}
-        loadMoreRows={this.handleInfiniteOnLoad}
-        rowCount={data.length}
-      >
-        {({ onRowsRendered }) =>
-          autoSize({
-            height,
-            isScrolling,
-            onChildScroll,
-            scrollTop,
-            onRowsRendered,
-          })
-        }
-      </InfiniteLoader>
-    );
-    return (
-      <List>
-        {data.length > 0 && <WindowScroller>{infiniteLoader}</WindowScroller>}
-        {this.state.loading && <Spin className="demo-loading" />}
-      </List>
-    );
-  }
 }
-
-export default VirtualizedExample;
+   
+export default PhotosTab
