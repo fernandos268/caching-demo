@@ -1,39 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   CellMeasurer,
   CellMeasurerCache,
   createMasonryCellPositioner,
+  AutoSizer,
   Masonry
 } from "react-virtualized";
 import ImageMeasurer from 'react-virtualized-image-measurer';
 import list from "./data";
+import { useQuery, useLazyQuery } from '@apollo/react-hooks';
+import GeneratFields from '../components/Generators'
+import { PHOTOSBYVISIT } from '../request/query'
 
-// Array of images with captions
-//const list = [{image: 'http://...', title: 'Foo'}];
 
-// We need to make sure images are loaded from scratch every time for this demo
-const noCacheList = list.map((item, index) => ({
-  title: index + ". " + item.title,
-  image: item.image + (item.image ? "?noCache=" + Math.random() : "")
-}));
 
 const keyMapper = (item, index) => item.image || index;
 
-const columnWidth = 200;
-const defaultHeight = 250;
+const columnWidth = 350;
+const defaultHeight = 500;
 const defaultWidth = columnWidth;
 
-// Default sizes help Masonry decide how many images to batch-measure
 const cache = new CellMeasurerCache({
   defaultHeight,
   defaultWidth,
   fixedWidth: true
 });
 
-// Our masonry layout will use 3 columns with a 10px gutter between
 const cellPositionerConfig = {
   cellMeasurerCache: cache,
-  columnCount: 3,
+  columnCount: 4,
   columnWidth,
   spacer: 10
 };
@@ -72,7 +67,7 @@ const MasonryComponent = ({ itemsWithSizes, setRef }) => {
       cellPositioner={cellPositioner}
       cellRenderer={cellRenderer}
       height={600}
-      width={800}
+      width={1500}
       keyMapper={keyMapper}
       ref={setRef}
     />
@@ -80,10 +75,16 @@ const MasonryComponent = ({ itemsWithSizes, setRef }) => {
 };
 
 class Index extends React.Component {
-  state = { images: noCacheList };
+  state = { images: this.props.list || [] };
 
   masonryRef = null;
-
+  componentDidMount() {
+      const noCacheList = this.props.list.map((item, index) => ({
+         title: item.visit_type,
+         image: item.image + (item.image ? "?noCache=" + Math.random() : "")
+      }));
+      this.setState({ list: noCacheList || []})
+  }
   // this shows how to significantly change the input array, if items will be only appended this recalculation is not needed
   shorten = () => {
     cache.clearAll();
@@ -127,5 +128,55 @@ class Index extends React.Component {
   }
 }
 
-// Render your grid
-export default Index;
+function PhotosTab(props){
+   const { parent_node, parent_node_id } = props
+   const [number, setGenerate] = useState(25)
+   const [fetchPhotos, { loading, data, error }] = useLazyQuery(PHOTOSBYVISIT)
+   const [list, setList] = useState([]);
+
+   useEffect(() => {
+      fetchPhotos(getFetchParams())
+   }, []);
+   useEffect(() => {
+      if(data) {
+         setList(data.photosByVisit)
+      }
+   }, [data]);
+   return (
+      <div>
+         <GeneratFields 
+            number={number}
+            handleGenerateGrid={handleGenerateGrid}
+            handleChangeGenerate={handleChangeGenerate}
+            style={{ marginTop: 50 }}
+         />
+         <Index list={list}/>
+      </div>
+   )
+   function handleChangeGenerate(evt) {
+      const { id, value } = evt.target
+      setGenerate(value)
+    }
+
+   function handleGenerateGrid() {
+      const limit = Number(number)
+
+      if(!limit && typeof(limit) === 'number') {
+         return alert('invalid input')
+      }
+      fetchPhotos(getFetchParams(number))
+   }
+
+   function getFetchParams(limit = 25, refetch) {
+      limit = Number(limit)
+      return { 
+        variables: {
+          "params": {
+            limit,
+            "page": 1
+          },
+        }
+       }
+    }
+}
+export default PhotosTab;

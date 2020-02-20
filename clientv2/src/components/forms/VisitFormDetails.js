@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Visit from '../../containers/Visit'
 import PhotosTab from '../tabs/PhotosTab'
 import TabContainer from '../TabsWrapper'
@@ -8,6 +8,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField'
+import { VISIT } from '../../request/query'
+import { useQuery } from '@apollo/react-hooks';
 
 const useStyles = makeStyles(theme => ({
   large: {
@@ -29,9 +31,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function VisitFormDetails(props){
-      const classes = useStyles();
-      const { fieldValues: data } = props
-      const [fieldValues, setFieldValues] = useState(data)
+   const classes = useStyles();
+   const { fieldValues: propFieldValues } = props
+   const { loading, data, error } = useQuery(VISIT, { 
+      variables: {
+         id: propFieldValues.id
+      }
+   })
+   const [fieldValues, setFieldValues] = useState(propFieldValues)
 
    function handleInputChange(evt) {
       const { id, value }  = evt.target     
@@ -41,16 +48,15 @@ function VisitFormDetails(props){
       })
    }
 
-   function handleSave() {
-      console.log('Do something')
-   }
+   useEffect(() => {
+      if(data) {
+         setFieldValues((fieldValues) => ({ ...fieldValues, ...data.project }))
+      }
+   }, [data])
 
    return (
       <div>
          <Grid container spacing={2}>
-            <Grid item xs={12} className={classes.grid}>
-               <Button variant="contained" onClick={handleSave}>Save</Button>
-            </Grid>
             <Grid item xs={12} className={classes.grid}>
                <Paper className={classes.paper}>
                   <Grid container spacing={2} className={classes.grid}>

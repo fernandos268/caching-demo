@@ -9,7 +9,7 @@ async function getPhotos(params) {
 
 async function getPhotoById(id) {
     try {
-        return await this.get(`/photo/${id}`)
+        return this.photosLoader.load(id)
     } catch (err) {
         console.log('Error in fetching Photos: ', err)
         throw err
@@ -25,7 +25,8 @@ async function addPhotoToVisit(input) {
     }
 }
 
-async function getPhotosByVisit({ visit_id, ...params }) {
+async function getPhotosByVisit(args) {
+    const { visit_id, params } = args
     try {
         return await this.get(`visit/${visit_id}/photos`, params)
     } catch (err) {

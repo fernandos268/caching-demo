@@ -2,9 +2,9 @@ const { gql } = require('apollo-server-express')
 
 module.exports = gql`
     extend type Query {
-        photos(params: GetListInput): [Photo!]! @cacheControl(maxAge: 500)
-        photo(id: String!): Photo @cacheControl(maxAge: 500)
-        photosByVisit(visit_id: String!, params: GetListInput): [Photo!]! @cacheControl(maxAge: 500)
+        photos(params: GetListInput!): [Photo!]! @cacheControl(maxAge: 500)
+        photo(id: ID!): Photo @cacheControl(maxAge: 500)
+        photosByVisit(visit_id: ID!, params: GetListInput): [Photo!]! @cacheControl(maxAge: 500)
     }
 
     extend type Mutation {
@@ -23,7 +23,7 @@ module.exports = gql`
         #detail
         file_path: String
         group_id: String
-        id: String
+        id: ID
         inconsistency: String
         is_client_provided: Boolean
         is_closed: Boolean
@@ -33,7 +33,7 @@ module.exports = gql`
         is_pov: Boolean
         #metadata
         observation_date: String
-        project_id: String
+        project_id: ID
         project_scope_id: String
         scope_group_id: String
         session_id: String
@@ -45,7 +45,7 @@ module.exports = gql`
         updated_date: String
         uploaded_date: String
         user_id: String
-        visit_id: String
+        visit_id: ID
         visit_type: String
 
         # RELATIONAL FIELDS
@@ -63,7 +63,7 @@ module.exports = gql`
         #detail
         file_path: String
         group_id: String
-        id: String
+        id: ID
         inconsistency: String
         is_client_provided: Boolean
         is_closed: Boolean
@@ -73,7 +73,7 @@ module.exports = gql`
         is_pov: Boolean
         #metadata
         observation_date: String
-        project_id: String
+        project_id: ID
         project_scope_id: String
         scope_group_id: String
         session_id: String
@@ -85,10 +85,7 @@ module.exports = gql`
         updated_date: String
         uploaded_date: String
         user_id: String
-        visit_id: String
+        visit_id: ID
         visit_type: String
-
-        # RELATIONAL FIELDS
-        # project: Project
     }
 `

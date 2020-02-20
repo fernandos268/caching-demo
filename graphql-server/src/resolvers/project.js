@@ -1,6 +1,7 @@
 module.exports = {
     Query: {
-        async projects(_, { params }, { dataSources, cache, cacheFunctions }) {
+        async projects(_, { params }, { dataSources, cache, cacheFunctions }, info) {
+            console.log(info.cacheControl);
             return await dataSources.ljpAPI.getProjects(params)
         },
         async project(_, { id }, { dataSources }) {
