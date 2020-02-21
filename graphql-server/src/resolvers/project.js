@@ -19,10 +19,16 @@ module.exports = {
         },
         async updateProject(_, { input }, { dataSources, redis }, info) {
             // console.log(util.inspect(info.fieldNodes.find(({selectionSet}) => selectionSet).selectionSet, false, null, true))
-            // console.log("TCL: updateProject -> input", input)
+            // get the field to be updated
+            console.log("TCL: updateProject -> input", input)
             console.log('Updating project....')
             // redis.deleteAllKeysByKeyword('project')
-            const result = await dataSources.ljpAPI.updateProject(input)
+
+            // update the database
+            // const result = await dataSources.ljpAPI.updateProject(input)
+
+            // update the cache
+
             console.log("TCL: updateProject -> result", result)
             return
         },

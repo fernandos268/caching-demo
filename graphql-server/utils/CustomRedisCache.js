@@ -9,8 +9,6 @@ class CustomRedisCache extends RedisCache {
 
   // intercepts incoming cache key for concatenation
   async set(key, value, options = {}) {
-    console.log("TCL: CustomRedisCache -> set -> key", key)
-    console.log("TCL: CustomRedisCache -> set -> value", value)
     const cacheValue = JSON.parse(value)
     const { data } = cacheValue
     if (data.projects || data.project) {
@@ -28,7 +26,6 @@ class CustomRedisCache extends RedisCache {
   }
 
   async get(key) {
-    console.log("TCL: get -> key", key)
     // intercepts key to get the concatenated key from redis
     const redis = new CustomRedis({host: '10.110.55.101'})
     const cacheKey = await redis.getKey(key)
