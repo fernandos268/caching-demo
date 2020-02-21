@@ -22,13 +22,19 @@ module.exports = {
         },
         async updateVisit(_, { input }, { dataSources, redis }) {
             console.log('Updating visitu....')
-            redis.deleteAllKeysByKeyword('visit')
-            return await dataSources.ljpAPI.updateVisit(input)
+            const result = await dataSources.ljpAPI.updateVisit(input)
+            if(result) {
+                await redis.updateAllCache(input, 'visit')
+            }
+            return result
         },
         async deleteVisit(_, { id }, { dataSources, redis }) {
             console.log('Deleting visitu....')
-            redis.deleteAllKeysByKeyword('visit')
-            return await dataSources.ljpAPI.deleteVisit(id)
+            const result = await dataSources.ljpAPI.deleteVisit(id)
+            if (result) {
+                redis.deleteObjectInCache(id, 'visit')
+            }
+            return result
         }
     },
     Visit: {
