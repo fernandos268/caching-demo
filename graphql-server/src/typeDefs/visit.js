@@ -29,7 +29,7 @@ module.exports = gql`
         event_id: String
         event_time: Int
         file_path: String
-        id: ID
+        id: ID!
         ios_version: String
         is_deficiency: Boolean
         is_old_visit: Boolean

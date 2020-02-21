@@ -10,6 +10,7 @@ class CustomRedisCache extends RedisCache {
   // intercepts incoming cache key for concatenation
   async set(key, value, options = {}) {
     const cacheValue = JSON.parse(value)
+    console.log('cacheValue: ', cacheValue);
     const { data } = cacheValue
     if (data.projects || data.project) {
       const newKey = key.concat('?project')

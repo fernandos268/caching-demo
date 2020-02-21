@@ -25,7 +25,7 @@ async function createProject(input) {
     }
 }
 
-async function updateProject({id, ...input}) {
+async function updateProject({ id, ...input }) {
     try {
         return await this.put(`project/${id}`, input)
     } catch (err) {

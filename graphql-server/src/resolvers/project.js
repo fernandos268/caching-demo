@@ -1,7 +1,6 @@
 module.exports = {
     Query: {
         async projects(_, { params }, { dataSources, cache, cacheFunctions }, info) {
-            console.log(info.cacheControl);
             return await dataSources.ljpAPI.getProjects(params)
         },
         async project(_, { id }, { dataSources }) {
@@ -12,7 +11,7 @@ module.exports = {
     Mutation: {
         async createProject(_, { input }, { dataSources, redis }) {
             console.log('Creating project.....')
-           redis.deleteAllKeysByKeyword('project')
+            redis.deleteAllKeysByKeyword('project')
             return await dataSources.ljpAPI.createProject(input)
         },
         async updateProject(_, { input }, { dataSources, redis }) {

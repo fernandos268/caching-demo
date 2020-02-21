@@ -56,7 +56,7 @@ module.exports = gql`
     }
 
     input ProjectInput {
-        id: ID
+        id: ID!
         master_project_id: String
         name: String
         legal_name: String
