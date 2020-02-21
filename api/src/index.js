@@ -26,7 +26,7 @@ const app = express();
 
 const run = async () => {
   await connectToRethink();
-  const orient = await connectToOrient()
+  // const orient = await connectToOrient()
   // await migrate(orient);
   // await migration(orient);
   // console.log('After Migrate');
@@ -38,7 +38,7 @@ const run = async () => {
   app.use('/project', project);
   app.use('/visit', visit);
   app.use('/photo', photo);
-  app.use('/orient', orientRoute(orient));
+  // app.use('/orient', orientRoute(orient));
 
   //Index route
   app.get('/', (req, res) => {
