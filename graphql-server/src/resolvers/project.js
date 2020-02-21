@@ -25,12 +25,14 @@ module.exports = {
             // redis.deleteAllKeysByKeyword('project')
 
             // update the database
-            // const result = await dataSources.ljpAPI.updateProject(input)
+            const result = await dataSources.ljpAPI.updateProject(input)
+            console.log("TCL: updateProject -> result", result)
 
             // update the cache
-
-            console.log("TCL: updateProject -> result", result)
-            return
+            if(result) {
+                await redis.updateAllCache(input, 'project')
+            }
+            return result
         },
         async deleteProject(_, { id }, { dataSources, redis }) {
             console.log(`Deleting project id ${id}`)
