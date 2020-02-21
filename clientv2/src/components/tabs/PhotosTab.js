@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { VISITS, PHOTOSBYVISIT } from '../../request/query'
-import { useQuery, useLazyQuery } from '@apollo/react-hooks';
+import { PHOTOSBYVISIT } from '../../request/query'
+import { useLazyQuery } from '@apollo/react-hooks';
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper';
 import VirtualizedTable from '../VirtualizedTable'
@@ -9,7 +9,7 @@ const url = (id) => `https://ljpv2-upload.dnamicro.net/file?entity=photo&id=${id
 function PhotosTab(props) {
    const { parent_node, parent_node_id } = props
    const [number, setGenerate] = useState(25)
-   const [fetchGrid, { loading, data, error }] = useLazyQuery(PHOTOSBYVISIT)
+   const [fetchGrid, { data }] = useLazyQuery(PHOTOSBYVISIT)
    const [list, setList] = useState([]);
 
    useEffect(() => {
@@ -44,7 +44,7 @@ function PhotosTab(props) {
 
    return (
       <div>
-         <Grid container style={{ marginLeft: 30}}>
+         <Grid container style={{ marginLeft: 20}}>
             <Grid item xs={12} sm={6}> 
                <GeneratFields 
                   number={number}

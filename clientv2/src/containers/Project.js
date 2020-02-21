@@ -17,12 +17,12 @@ import pick from 'lodash/pick'
 import { useSnackbar as snack } from 'notistack' 
 
 const entity = 'Project'
-function Project(props) {
+function Project() {
    const { enqueueSnackbar } = snack()
    const [number, setGenerate] = useState(25)
    const [fetchGrid, { loading, data, error }] = useLazyQuery(PROJECTS)
-   const [createProject, { data: createData, error: createError, loading: createLoading }] = useMutation(CREATEPROJECT, { onCompleted: () => { sideEffects('create') }})
-   const [deleteProject, { data: deleteData, error: deleteError, loading: deleteLoading }] = useMutation(DELETEPROJECT, { refetchQueries: [{ query: PROJECTS, ...getFetchParams(number) }], onCompleted: () => sideEffects('delete') })
+   const [createProject, { data: createData, error: createError, loading: createLoading }] = useMutation(CREATEPROJECT, { onCompleted: (response) => { sideEffects('create', response) }})
+   const [deleteProject, { data: deleteData, error: deleteError, loading: deleteLoading }] = useMutation(DELETEPROJECT, { refetchQueries: [{ query: PROJECTS, ...getFetchParams(number) }], onCompleted: (response) => sideEffects('delete', response) })
    const [editProject, { data: editData, error: editError, loading: editLoading }] = useMutation(EDITPROJECT, { onCompleted: () => { sideEffects('edit') }})
    
    const [list, setList] = useState([])   
@@ -30,6 +30,7 @@ function Project(props) {
    const [isOpenDialog, setDialogOpen] = useState(false)
    const [isOpen, setOpen] = useState(false)
    const [dialogFieldValues, setDialogFieldValues] = useState({})
+   const [paging, setPaging] = useState({ page: 1, rowPerPage: 25 })
 
    const [state, setState] = useState({
       columns: [
@@ -86,9 +87,15 @@ function Project(props) {
             setSelected(data)
             setOpen(!isOpen)
           }}
+          page={paging.page || 0}
+          rowPerPage={paging.rowPerPage || 10}
           style={{ marginTop: '50px'}}
-          onChangePage={(...args) => {console.log(args)}}
-          options={{ pageSize: 10, actionsColumnIndex: -1}}
+          onChangePage={(page) => {
+            setPaging({ ...paging, page })
+            fetchGrid(getFetchParams(number, page + 1))
+          }}
+          onChangeRowsPerPage={(perPage) => setPaging({ ...paging, rowPerPage: perPage })}
+          options={{ pageSize: 10, actionsColumnIndex: -1, pageSizeOptions: [5,10, 25 , 100, 500]}}
         />
         
         <FullDialogWrapper
@@ -131,16 +138,15 @@ function Project(props) {
       })
     }
 
-    function sideEffects(action_type) {
-      console.log('action_type: ', action_type);
+    function sideEffects(action_type, response) {
       if(action_type === 'create') {
-        setList([createData.createProject, ...list])
+        setList([response.createProject, ...list])
         setDialogOpen(false)
         showSnackBar('success', 'Successfully Created')
       } else if(action_type === 'edit') {
         showSnackBar('success', 'Successfully Edited')
       } else if(action_type === 'delete') {
-        showSnackBar('success', 'Successfully Deleted')
+        showSnackBar('success', response.deleteProject)
       }
     }
 
@@ -162,7 +168,6 @@ function Project(props) {
     }
 
     function handleSave(fields) {
-      console.log('fields: ', fields);
       editProject({
         variables: {
           input: pick(fields, [
@@ -181,17 +186,6 @@ function Project(props) {
     function editable() {
       return( 
         {
-          onRowAdd: newData =>
-            new Promise(resolve => {
-              setTimeout(() => {
-                resolve();
-                setState(prevState => {
-                  const data = [...prevState.data];
-                  data.push(newData);
-                  return { ...prevState, data };
-                });
-              }, 600);
-            }),
           onRowDelete: oldData =>
             new Promise(resolve => {
               resolve()
@@ -205,13 +199,13 @@ function Project(props) {
       )
     }
     
-    function getFetchParams(limit = 25, refetch) {
+    function getFetchParams(limit = 25, page) {
       limit = Number(limit)
       return { 
         variables: {
           "params": {
             limit,
-            "page": 1
+            "page": page || 1
           },
         }
        }
@@ -226,4 +220,4 @@ function Project(props) {
 
 }
 
-export default PageWrappers(Project, 'Project')
+export default PageWrappers(Project, entity)

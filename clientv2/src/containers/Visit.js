@@ -97,21 +97,8 @@ function Visit(props) {
       setSelected(rowData)
    }
 
-   function handleInputChange(evt) {
-      const { id, value } = evt.target
-      setFieldValues({...fieldValues, [id]: value})
-   }
-
-   function handleNew() {
-      console.log('do s o m e t h i n g  .  .  .')
-   }
-
-   function handleCreateVisit(fieldValues) {
-      console.log('do something...')      
-   }
-
    function handleChangeGenerate(evt) {
-      const { id, value } = evt.target
+      const { value } = evt.target
       setGenerate(value)
     }
 

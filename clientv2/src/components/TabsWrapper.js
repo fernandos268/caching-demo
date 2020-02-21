@@ -62,7 +62,6 @@ export default function TabsWrapper(props) {
   } = props
   
   const handleChange = (event, newValue) => {
-    console.log('newValue: ', newValue);
     setValue(newValue);
   };
   const handleChangeIndex = index => {

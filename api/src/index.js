@@ -46,7 +46,7 @@ const run = async () => {
   });
 
   app.listen(port, () => {
-    logger.info('server started - ', port);
+    logger.info(`server started - ${port}`);
   });
 }
 

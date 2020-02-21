@@ -8,6 +8,7 @@ import GeneratFields from '../components/Generators'
 import { Grid } from '@material-ui/core';
 
 const url = (id) => `https://ljpv2-upload.dnamicro.net/file?entity=photo&id=${id}&force=true`
+const entity = 'Photos'
 function Photos(props) {
    const [number, setGenerate] = useState(25)
    const [fetchGrid, { loading, data, error }] = useLazyQuery(PHOTOS)
@@ -79,7 +80,7 @@ function renderRow({ index, rowData, onRowClick, style, ...restProps }) {
 }
 
    function handleClickRow({ event, index, rowData }) {
-      console.log('do something. . .')
+      console.log('do something. . .', { event, index, rowData })
    }
 
    function handleChangeGenerate(evt) {
@@ -108,4 +109,4 @@ function renderRow({ index, rowData, onRowClick, style, ...restProps }) {
   }
 }
    
-export default PageWrappers(Photos, 'Photos')
+export default PageWrappers(Photos, entity)

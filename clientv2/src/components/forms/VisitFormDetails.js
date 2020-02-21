@@ -17,7 +17,6 @@ const useStyles = makeStyles(theme => ({
   },
   paper: {
    padding: theme.spacing(2),
-   // textAlign: 'center',
    color: theme.palette.text.secondary,
    width: '98%',
    marginTop: 10,
@@ -32,7 +31,6 @@ const useStyles = makeStyles(theme => ({
 function VisitFormDetails(props){
    const classes = useStyles();
    const { fieldValues: propFieldValues } = props
-   console.log('propFieldValues: ', propFieldValues);
    const { loading, data, error } = useQuery(VISIT, { 
       variables: {
          id: propFieldValues.id

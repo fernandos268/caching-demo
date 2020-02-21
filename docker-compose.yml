@@ -23,4 +23,14 @@ services:
         command: bash -c "npm install && npm run dev"
         ports:
             - 4000:4000
-
+    clientv2:
+        image: node:latest
+        volumes:
+            - ./clientv2:/usr/src/clientv2
+        environment:
+            - NODE_ENV=development
+        network_mode: host
+        working_dir: /usr/src/clientv2
+        command: bash -c "yarn && yarn start"
+        ports:
+            - 3000:3999

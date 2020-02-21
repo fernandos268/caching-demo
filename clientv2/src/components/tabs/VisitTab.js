@@ -15,10 +15,7 @@ function VisitTab(props) {
 
    const [list, setList] = useState([]);
    const [selected, setSelected] = useState({})
-   const [isOpenDialog, setDialog] = useState(false)
    const [isOpenFullDialog, setFullDialog] = useState(false)
-
-   const [fieldValues, setFieldValues] = useState({})
 
    useEffect(() => {
       if(data) {
@@ -56,7 +53,7 @@ function VisitTab(props) {
    const length = list.length || 0
    return (
         <div>
-         <Grid container style={{ marginLeft: 30}}>
+         <Grid container style={{ marginLeft: 20}}>
             <Grid item xs={12} sm={6}> 
                <GeneratFields 
                   number={number}
@@ -90,13 +87,13 @@ function VisitTab(props) {
    )
 
 
-   function handleClickRow({ event, index, rowData }) {
+   function handleClickRow({ rowData }) {
       setFullDialog(true)
       setSelected(rowData)
    }
 
    function handleChangeGenerate(evt) {
-      const { id, value } = evt.target
+      const { value } = evt.target
       setGenerate(value)
     }
 

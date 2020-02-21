@@ -3,14 +3,14 @@ import gql from 'graphql-tag';
 
 const CREATEPROJECT = gql`
    mutation($input: ProjectInput!) {
-	createProject(input: $input) {
-     id
-     name
-     legal_name
-     number
-     type
-     type_name
-  }
+      createProject(input: $input) {
+         id
+         name
+         legal_name
+         number
+         type
+         type_name
+   }
 }
 `
 
