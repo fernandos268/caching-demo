@@ -37,12 +37,29 @@ const PROJECTS = gql`
          type
          type_name
          status
+         visits(params: $params) {
+            id
+            type
+            status
+            category
+            actual_visit_date
+            photos(params: $params) {
+               id
+               visit_type
+               file_path
+               created_date
+               inconsistency
+               status
+               thumbnail_path
+               type
+            }
+         }
       }
    }
 `
 
 const VISITS = gql`
-   query($params: GetListInput) {
+   query($params: GetListInput!) {
       visits(params: $params) {
          id
          type
@@ -53,8 +70,8 @@ const VISITS = gql`
    }
 `
 const VISITSBYPROJECT = gql`
-   query($project_id: ID!, $params: GetListInput) {
-      visits(project_id: $project_id, params: $params) {
+   query($project_id: ID!, $params: GetListInput!) {
+      visitsByProject(project_id: $project_id, params: $params) {
          id
          type
          status
