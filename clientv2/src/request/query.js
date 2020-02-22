@@ -37,23 +37,23 @@ const PROJECTS = gql`
          type
          type_name
          status
-         visits(params: $params) {
-            id
-            type
-            status
-            category
-            actual_visit_date
-            photos(params: $params) {
-               id
-               visit_type
-               file_path
-               created_date
-               inconsistency
-               status
-               thumbnail_path
-               type
-            }
-         }
+         # visits(params: $params) {
+         #    id
+         #    type
+         #    status
+         #    category
+         #    actual_visit_date
+         #    photos(params: $params) {
+         #       id
+         #       visit_type
+         #       file_path
+         #       created_date
+         #       inconsistency
+         #       status
+         #       thumbnail_path
+         #       type
+         #    }
+         # }
       }
    }
 `

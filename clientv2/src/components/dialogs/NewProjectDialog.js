@@ -22,20 +22,20 @@ const useStyles = makeStyles(theme => ({
     pading: 10
    }
  }));
-const defaults = {
-   id: '',
-   name: '',
-   legal_name: '',
-   number: '',
-   type: '',
-   type_name: '',
-   status: ''
-}
+// const defaults = {
+//    id: '',
+//    name: '',
+//    legal_name: '',
+//    number: '',
+//    type: '',
+//    type_name: '',
+//    status: ''
+// }
 
 export default function NewProjectDialog(props) {
    const classes = useStyles();
-   const { handleInputChange: onChange, fieldValues } = props
-   const [ fields, setFields ] = useState(defaults)
+   const { handleInputChange: onChange, fieldValues, errors} = props
+   const [ fields, setFields ] = useState(fieldValues)
    function handleInputChange(evt) {
       const { id, value } = evt.target
       setFields({...fields, [id]: value})
@@ -47,21 +47,61 @@ export default function NewProjectDialog(props) {
                <Paper className={classes.paper}>
                   <Grid container spacing={4} className={classes.grid}>
                      <Grid item xs={12} sm={6}>
-                        <TextField id="name" value={fields.name} label="Name" style ={{ width: '400px'}} onChange={handleInputChange}/>
+                        <TextField 
+                           required
+                           id="name" 
+                           label="Name" 
+                           value={fieldValues.name} 
+                           style ={{ width: '400px'}} 
+                           error={Boolean(errors.name)}
+                           onChange={handleInputChange}
+                           helperText={errors.name}
+                        />
                      </Grid>
                      <Grid item xs={12} sm={6}>
-                        <TextField id="legal_name" value={fields.legal_name} label="Legal Name" onChange={handleInputChange}/>
+                        <TextField 
+                           id="legal_name" 
+                           label="Legal Name" 
+                           value={fieldValues.legal_name} 
+                           onChange={handleInputChange}
+                           error={Boolean(errors.legal_name)}
+                           helperText={errors.legal_name}
+                        />
                      </Grid>
                   </Grid>
                   <Grid container spacing={1} className={classes.grid}>
                      <Grid item xs={6} sm={3}>
-                        <TextField id="number" value={fields.number} label="Number" onChange={handleInputChange}/>
+                        <TextField
+                           required
+                           id="number" 
+                           label="Number" 
+                           value={fieldValues.number} 
+                           onChange={handleInputChange}
+                           error={Boolean(errors.number)}
+                           helperText={errors.number}
+                        />
                      </Grid>
                      <Grid item xs={6} sm={3}>
-                        <TextField id="type" value={fields.type} label="Type" onChange={handleInputChange}/>
+                        <TextField
+                           required
+                           id="type" 
+                           label="Type" 
+                           value={fieldValues.type} 
+                           onChange={handleInputChange}
+                           error={Boolean(errors.type)}
+                           helperText={errors.type}
+                        />
                      </Grid>
                      <Grid item xs={6} sm={3}>
-                        <TextField id="type_name" value={fields.type_name} label="Type Name" onChange={handleInputChange}/>
+                        <TextField 
+                           required
+                           id="type_name" 
+                           label="Type Name" 
+                           value={fieldValues.type_name} 
+                           onChange={handleInputChange}
+                           error={Boolean(errors.type_name)}
+                           helperText={errors.type_name}
+                        />
                      </Grid>
                   </Grid>
               </Paper>

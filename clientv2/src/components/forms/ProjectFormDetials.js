@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   paper: {
    padding: theme.spacing(2),
    color: theme.palette.text.secondary,
-   width: '98%',
+   width: '95%',
    marginTop: 10,
    margin: 'auto'
   },
@@ -41,7 +41,7 @@ const defaults = {
 
 function ProjectFormDetials(props){
    const classes = useStyles();
-   const { fieldValues: propFieldValues, handleSave, isSaving } = props
+   const { fieldValues: propFieldValues, handleSave, isSaving, errors } = props
    const { loading, data, error } = useQuery(PROJECT, { 
       variables: {
          id: propFieldValues.id
@@ -72,21 +72,62 @@ function ProjectFormDetials(props){
                         <Avatar alt={fieldValues.legal_name} src="/static/images/avatar/1.jpg" className={classes.large} />
                      </Grid>
                      <Grid item xs={12} sm={6}>
-                        <TextField id="name" value={fieldValues.name} label="Name" style ={{ width: '400px'}} onChange={handleInputChange}/>
+                        <TextField 
+                           id="name" 
+                           required
+                           label="Name" 
+                           value={fieldValues.name} 
+                           helperText={errors.name}
+                           style ={{ width: '400px'}} 
+                           onChange={handleInputChange}
+                           error={Boolean(errors.name)}
+                        />
                      </Grid>
                   </Grid>
                   <Grid container spacing={1} className={classes.grid}>
                      <Grid item xs={6} sm={3}>
-                        <TextField id="legal_name" value={fieldValues.legal_name} label="Legal Name" onChange={handleInputChange}/>
+                        <TextField 
+                           required
+                           id="legal_name" 
+                           label="Legal Name" 
+                           onChange={handleInputChange}
+                           helperText={errors.legal_name}
+                           value={fieldValues.legal_name} 
+                           error={Boolean(errors.legal_name)}
+                        />
                      </Grid>
                      <Grid item xs={6} sm={3}>
-                        <TextField id="number" value={fieldValues.number} label="Number" onChange={handleInputChange}/>
+                        <TextField 
+                           required
+                           id="number" 
+                           label="Number" 
+                           helperText={errors.number}
+                           value={fieldValues.number} 
+                           onChange={handleInputChange}
+                           error={Boolean(errors.number)}
+                        />
                      </Grid>
                      <Grid item xs={6} sm={3}>
-                        <TextField id="type" value={fieldValues.type} label="Type" onChange={handleInputChange}/>
+                        <TextField 
+                           id="type" 
+                           required
+                           label="Type" 
+                           value={fieldValues.type} 
+                           onChange={handleInputChange}
+                           error={Boolean(errors.type)}
+                           helperText={errors.type}
+                        />
                      </Grid>
                      <Grid item xs={6} sm={3}>
-                        <TextField id="type_name" value={fieldValues.type_name} label="Type Name" onChange={handleInputChange}/>
+                        <TextField 
+                           required
+                           id="type_name" 
+                           label="Type Name" 
+                           onChange={handleInputChange}
+                           helperText={errors.type_name}
+                           value={fieldValues.type_name} 
+                           error={Boolean(errors.type_name)}
+                        />
                      </Grid>
                   </Grid>
               </Paper>

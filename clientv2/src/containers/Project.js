@@ -5,6 +5,7 @@ import MaterialTable from 'material-table'
 import { PROJECTS } from '../request/query'
 import { CREATEPROJECT, DELETEPROJECT, EDITPROJECT } from '../request/mutation'
 
+import moment from 'moment'
 import { useLazyQuery, useMutation, useQuery } from '@apollo/react-hooks';
 import DialogWrapper from '../components/DialogWrapper'
 import FullDialogWrapper from '../components/FullDialogWrapper'
@@ -15,8 +16,18 @@ import NewProjectDialog from '../components/dialogs/NewProjectDialog'
 import GeneratFields from '../components/Generators'
 import pick from 'lodash/pick'
 import { useSnackbar as snack } from 'notistack' 
-import moment from 'moment'
+import validateFields from '../components/validations'
+import omit from 'lodash/omit'
 
+const defaults = {
+  // id: '',
+  name: '',
+  legal_name: '',
+  number: '',
+  type: '',
+  type_name: '',
+  status: ''
+}
 const entity = 'Project'
 function Project() {
    const { enqueueSnackbar } = snack()
@@ -30,7 +41,8 @@ function Project() {
    const [selected, setSelected] = useState({})
    const [isOpenDialog, setDialogOpen] = useState(false)
    const [isOpen, setOpen] = useState(false)
-   const [dialogFieldValues, setDialogFieldValues] = useState({})
+   const [dialogFieldValues, setDialogFieldValues] = useState(defaults)
+   const [errors, setErrors] = useState({})
    const [paging, setPaging] = useState({ page: 1, rowPerPage: 25 })
    
    const [state, setState] = useState({
@@ -104,12 +116,16 @@ function Project() {
         <FullDialogWrapper
           name='Project'
           isOpen={isOpen}
-          onClose={() => setOpen(false)}
+          onClose={() => {
+            setOpen(false)
+            setErrors({})
+          }}
         >
           <ProjectFormDetails
             fieldValues={selected}
             handleSave={handleSave}
             isSaving={editLoading}
+            errors={errors}
           />
         </FullDialogWrapper>
         
@@ -119,11 +135,17 @@ function Project() {
           handleClose={() => { 
             setDialogOpen(false) 
             setDialogFieldValues({})
+            setErrors({})
           }}
           isLoading ={createLoading}
           handleSave={handleCreateProject}
+          fieldValues={dialogFieldValues}
         >
-          <NewProjectDialog fieldValues={dialogFieldValues} handleInputChange={handleDialogInput}/>
+          <NewProjectDialog 
+            errors={errors} 
+            fieldValues={dialogFieldValues} 
+            handleInputChange={handleDialogInput}
+          />
         </DialogWrapper>
       </div>
     );
@@ -163,11 +185,17 @@ function Project() {
     }
 
     function handleCreateProject() {
-      createProject({
-        variables: {
-          input: dialogFieldValues
-        }
-      })
+      const fieldsToValidate = ['name', 'legal_name', 'number', 'type', 'type_name']
+      const { errors, isValid } = validateFields(dialogFieldValues, fieldsToValidate)
+      if(isValid) {
+        createProject({
+          variables: {
+            input: dialogFieldValues
+          }
+        })
+      } else {
+        setErrors(errors)
+      }
     }
 
     function onCompleted(action_type, response) {
@@ -196,6 +224,7 @@ function Project() {
     }
 
     function handleDialogInput(id, value) {
+      setErrors(omit(errors, id))
       setDialogFieldValues({ ...dialogFieldValues, [id]: value })   
     }
 
@@ -204,19 +233,26 @@ function Project() {
     }
 
     function handleSave(fields) {
-      editProject({
-        variables: {
-          input: pick(fields, [
-            'id',
-            'name',
-            'legal_name',
-            'number',
-            'type',
-            'type_name',
-            'status'
-          ])
-        }
-      })
+      console.log('fields: ', fields);
+      const fieldsToValidate = ['name', 'legal_name', 'number', 'type', 'type_name']
+      const { errors, isValid } = validateFields(fields, fieldsToValidate) 
+      if(isValid) {
+        editProject({
+          variables: {
+            input: pick(fields, [
+              'id',
+              'name',
+              'legal_name',
+              'number',
+              'type',
+              'type_name',
+              'status'
+            ])
+          }
+        })
+      } else {
+        setErrors(errors)
+      }
     }
 
     function editable() {
