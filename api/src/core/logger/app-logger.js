@@ -1,4 +1,4 @@
-import { transports, createLogger } from 'winston'
+import { transports, createLogger, format } from 'winston'
 import * as rotate from 'winston-daily-rotate-file'
 import config from '../config/config.dev'
 import * as fs from 'fs';
@@ -11,10 +11,15 @@ if (!fs.existsSync(dir)) {
 
 
 let logger = createLogger({
-    level: 'info',
+    format: format.combine(
+        format.timestamp({ format: 'MM-YY-DD hh:mm:ss' }),
+        format.json()
+    ),
+    // level: 'info',
     transports: [
         new (transports.Console)({
             colorize: true,
+            timestamp: true
         }),
         new transports.DailyRotateFile({
             filename: config.logFileName,
