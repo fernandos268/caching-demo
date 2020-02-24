@@ -23,4 +23,15 @@ services:
         command: bash -c "npm install && npm run dev"
         ports:
             - 4000:4000
+    client:
+        image: node:latest
+        volumes:
+            - ./clientv2:/usr/src/client
+        environment:
+            - NODE_ENV=development
+        network_mode: host
+        working_dir: /usr/src/client
+        command: bash -c "npm install && npm start"
+        ports:
+            - 3000:3000
 
