@@ -11,70 +11,68 @@ import VisitFormDetails from '../components/forms/VisitFormDetails'
 import GeneratFields from '../components/Generators'
 import Grid from '@material-ui/core/Grid';
 
-function Visit(props) {
-   const { parent_node, parent_node_id } = props
+function Visit() {
    const [number, setGenerate] = useState(25)
    const [fetchGrid, { loading, data, error }] = useLazyQuery(VISITS)
 
    const [list, setList] = useState([]);
    const [selected, setSelected] = useState({})
-   const [isOpenDialog, setDialog] = useState(false)
    const [isOpenFullDialog, setFullDialog] = useState(false)
 
-   const [fieldValues, setFieldValues] = useState({})
 
    useEffect(() => {
       if(data) {
          setList(data.visits || [])
       }
    }, [data]);
-   
+
    useEffect(() => {
       fetchGrid(getFetchParams())
    }, []);
 
+   const columns = [
+      {
+         width: 200,
+         label: 'Type',
+         dataKey: 'type',
+      },
+      {
+         width: 200,
+         label: 'Category',
+         dataKey: 'category',
+      },
+      {
+         width: 200,
+         label: 'Status',
+         dataKey: 'status',
+      },
+      {
+         width: 200,
+         label: 'Actual Visit Date',
+         dataKey: 'actual_visit_date',
+      }
+   ]
    return (
         <div>
          <Grid container>
-            <Grid item xs={12} sm={6}> 
-               <GeneratFields 
+            <Grid item xs={12} sm={6}>
+               <GeneratFields
                   number={number}
                   style={{ marginTop: 30 }}
                   handleGenerateGrid={handleGenerateGrid}
                   handleChangeGenerate={handleChangeGenerate}
                />
             </Grid>
-            <Grid item xs={12} sm={6} style={{ marginTop: 30 }}><h1>Number of List {list.length || 0}</h1></Grid>
+            <Grid item xs={12} sm={6} style={{ marginTop: 30 }}>
+               <h1>Number of List {list.length || 0}</h1>
+            </Grid>
          </Grid>
          <Paper style={{ height: 600, width: '100%' }}>
             <VirtualizedTable
                rowCount={list.length}
-               rowGetter={({ index }) => {
-                  return list[index]
-               }}
+               rowGetter={({ index }) => list[index]}
                onRowClick={handleClickRow}
-               columns={[
-                  {
-                     width: 200,
-                     label: 'Type',
-                     dataKey: 'type',
-                  },
-                  {
-                     width: 200,
-                     label: 'Category',
-                     dataKey: 'category',
-                  },
-                  {
-                     width: 200,
-                     label: 'Status',
-                     dataKey: 'status',
-                  },
-                  {
-                     width: 200,
-                     label: 'Actual Visit Date',
-                     dataKey: 'actual_visit_date',
-                  }
-               ]}
+               columns={columns}
             />
          </Paper>
 
@@ -113,7 +111,7 @@ function Visit(props) {
 
    function getFetchParams(limit = 25, refetch) {
       limit = Number(limit)
-      return { 
+      return {
         variables: {
           "params": {
             limit,
@@ -123,5 +121,5 @@ function Visit(props) {
        }
     }
 }
-   
+
 export default PageWrappers(Visit, 'Visit')

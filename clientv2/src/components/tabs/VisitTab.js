@@ -11,7 +11,7 @@ import Grid from '@material-ui/core/Grid'
 function VisitTab(props) {
    const { parent_node, parent_node_id } = props
    const [number, setGenerate] = useState(25)
-   const [fetchGrid, { loading, data, error }] = useLazyQuery(VISITS)
+   const [fetchGrid, { loading, data, error }] = useLazyQuery(VISITSBYPROJECT)
 
    const [list, setList] = useState([]);
    const [selected, setSelected] = useState({})
@@ -19,10 +19,10 @@ function VisitTab(props) {
 
    useEffect(() => {
       if(data) {
-         setList(data.visits || [])
+         setList(data.visitsByProject || [])
       }
    }, [data]);
-   
+
    useEffect(() => {
       fetchGrid(getFetchParams(25, parent_node, parent_node_id))
    }, []);
@@ -54,15 +54,17 @@ function VisitTab(props) {
    return (
         <div>
          <Grid container style={{ marginLeft: 20}}>
-            <Grid item xs={12} sm={6}> 
-               <GeneratFields 
+            <Grid item xs={12} sm={6}>
+               <GeneratFields
                   number={number}
                   style={{ marginTop: 30 }}
                   handleGenerateGrid={handleGenerateGrid}
                   handleChangeGenerate={handleChangeGenerate}
                />
             </Grid>
-            <Grid item xs={12} sm={6} style={{ marginTop: 30 }}><h1>Number of List {length}</h1></Grid>
+            <Grid item xs={12} sm={6} style={{ marginTop: 30 }}>
+               <h1>Number of List {length}</h1>
+            </Grid>
          </Grid>
 
          <Paper style={{ height: 400, width: '100%' }}>
@@ -71,6 +73,7 @@ function VisitTab(props) {
                rowGetter={({ index }) => list[index]}
                onRowClick={handleClickRow}
                columns={columns}
+               isLoading={loading}
             />
          </Paper>
 
@@ -106,11 +109,11 @@ function VisitTab(props) {
       fetchGrid(getFetchParams(number))
    }
 
-   function getFetchParams(limit = 25) {
+   function getFetchParams(limit = 25, parent_node, node_id) {
       limit = Number(limit)
-      return { 
+      return {
         variables: {
-          project_id: parent_node_id,
+          project_id: node_id,
           "params": {
             limit,
             "page": 1
@@ -119,5 +122,5 @@ function VisitTab(props) {
        }
     }
 }
-   
+
 export default VisitTab
