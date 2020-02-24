@@ -27,18 +27,11 @@ const app = express();
 
 const run = async () => {
   await connectToRethink();
-<<<<<<< HEAD
-  // const orient = await connectToOrient()
-  // await migrate(orient);
-  // await migration(orient);
-  // console.log('After Migrate');
-=======
   const orient = await connectToOrient()
   // const cacheresult = await redisCache(orient)
   // console.log('cacheresult: ', cacheresult);
   await migration(orient);
   console.log('After Migrate');
->>>>>>> 19081f8d6110e6a52ff5098c1e76cf836d1fae81
 
   app.use(cors());
   app.use(bodyParser.json());
