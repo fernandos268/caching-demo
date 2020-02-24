@@ -24,10 +24,6 @@ const { CustomRedis } = require('./src/context')
 
 const CustomRedisCache = require('./utils/CustomRedisCache')
 
-const {
-  cacheFunctions
-} = require('./utils')
-
 const server = new ApolloServer({
   typeDefs,
   resolvers,
