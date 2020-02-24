@@ -11,17 +11,14 @@ import VisitFormDetails from '../components/forms/VisitFormDetails'
 import GeneratFields from '../components/Generators'
 import Grid from '@material-ui/core/Grid';
 
-function Visit(props) {
-   const { parent_node, parent_node_id } = props
+function Visit() {
    const [number, setGenerate] = useState(25)
    const [fetchGrid, { loading, data, error }] = useLazyQuery(VISITS)
 
    const [list, setList] = useState([]);
    const [selected, setSelected] = useState({})
-   const [isOpenDialog, setDialog] = useState(false)
    const [isOpenFullDialog, setFullDialog] = useState(false)
 
-   const [fieldValues, setFieldValues] = useState({})
 
    useEffect(() => {
       if(data) {
@@ -33,6 +30,28 @@ function Visit(props) {
       fetchGrid(getFetchParams())
    }, []);
 
+   const columns = [
+      {
+         width: 200,
+         label: 'Type',
+         dataKey: 'type',
+      },
+      {
+         width: 200,
+         label: 'Category',
+         dataKey: 'category',
+      },
+      {
+         width: 200,
+         label: 'Status',
+         dataKey: 'status',
+      },
+      {
+         width: 200,
+         label: 'Actual Visit Date',
+         dataKey: 'actual_visit_date',
+      }
+   ]
    return (
         <div>
          <Grid container>
@@ -44,37 +63,16 @@ function Visit(props) {
                   handleChangeGenerate={handleChangeGenerate}
                />
             </Grid>
-            <Grid item xs={12} sm={6} style={{ marginTop: 30 }}><h1>Number of List {list.length || 0}</h1></Grid>
+            <Grid item xs={12} sm={6} style={{ marginTop: 30 }}>
+               <h1>Number of List {list.length || 0}</h1>
+            </Grid>
          </Grid>
          <Paper style={{ height: 600, width: '100%' }}>
             <VirtualizedTable
                rowCount={list.length}
-               rowGetter={({ index }) => {
-                  return list[index]
-               }}
+               rowGetter={({ index }) => list[index]}
                onRowClick={handleClickRow}
-               columns={[
-                  {
-                     width: 200,
-                     label: 'Type',
-                     dataKey: 'type',
-                  },
-                  {
-                     width: 200,
-                     label: 'Category',
-                     dataKey: 'category',
-                  },
-                  {
-                     width: 200,
-                     label: 'Status',
-                     dataKey: 'status',
-                  },
-                  {
-                     width: 200,
-                     label: 'Actual Visit Date',
-                     dataKey: 'actual_visit_date',
-                  }
-               ]}
+               columns={columns}
             />
          </Paper>
 
