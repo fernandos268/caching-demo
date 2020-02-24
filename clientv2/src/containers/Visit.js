@@ -25,7 +25,7 @@ function Visit() {
          setList(data.visits || [])
       }
    }, [data]);
-   
+
    useEffect(() => {
       fetchGrid(getFetchParams())
    }, []);
@@ -55,8 +55,8 @@ function Visit() {
    return (
         <div>
          <Grid container>
-            <Grid item xs={12} sm={6}> 
-               <GeneratFields 
+            <Grid item xs={12} sm={6}>
+               <GeneratFields
                   number={number}
                   style={{ marginTop: 30 }}
                   handleGenerateGrid={handleGenerateGrid}
@@ -111,7 +111,7 @@ function Visit() {
 
    function getFetchParams(limit = 25, refetch) {
       limit = Number(limit)
-      return { 
+      return {
         variables: {
           "params": {
             limit,
@@ -121,5 +121,5 @@ function Visit() {
        }
     }
 }
-   
+
 export default PageWrappers(Visit, 'Visit')

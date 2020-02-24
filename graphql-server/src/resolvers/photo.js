@@ -20,12 +20,20 @@ module.exports = {
       return await dataSources.ljpAPI.addPhotoToVisit(input)
     },
     async updatePhoto(_, { input }, { dataSources, redis }) {
-      redis.deleteAllKeysByKeyword('photo')
-      return await dataSources.ljpAPI.updatePhoto(input)
+      console.log('Updating photo....')
+      const result = await dataSources.ljpAPI.updatePhoto(input)
+      if(result) {
+        await redis.updateAllCache(input, 'photo')
+      }
+      return result
     },
     async deletePhoto(_, { id }, { dataSources, redis }) {
-      redis.deleteAllKeysByKeyword('photo')
-      return await dataSources.ljpAPI.deletePhoto(id)
+      console.log(`Deleting photo id ${id}`)
+      const result = await dataSources.ljpAPI.deletePhoto(id)
+      if (result) {
+        redis.deleteObjectInCache(id, 'photo')
+    }
+    return result
     }
   },
   Photo: {

@@ -42,7 +42,7 @@ const defaults = {
 function ProjectFormDetials(props){
    const classes = useStyles();
    const { fieldValues: propFieldValues, handleSave, isSaving, errors } = props
-   const { loading, data, error } = useQuery(PROJECT, { 
+   const { loading, data, error } = useQuery(PROJECT, {
       variables: {
          id: propFieldValues.id
       }
@@ -72,13 +72,13 @@ function ProjectFormDetials(props){
                         <Avatar alt={fieldValues.legal_name} src="/static/images/avatar/1.jpg" className={classes.large} />
                      </Grid>
                      <Grid item xs={12} sm={6}>
-                        <TextField 
-                           id="name" 
+                        <TextField
+                           id="name"
                            required
-                           label="Name" 
-                           value={fieldValues.name} 
+                           label="Name"
+                           value={fieldValues.name}
                            helperText={errors.name}
-                           style ={{ width: '400px'}} 
+                           style ={{ width: '400px'}}
                            onChange={handleInputChange}
                            error={Boolean(errors.name)}
                         />
@@ -86,46 +86,46 @@ function ProjectFormDetials(props){
                   </Grid>
                   <Grid container spacing={1} className={classes.grid}>
                      <Grid item xs={6} sm={3}>
-                        <TextField 
+                        <TextField
                            required
-                           id="legal_name" 
-                           label="Legal Name" 
+                           id="legal_name"
+                           label="Legal Name"
                            onChange={handleInputChange}
                            helperText={errors.legal_name}
-                           value={fieldValues.legal_name} 
+                           value={fieldValues.legal_name}
                            error={Boolean(errors.legal_name)}
                         />
                      </Grid>
                      <Grid item xs={6} sm={3}>
-                        <TextField 
+                        <TextField
                            required
-                           id="number" 
-                           label="Number" 
+                           id="number"
+                           label="Number"
                            helperText={errors.number}
-                           value={fieldValues.number} 
+                           value={fieldValues.number}
                            onChange={handleInputChange}
                            error={Boolean(errors.number)}
                         />
                      </Grid>
                      <Grid item xs={6} sm={3}>
-                        <TextField 
-                           id="type" 
+                        <TextField
+                           id="type"
                            required
-                           label="Type" 
-                           value={fieldValues.type} 
+                           label="Type"
+                           value={fieldValues.type}
                            onChange={handleInputChange}
                            error={Boolean(errors.type)}
                            helperText={errors.type}
                         />
                      </Grid>
                      <Grid item xs={6} sm={3}>
-                        <TextField 
+                        <TextField
                            required
-                           id="type_name" 
-                           label="Type Name" 
+                           id="type_name"
+                           label="Type Name"
                            onChange={handleInputChange}
                            helperText={errors.type_name}
-                           value={fieldValues.type_name} 
+                           value={fieldValues.type_name}
                            error={Boolean(errors.type_name)}
                         />
                      </Grid>
@@ -142,7 +142,7 @@ function ProjectFormDetials(props){
    )
 
    function handleInputChange(evt) {
-      const { id, value }  = evt.target     
+      const { id, value }  = evt.target
       setFieldValues({
          ...fieldValues,
          [id]: value

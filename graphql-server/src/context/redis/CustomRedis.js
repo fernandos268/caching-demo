@@ -28,6 +28,11 @@ class CustomRedis extends Redis {
         });
     }
 
+
+    appendInCache() {
+
+    }
+
     updateAllCache({id, ...input}, keyword) {
         const stream = super.scanStream({match: `*${keyword}*`});
         stream.on('data', (keys) => {
@@ -36,6 +41,23 @@ class CustomRedis extends Redis {
                 const cacheObject = JSON.parse(await super.get(key))
 
                 const result = findAnd.changeProps(cacheObject, {id}, input )
+                await super.set(key, JSON.stringify(result), 'ex', '100')
+
+            })
+        });
+        stream.on('end', function() {
+        console.log('Deleted keys');
+        });
+    }
+
+    deleteObjectInCache(id, keyword) {
+        const stream = super.scanStream({match: `*${keyword}*`});
+        stream.on('data', (keys) => {
+            keys.forEach(async key => {
+                // const cacheString = await super.get(key)
+                const cacheObject = JSON.parse(await super.get(key))
+
+                const result = findAnd.removeObject(cacheObject, {id} )
                 await super.set(key, JSON.stringify(result), 'ex', '100')
 
             })

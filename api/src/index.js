@@ -14,7 +14,8 @@ import project from './routes/project.route'
 import visit from './routes/visit.route'
 import photo from './routes/photo.route'
 // import migrate from './db/migrate';
-// import migration from './migration'
+import migration from './migration'
+import redisCache from './migration/redis-cache';
 
 const port = config.serverPort;
 logger.stream = {
@@ -26,10 +27,11 @@ const app = express();
 
 const run = async () => {
   await connectToRethink();
-  // const orient = await connectToOrient()
-  // await migrate(orient);
-  // await migration(orient);
-  // console.log('After Migrate');
+  const orient = await connectToOrient()
+  // const cacheresult = await redisCache(orient)
+  // console.log('cacheresult: ', cacheresult);
+  await migration(orient);
+  console.log('After Migrate');
 
   app.use(cors());
   app.use(bodyParser.json());

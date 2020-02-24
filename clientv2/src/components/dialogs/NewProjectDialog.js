@@ -42,27 +42,27 @@ export default function NewProjectDialog(props) {
       onChange(id, value)
    }
    return (
-      <div style={{ width: 900 }}> 
+      <div style={{ width: 900 }}>
          <Grid container spacing={4} className={classes.grid}>
                <Paper className={classes.paper}>
                   <Grid container spacing={4} className={classes.grid}>
                      <Grid item xs={12} sm={6}>
-                        <TextField 
+                        <TextField
                            required
-                           id="name" 
-                           label="Name" 
-                           value={fieldValues.name} 
-                           style ={{ width: '400px'}} 
+                           id="name"
+                           label="Name"
+                           value={fieldValues.name}
+                           style ={{ width: '400px'}}
                            error={Boolean(errors.name)}
                            onChange={handleInputChange}
                            helperText={errors.name}
                         />
                      </Grid>
                      <Grid item xs={12} sm={6}>
-                        <TextField 
-                           id="legal_name" 
-                           label="Legal Name" 
-                           value={fieldValues.legal_name} 
+                        <TextField
+                           id="legal_name"
+                           label="Legal Name"
+                           value={fieldValues.legal_name}
                            onChange={handleInputChange}
                            error={Boolean(errors.legal_name)}
                            helperText={errors.legal_name}
@@ -73,9 +73,9 @@ export default function NewProjectDialog(props) {
                      <Grid item xs={6} sm={3}>
                         <TextField
                            required
-                           id="number" 
-                           label="Number" 
-                           value={fieldValues.number} 
+                           id="number"
+                           label="Number"
+                           value={fieldValues.number}
                            onChange={handleInputChange}
                            error={Boolean(errors.number)}
                            helperText={errors.number}
@@ -84,20 +84,20 @@ export default function NewProjectDialog(props) {
                      <Grid item xs={6} sm={3}>
                         <TextField
                            required
-                           id="type" 
-                           label="Type" 
-                           value={fieldValues.type} 
+                           id="type"
+                           label="Type"
+                           value={fieldValues.type}
                            onChange={handleInputChange}
                            error={Boolean(errors.type)}
                            helperText={errors.type}
                         />
                      </Grid>
                      <Grid item xs={6} sm={3}>
-                        <TextField 
+                        <TextField
                            required
-                           id="type_name" 
-                           label="Type Name" 
-                           value={fieldValues.type_name} 
+                           id="type_name"
+                           label="Type Name"
+                           value={fieldValues.type_name}
                            onChange={handleInputChange}
                            error={Boolean(errors.type_name)}
                            helperText={errors.type_name}

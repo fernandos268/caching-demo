@@ -15,7 +15,7 @@ import Button from '@material-ui/core/Button'
 import NewProjectDialog from '../components/dialogs/NewProjectDialog'
 import GeneratFields from '../components/Generators'
 import pick from 'lodash/pick'
-import { useSnackbar as snack } from 'notistack' 
+import { useSnackbar as snack } from 'notistack'
 import validateFields from '../components/validations'
 import omit from 'lodash/omit'
 
@@ -36,15 +36,15 @@ function Project() {
    const [createProject, { error: createError, loading: createLoading }] = useMutation(CREATEPROJECT, { onCompleted: (response) => { onCompleted('create', response) }})
    const [deleteProject, { error: deleteError, loading: deleteLoading }] = useMutation(DELETEPROJECT, { refetchQueries: [{ query: PROJECTS, ...getFetchParams(number) }], onCompleted: (response) => onCompleted('delete', response) })
    const [editProject, { error: editError, loading: editLoading }] = useMutation(EDITPROJECT, { onCompleted: () => { onCompleted('edit') }})
-   
-   const [list, setList] = useState([])   
+
+   const [list, setList] = useState([])
    const [selected, setSelected] = useState({})
    const [isOpenDialog, setDialogOpen] = useState(false)
    const [isOpen, setOpen] = useState(false)
    const [dialogFieldValues, setDialogFieldValues] = useState(defaults)
    const [errors, setErrors] = useState({})
    const [paging, setPaging] = useState({ page: 1, rowPerPage: 25 })
-   
+
    const [state, setState] = useState({
       columns: [
         { title: 'Name', field: 'name' },
@@ -54,11 +54,11 @@ function Project() {
         { title: 'Status', field: 'status'},
       ]
     });
-    
+
     useEffect(() => {
       if(data) {
         setList(data.projects)
-      } 
+      }
     }, [data])
 
     useEffect(() => {
@@ -83,7 +83,7 @@ function Project() {
           <Grid container item xs={12} spacing={4} >
               <Button variant="contained" onClick={handleNew}>New</Button>
           </Grid>
-          <GeneratFields 
+          <GeneratFields
             number={number}
             handleGenerateGrid={handleGenerateGrid}
             handleChangeGenerate={handleChangeGenerate}
@@ -128,12 +128,12 @@ function Project() {
             errors={errors}
           />
         </FullDialogWrapper>
-        
+
         <DialogWrapper
           title='New Project'
           isOpen={isOpenDialog}
-          handleClose={() => { 
-            setDialogOpen(false) 
+          handleClose={() => {
+            setDialogOpen(false)
             setDialogFieldValues({})
             setErrors({})
           }}
@@ -141,9 +141,9 @@ function Project() {
           handleSave={handleCreateProject}
           fieldValues={dialogFieldValues}
         >
-          <NewProjectDialog 
-            errors={errors} 
-            fieldValues={dialogFieldValues} 
+          <NewProjectDialog
+            errors={errors}
+            fieldValues={dialogFieldValues}
             handleInputChange={handleDialogInput}
           />
         </DialogWrapper>
@@ -225,7 +225,7 @@ function Project() {
 
     function handleDialogInput(id, value) {
       setErrors(omit(errors, id))
-      setDialogFieldValues({ ...dialogFieldValues, [id]: value })   
+      setDialogFieldValues({ ...dialogFieldValues, [id]: value })
     }
 
     function formatDate(date = '') {
@@ -235,7 +235,7 @@ function Project() {
     function handleSave(fields) {
       console.log('fields: ', fields);
       const fieldsToValidate = ['name', 'legal_name', 'number', 'type', 'type_name']
-      const { errors, isValid } = validateFields(fields, fieldsToValidate) 
+      const { errors, isValid } = validateFields(fields, fieldsToValidate)
       if(isValid) {
         editProject({
           variables: {
@@ -256,7 +256,7 @@ function Project() {
     }
 
     function editable() {
-      return( 
+      return(
         {
           onRowDelete: oldData =>
             new Promise(resolve => {
@@ -270,10 +270,10 @@ function Project() {
         }
       )
     }
-    
+
     function getFetchParams(limit = 25, page) {
       limit = Number(limit)
-      return { 
+      return {
         variables: {
           "params": {
             limit,

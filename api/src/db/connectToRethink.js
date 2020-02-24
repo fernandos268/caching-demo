@@ -23,10 +23,9 @@ const connectToRethink = async () => {
         }
     };
 
-    // returns a promise when configured
-    orm.initialize(ormConfig) // you can also optionally pass an instance of thinky: [orm.initialize(ormConfig, thinky)] for additional configuration.
-        .then(() => logger.info('Okay connection'))
-        .catch((err) => logger.error('Error in connecting- ' + err));
+    orm.initialize(ormConfig)
+        .then(() => logger.info('Okay Rethink connection'))
+        .catch((err) => logger.error('Error in connecting to Rethink- ' + err));
 }
 
 export default connectToRethink;

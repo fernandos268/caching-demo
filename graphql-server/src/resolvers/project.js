@@ -18,15 +18,9 @@ module.exports = {
         },
         async updateProject(_, { input }, { dataSources, redis }, info) {
             // console.log(util.inspect(info.fieldNodes.find(({selectionSet}) => selectionSet).selectionSet, false, null, true))
-            // get the field to be updated
-            console.log("TCL: updateProject -> input", input)
             console.log('Updating project....')
-            // redis.deleteAllKeysByKeyword('project')
-
             // update the database
             const result = await dataSources.ljpAPI.updateProject(input)
-            console.log("TCL: updateProject -> result", result)
-
             // update the cache
             if(result) {
                 await redis.updateAllCache(input, 'project')
@@ -35,8 +29,11 @@ module.exports = {
         },
         async deleteProject(_, { id }, { dataSources, redis }) {
             console.log(`Deleting project id ${id}`)
-            redis.deleteAllKeysByKeyword('project')
-            return await dataSources.ljpAPI.deleteProject(id)
+            const result = await dataSources.ljpAPI.deleteProject(id)
+            if (result) {
+                redis.deleteObjectInCache(id, 'project')
+            }
+            return result
         }
     },
     Project: {

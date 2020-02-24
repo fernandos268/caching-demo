@@ -22,7 +22,7 @@ function VisitTab(props) {
          setList(data.visitsByProject || [])
       }
    }, [data]);
-   
+
    useEffect(() => {
       fetchGrid(getFetchParams(25, parent_node, parent_node_id))
    }, []);
@@ -54,8 +54,8 @@ function VisitTab(props) {
    return (
         <div>
          <Grid container style={{ marginLeft: 20}}>
-            <Grid item xs={12} sm={6}> 
-               <GeneratFields 
+            <Grid item xs={12} sm={6}>
+               <GeneratFields
                   number={number}
                   style={{ marginTop: 30 }}
                   handleGenerateGrid={handleGenerateGrid}
@@ -111,7 +111,7 @@ function VisitTab(props) {
 
    function getFetchParams(limit = 25, parent_node, node_id) {
       limit = Number(limit)
-      return { 
+      return {
         variables: {
           project_id: node_id,
           "params": {
@@ -122,5 +122,5 @@ function VisitTab(props) {
        }
     }
 }
-   
+
 export default VisitTab
