@@ -42,12 +42,12 @@ module.exports = gql`
         last_travel_pause_duration_date: String
         last_visit_pause_duration_date: String
         message_body: String
-        metadata: ScalarObject
+        metadata: CustomScalarObject
         next_visit_date: String
         next_visit_id: ID
         original_start_date: String
         outstanding_open_items: [String]
-        previous_tags: ScalarObject
+        previous_tags: CustomScalarObject
         project_id: ID
         project_scope_id: String
         purpose: String
@@ -74,7 +74,7 @@ module.exports = gql`
         type: String
         updated_date: String
         user_id: String
-        visit_coordination: ScalarObject
+        visit_coordination: CustomScalarObject
         visit_pause_duration: Int
 
         # RELATIONAL FIELDS

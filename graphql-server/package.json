@@ -22,8 +22,10 @@
     "express": "^4.17.1",
     "find-and": "^1.1.3",
     "ioredis": "^4.14.1",
+    "kafka-node": "^5.0.0",
     "obj-traverse": "^1.0.0",
     "redis": "^3.0.2",
-    "rethinkdbdash": "^2.3.31"
+    "rethinkdbdash": "^2.3.31",
+    "uuid": "^7.0.0"
   }
 }

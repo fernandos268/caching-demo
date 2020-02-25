@@ -1,7 +1,7 @@
 const { gql } = require('apollo-server-express')
 
 module.exports = gql`
-    scalar ScalarObject
+    scalar CustomScalarObject
 
     input GetListInput {
         limit: Int!

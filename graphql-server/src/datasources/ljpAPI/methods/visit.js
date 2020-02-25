@@ -28,7 +28,6 @@ async function getVisitsByProject(args) {
     }
 }
 
-
 async function createVisit(input) {
     try {
         return await this.post(`visit`, input)

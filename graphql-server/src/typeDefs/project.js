@@ -2,12 +2,12 @@ const { gql } = require('apollo-server-express')
 
 module.exports = gql`
     extend type Query {
-        projects(params: GetListInput!): [Project] @cacheControl(maxAge: 100)
+        projects(params: GetListInput!): [Project] @cacheControl(maxAge: 20)
         project(id: ID): Project @cacheControl(maxAge: 100)
     }
 
     extend type Mutation {
-        createProject(input: ProjectInput!): Project
+        createProject(fields: CustomScalarObject): Project
         updateProject(input: ProjectInput!): Project
         deleteProject(id: ID): String
     }
@@ -27,7 +27,7 @@ module.exports = gql`
         created_date: String
         file_path: String
         footer_id: String
-        id: ID
+        id: ID!
         include_deficiency_photo: Boolean
         include_photo: Boolean
         is_assemblies_shared: Boolean
@@ -49,14 +49,14 @@ module.exports = gql`
         updated_date: String
         sync_date: String
         user_id: String
-        metadata: ScalarObject
+        metadata: CustomScalarObject
 
         # RELATIONAL FIELDS
         visits(params: GetListInput!): [Visit] @cacheControl(maxAge: 100)
     }
 
     input ProjectInput {
-        id: ID!
+        id: ID
         master_project_id: String
         name: String
         legal_name: String

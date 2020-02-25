@@ -20,21 +20,83 @@ module.exports = {
             redis.deleteAllKeysByKeyword('visit')
             return await dataSources.ljpAPI.createVisit(input)
         },
-        async updateVisit(_, { input }, { dataSources, redis }) {
+        async updateVisit(_, { input }, { dataSources, redis, kafka }) {
             console.log('Updating visitu....')
-            const result = await dataSources.ljpAPI.updateVisit(input)
-            if(result) {
-                await redis.updateAllCache(input, 'visit')
-            }
-            return result
+            // const result = await dataSources.ljpAPI.updateVisit(input)
+            // if(result) {
+            //     await redis.updateAllCache(input, 'visit')
+            // }
+            // return result
+
+            const origin_user_id = uuid()
+
+            kafka.produce({
+                topic: 'cachedemo-mutation',
+                operation: 'update',
+                entity: 'visit',
+                origin_user_id,
+                input
+            })
+
+            return new Promise((resolve, reject) => {
+                kafka.consumer.on('message', message => {
+                    const {
+                        topic,
+                        value
+                    } = message
+
+                    const parsed_message = JSON.parse(value)
+
+                    if (topic === 'cachedemo-mutation-response' && parsed_message.origin_user_id === origin_user_id) {
+                        console.log('cachedemo-mutation-response', parsed_message);
+                        const { updatedNode, success } = parsed_message
+                        if (!!success) {
+                            resolve(updatedNode)
+                        }
+                        reject()
+                    }
+                })
+            })
+
         },
-        async deleteVisit(_, { id }, { dataSources, redis }) {
+        async deleteVisit(_, { id }, { dataSources, redis, kafka }) {
             console.log('Deleting visitu....')
-            const result = await dataSources.ljpAPI.deleteVisit(id)
-            if (result) {
-                redis.deleteObjectInCache(id, 'visit')
-            }
-            return result
+            // const result = await dataSources.ljpAPI.deleteVisit(id)
+            // if (result) {
+            //     redis.deleteObjectInCache(id, 'visit')
+            // }
+            // return result
+
+            const origin_user_id = uuid()
+
+            kafka.produce({
+                topic: 'cachedemo-mutation',
+                operation: 'delete',
+                entity: 'visit',
+                origin_user_id,
+                input: { id }
+            })
+
+            return new Promise((resolve, reject) => {
+                kafka.consumer.on('message', message => {
+                    const {
+                        topic,
+                        value
+                    } = message
+
+                    const parsed_message = JSON.parse(value)
+
+                    if (topic === 'cachedemo-mutation-response' && parsed_message.origin_user_id === origin_user_id) {
+                        console.log('cachedemo-mutation-response', parsed_message);
+                        const { deletedId, success } = parsed_message
+                        if (!!success) {
+                            resolve(deletedId)
+                        }
+                        reject()
+                    }
+                })
+            })
+
         }
     },
     Visit: {

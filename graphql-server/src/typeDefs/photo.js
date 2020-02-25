@@ -20,7 +20,7 @@ module.exports = gql`
         closed_by_visit_id: String
         completed_date: String
         created_date: String
-        detail: ScalarObject
+        detail: CustomScalarObject
         file_path: String
         group_id: String
         id: ID
@@ -31,7 +31,7 @@ module.exports = gql`
         is_from_camera: Boolean
         is_old_photo: Boolean
         is_pov: Boolean
-        metadata: ScalarObject
+        metadata: CustomScalarObject
         observation_date: String
         project_id: ID
         project_scope_id: String
@@ -40,7 +40,7 @@ module.exports = gql`
         status: String
         sync_date: String
         thumbnail_path: String
-        trades: ScalarObject
+        trades: CustomScalarObject
         type: String
         updated_date: String
         uploaded_date: String
@@ -60,7 +60,7 @@ module.exports = gql`
         closed_by_visit_id: String
         completed_date: String
         created_date: String
-        detail: ScalarObject
+        detail: CustomScalarObject
         file_path: String
         group_id: String
         id: ID!
@@ -71,7 +71,7 @@ module.exports = gql`
         is_from_camera: Boolean
         is_old_photo: Boolean
         is_pov: Boolean
-        metadata: ScalarObject
+        metadata: CustomScalarObject
         observation_date: String
         project_id: ID
         project_scope_id: String
@@ -80,7 +80,7 @@ module.exports = gql`
         status: String
         sync_date: String
         thumbnail_path: String
-        trades: ScalarObject
+        trades: CustomScalarObject
         type: String
         updated_date: String
         uploaded_date: String

@@ -21,19 +21,81 @@ module.exports = {
     },
     async updatePhoto(_, { input }, { dataSources, redis }) {
       console.log('Updating photo....')
-      const result = await dataSources.ljpAPI.updatePhoto(input)
-      if(result) {
-        await redis.updateAllCache(input, 'photo')
-      }
-      return result
+      // const result = await dataSources.ljpAPI.updatePhoto(input)
+      // if (result) {
+      //   await redis.updateAllCache(input, 'photo')
+      // }
+      // return result
+
+      const origin_user_id = uuid()
+
+      kafka.produce({
+        topic: 'cachedemo-mutation',
+        operation: 'update',
+        entity: 'photo',
+        origin_user_id,
+        input
+      })
+
+      return new Promise((resolve, reject) => {
+        kafka.consumer.on('message', message => {
+          const {
+            topic,
+            value
+          } = message
+
+          const parsed_message = JSON.parse(value)
+
+          if (topic === 'cachedemo-mutation-response' && parsed_message.origin_user_id === origin_user_id) {
+            console.log('cachedemo-mutation-response', parsed_message);
+            const { updatedNode, success } = parsed_message
+            if (!!success) {
+              resolve(updatedNode)
+            }
+            reject()
+          }
+        })
+      })
+
     },
-    async deletePhoto(_, { id }, { dataSources, redis }) {
+    async deletePhoto(_, { id }, { dataSources, redis, kafka }) {
       console.log(`Deleting photo id ${id}`)
-      const result = await dataSources.ljpAPI.deletePhoto(id)
-      if (result) {
-        redis.deleteObjectInCache(id, 'photo')
-    }
-    return result
+      //   const result = await dataSources.ljpAPI.deletePhoto(id)
+      //   if (result) {
+      //     redis.deleteObjectInCache(id, 'photo')
+      // }
+      // return result
+
+      const origin_user_id = uuid()
+
+      kafka.produce({
+        topic: 'cachedemo-mutation',
+        operation: 'delete',
+        entity: 'photo',
+        origin_user_id,
+        input: { id }
+      })
+
+      return new Promise((resolve, reject) => {
+        kafka.consumer.on('message', message => {
+          const {
+            topic,
+            value
+          } = message
+
+          const parsed_message = JSON.parse(value)
+
+          if (topic === 'cachedemo-mutation-response' && parsed_message.origin_user_id === origin_user_id) {
+            console.log('cachedemo-mutation-response', parsed_message);
+            const { deletedId, success } = parsed_message
+            if (!!success) {
+              resolve(deletedId)
+            }
+            reject()
+          }
+        })
+      })
+
     }
   },
   Photo: {

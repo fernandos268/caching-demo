@@ -1,5 +1,7 @@
 const ljpAPI = require('./ljpAPI')
+const kafka_datasource = require('./kafka')
 
 module.exports = {
-    ljpAPI
+    ljpAPI,
+    kafka_datasource
 }
