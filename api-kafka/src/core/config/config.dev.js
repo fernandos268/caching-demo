@@ -12,10 +12,6 @@ export default {
   orientPass: process.env.ORIENT_PASS || 'root',
   orientDb: process.env.ORIENT_DB || 'Spike',
   serverPort: process.env.PORT || 4000,
-<<<<<<< HEAD
-  kafkaHost: process.env.KAFKA_HOSTS || 'localhost:9092, localhost:9093, localhost:9094',
-=======
   kafkaHost: process.env.KAFKA_HOST || 'localhost:9092,localhost:9093,localhost:9094',
->>>>>>> b01b644357e0b480ab929e9e367a28115521c5f7
   redisHost: process.env.REDIS_HOST || 'localhost'
 }

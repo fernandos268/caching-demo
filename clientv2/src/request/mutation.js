@@ -16,19 +16,27 @@ const CREATEPROJECT = gql`
 
 const DELETEPROJECT = gql`
    mutation($id: ID!) {
-      deleteProject(id: $id)
-   } 
-`  
+      deleteProject(id: $id) {
+         isSuccess
+         error
+         deletedId
+      }
+   }
+`
 const EDITPROJECT = gql`
    mutation($input: ProjectInput!) {
       updateProject(input: $input) {
-         id
-         name
-         legal_name
-         number
-         type
-         type_name
-         status
+         isSuccess
+         error
+         updatedNode {
+            id
+            name
+            legal_name
+            number
+            type
+            type_name
+            status
+         }
    }
 }
 `
