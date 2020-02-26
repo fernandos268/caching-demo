@@ -47,11 +47,7 @@ const app = express();
   ]
 
   const options = {
-<<<<<<< HEAD
-    kafkaHost: config.config,
-=======
     kafkaHost: config.kafkaHost,
->>>>>>> b01b644357e0b480ab929e9e367a28115521c5f7
     autoCommit: true,
     fromOffset: 'latest',
     groupId: 'CACHE_DEMO_KAFKA'
