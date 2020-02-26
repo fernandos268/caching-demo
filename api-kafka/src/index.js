@@ -5,7 +5,7 @@ import cors from 'cors';
 import morgan from 'morgan'
 import bodyParser from "body-parser";
 import kafka from 'kafka-node'
-
+import util from 'util'
 import logger from './core/logger/app-logger'
 import config from './core/config/config.dev'
 import connectToRethink from './db/connectToRethink';
@@ -39,20 +39,40 @@ const app = express();
   //-----------------------------------------------------------------------------------------------------------------
   // KAKFA STUFF
 
+
+  const client = new kafka.KafkaClient({ kafkaHost: config.kafkaHost })
+
   const topics = [
     'cachedemo-mutation',
   ]
 
   const options = {
+<<<<<<< HEAD
     kafkaHost: config.config,
+=======
+    kafkaHost: config.kafkaHost,
+>>>>>>> b01b644357e0b480ab929e9e367a28115521c5f7
     autoCommit: true,
     fromOffset: 'latest',
     groupId: 'CACHE_DEMO_KAFKA'
   }
 
-  const consumer = new kafka.ConsumerGroup(options, topics);
+const topicsToCreate = [
+  {
+    topic: "cachedemo-mutation",
+    partitions: 10,
+    replicationFactor: 3
+  }
+];
 
-  const client = new kafka.KafkaClient({ kafkaHost: config.kafkaHost })
+// create kafka topics
+client.createTopics(topicsToCreate, (error, result) => {
+  if (error) console.log(error);
+  console.log(
+    `Result of creating topic is ${util.inspect(result, false, null, true)}`
+    );
+  });
+  const consumer = new kafka.ConsumerGroup(options, topics);
   const HighLevelProducer = kafka.HighLevelProducer
   const producer = new HighLevelProducer(client)
 

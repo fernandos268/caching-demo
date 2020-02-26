@@ -4,6 +4,9 @@ const { RedisCache } = require('apollo-server-cache-redis')
 const responseCachePlugin = require('apollo-server-plugin-response-cache')
 const cors = require('cors')
 const redis = require('redis')
+const util = require('util')
+const uuid = require('uuid/v4')
+
 const app = require('express')()
 
 const kafka = require('kafka-node')
@@ -27,22 +30,41 @@ const {
   KAFKA_SERVERS
 } = config
 
-const topics = [
-  'cachedemo-mutation-response',
-]
 
+
+const client = new kafka.KafkaClient({ kafkaHost: KAFKA_SERVERS})
+
+const id = uuid()
 const options = {
   kafkaHost: KAFKA_SERVERS,
   autoCommit: true,
   fromOffset: 'latest',
-  groupId: 'CACHE_DEMO_KAFKA'
+  groupId: `response-consumer-${id}`
 }
 
-const consumer = new kafka.ConsumerGroup(options, topics);
+const topics = [
+  'cachedemo-mutation-response',
+]
 
-const client = new kafka.KafkaClient({ kafkaHost: KAFKA_SERVERS })
-const HighLevelProducer = kafka.HighLevelProducer
-const producer = new HighLevelProducer(client)
+const topicsToCreate = [
+  {
+    topic: "cachedemo-mutation-response",
+    partitions: 5,
+    replicationFactor: 3
+  }
+];
+
+// create kafka topics
+client.createTopics(topicsToCreate, (error, result) => {
+  if (error) console.log(error);
+  console.log(
+    `Result of creating topic is ${util.inspect(result, false, null, true)}`
+    );
+  });
+
+  const consumer = new kafka.ConsumerGroup(options, topics);
+  const HighLevelProducer = kafka.HighLevelProducer
+  const producer = new HighLevelProducer(client)
 
 const server = new ApolloServer({
   typeDefs,
