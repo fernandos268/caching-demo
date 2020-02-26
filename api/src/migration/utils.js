@@ -37,7 +37,7 @@ export const options = {
   maxBulkNestedCount: 50,
 };
 
-export const redis = new Redis(6380, '10.110.3.35');
+export const redis = new Redis('10.110.55.101');
 
 const redisKey = (nodeName, id, secId) => `${nodeName}:mapping-${configDev.orientDb}:${id}${secId ? `:${secId}` : ''}`
 

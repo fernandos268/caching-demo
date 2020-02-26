@@ -34,4 +34,15 @@ services:
         command: bash -c "npm install && npm start"
         ports:
             - 3000:3000
+    api-kafka:
+        image: node:latest
+        volumes:
+            - ./api-kafka:/usr/src/api-kafka
+        environment:
+            - NODE_ENV=development
+        network_mode: host
+        working_dir: /usr/src/api-kafka
+        command: bash -c "npm install && npm run dev"
+        ports:
+            - 6000:6000
 
