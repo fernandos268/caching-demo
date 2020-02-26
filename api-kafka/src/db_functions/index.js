@@ -39,18 +39,17 @@ controller.updateNode = async (payload) => {
     const entity = getEntity(payload)
     const { id, ...input } = payload.input
 
-    console.log('updateNode: ', { id, ...input });
+    // console.log('updateNode: ', { id, ...input });
     try {
         const updatedNode = await entity.updateNode(id, input);
-        logger.info('Updated Node- ' + id);
+        // logger.info('Updated Node- ' + updatedNode);
         return updatedNode
     }
-    catch (err) {
-        logger.error('Error in Node update- ' + err);
-        return {
-            error,
-            path: payload.entity,
-        }
+    catch (error) {
+        console.log('error: ', error.message);
+        // logger.error('Error in Node update- ' + err);
+        // throw new Error(error)
+        return error.message
     }
 }
 
@@ -60,14 +59,14 @@ controller.deleteNode = async (payload) => {
     try {
         await entity.deleteNode(id);
         logger.info('Deleted Node- ' + id);
-        return id
-    }
-    catch (err) {
-        logger.error('Error in Node deletion- ' + err);
         return {
-            error,
-            path: payload.entity,
+            id,
+            isSuccess: true
         }
+    }
+    catch (error) {
+        // logger.error('Error in Node deletion- ' + err);
+        return error.message
     }
 }
 

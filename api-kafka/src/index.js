@@ -44,6 +44,7 @@ const app = express();
   ]
 
   const options = {
+    kafkaHost: config.config,
     autoCommit: true,
     fromOffset: 'latest',
     groupId: 'CACHE_DEMO_KAFKA'
@@ -92,10 +93,11 @@ const app = express();
       }
       // UPDATE -------------------------------------------------------------------------
       if (operation === 'update') {
-        const updatedNode = await db_functions.updateNode({ entity, input })
 
-        if (updatedNode) {
-          console.log('updatedNode: ', updatedNode);
+        const updatedNode = await db_functions.updateNode({ entity, input })
+        console.log('updatedNode: ', updatedNode);
+
+        if (updatedNode.id) {
           await cacheFunctions.updateAllCache(input, entity)
         }
 
@@ -103,8 +105,9 @@ const app = express();
           operation: 'update',
           entity: 'project',
           origin_user_id,
-          updatedNode: updatedNode ? updatedNode : null,
-          success: updatedNode ? 'success' : 'failed',
+          updatedNode: updatedNode.id ? updatedNode : null,
+          success: updatedNode.id ? true : false,
+          error: !updatedNode.id ? updatedNode : null
         }
 
       }
@@ -112,21 +115,24 @@ const app = express();
       // DELETE -------------------------------------------------------------------------
       if (operation === 'delete') {
         const { id } = input
-        const deletedId = await db_functions.deleteNode({ entity, id })
+        const result = await db_functions.deleteNode({ entity, id })
 
-        if (deletedId) {
-          console.log('deletedId: ', deletedId);
+        if (result.isSuccess) {
+          console.log('result: ', result);
           await cacheFunctions.deleteObjectInCache(id, entity)
         }
 
         response_message = {
-          operation: 'update',
+          operation: 'delete',
           entity: 'project',
           origin_user_id,
-          deletedId: deletedId ? deletedId : null,
-          success: deletedId ? 'success' : 'failed',
+          deletedId: result.id ? result.id : null,
+          success: result.id ? true : false,
+          error: !result.id ? result : null
         }
       }
+
+      console.log('RESPONSE_MESSAGE >>>>', response_message)
 
       const kafka_message = {
         topic: 'cachedemo-mutation-response',
@@ -147,4 +153,4 @@ const app = express();
   app.listen(port, () => {
     logger.info(`server started - ${port}`);
   });
-})().catch((err) => logger.error('Error in index-', err))
+})()
