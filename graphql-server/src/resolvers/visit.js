@@ -87,12 +87,13 @@ module.exports = {
                     const parsed_message = JSON.parse(value)
 
                     if (topic === 'cachedemo-mutation-response' && parsed_message.origin_user_id === origin_user_id) {
-                        console.log('cachedemo-mutation-response', parsed_message);
-                        const { deletedId, success } = parsed_message
-                        if (!!success) {
-                            resolve(deletedId)
-                        }
-                        reject()
+                        const { updatedNode, success, error } = parsed_message
+                        resolve({
+                            isSuccess: success,
+                            updatedNode,
+                            error
+                        })
+
                     }
                 })
             })

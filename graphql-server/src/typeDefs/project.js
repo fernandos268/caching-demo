@@ -8,13 +8,19 @@ module.exports = gql`
 
     extend type Mutation {
         createProject(fields: CustomScalarObject): Project
-        updateProject(input: ProjectInput!): Project
-        deleteProject(id: ID): String
+        updateProject(input: ProjectInput!): ProjectUpdateResponse
+        deleteProject(id: ID): DeleteNodeResponse
     }
 
     type ProjectsResponse {
         count: Int!
         list: [Project!]!
+    }
+
+    type ProjectUpdateResponse {
+        isSuccess: Boolean
+        error: String
+        updatedNode: Project
     }
 
     type Project {

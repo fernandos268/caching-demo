@@ -15,6 +15,12 @@ module.exports = gql`
         id: String!
     }
 
+    type DeleteNodeResponse {
+        isSuccess: Boolean
+        error: String
+        deletedId: ID
+    }
+
     # ------------------------------------------------------------
     # UNION TYPES: conditional type returns
     # union NodeResult = Project | Visit | Photo

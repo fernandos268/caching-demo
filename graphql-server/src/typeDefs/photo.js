@@ -9,8 +9,14 @@ module.exports = gql`
 
     extend type Mutation {
         addPhotoToVisit(input: VisitInput!): Visit
-        updatePhoto(input: VisitInput!): Visit
-        deletePhoto(id: String!): String
+        updatePhoto(input: VisitInput!): PhotoUpdateResponse
+        deletePhoto(id: String!): DeleteNodeResponse
+    }
+
+    type PhotoUpdateResponse {
+        isSuccess: Boolean
+        error: String
+        updatedNode: Photo
     }
 
     type Photo {
@@ -33,7 +39,7 @@ module.exports = gql`
         is_pov: Boolean
         metadata: CustomScalarObject
         observation_date: String
-        project_id: ID
+        project_id: ID!
         project_scope_id: String
         scope_group_id: String
         session_id: String
@@ -63,7 +69,7 @@ module.exports = gql`
         detail: CustomScalarObject
         file_path: String
         group_id: String
-        id: ID!
+        id: ID
         inconsistency: String
         is_client_provided: Boolean
         is_closed: Boolean

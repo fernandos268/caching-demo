@@ -9,8 +9,14 @@ module.exports = gql`
 
     extend type Mutation {
         createVisit(input: VisitInput!): Visit
-        updateVisit(input: VisitInput!): Visit
-        deleteVisit(id: ID!): String
+        updateVisit(input: VisitInput!): VisitUpdateResponse
+        deleteVisit(id: ID!): DeleteNodeResponse
+    }
+
+    type VisitUpdateResponse {
+        isSuccess: Boolean
+        error: String
+        updatedNode: Project
     }
 
     type Visit {

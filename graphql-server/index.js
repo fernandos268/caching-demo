@@ -32,6 +32,7 @@ const topics = [
 ]
 
 const options = {
+  kafkaHost: KAFKA_SERVERS,
   autoCommit: true,
   fromOffset: 'latest',
   groupId: 'CACHE_DEMO_KAFKA'

@@ -39,23 +39,24 @@ module.exports = {
 
       return new Promise((resolve, reject) => {
         kafka.consumer.on('message', message => {
-          const {
-            topic,
-            value
-          } = message
+            const {
+                topic,
+                value
+            } = message
 
-          const parsed_message = JSON.parse(value)
+            const parsed_message = JSON.parse(value)
 
-          if (topic === 'cachedemo-mutation-response' && parsed_message.origin_user_id === origin_user_id) {
-            console.log('cachedemo-mutation-response', parsed_message);
-            const { updatedNode, success } = parsed_message
-            if (!!success) {
-              resolve(updatedNode)
+            if (topic === 'cachedemo-mutation-response' && parsed_message.origin_user_id === origin_user_id) {
+                const { updatedNode, success, error } = parsed_message
+                resolve({
+                    isSuccess: success,
+                    updatedNode,
+                    error
+                })
+
             }
-            reject()
-          }
         })
-      })
+    })
 
     },
     async deletePhoto(_, { id }, { dataSources, redis, kafka }) {
@@ -87,12 +88,13 @@ module.exports = {
 
           if (topic === 'cachedemo-mutation-response' && parsed_message.origin_user_id === origin_user_id) {
             console.log('cachedemo-mutation-response', parsed_message);
-            const { deletedId, success } = parsed_message
-            if (!!success) {
-              resolve(deletedId)
-            }
-            reject()
-          }
+            const { deletedId, success, error } = parsed_message
+            resolve({
+                isSuccess: success,
+                deletedId,
+                error
+            })
+        }
         })
       })
 
