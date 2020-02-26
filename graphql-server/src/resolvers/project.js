@@ -12,10 +12,10 @@ module.exports = {
         }
     },
     Mutation: {
-        async createProject(_, { fields }, { dataSources, redis, kafka }) {
+        async createProject(_, { input }, { dataSources, redis, kafka }) {
             console.log('Creating project.....')
             redis.deleteAllKeysByKeyword('project')
-            return await dataSources.ljpAPI.createProject(fields)
+            return await dataSources.ljpAPI.createProject(input)
 
             // const origin_user_id = uuid()
 
