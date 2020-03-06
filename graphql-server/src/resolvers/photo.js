@@ -1,7 +1,7 @@
 module.exports = {
   Query: {
     async photos(_, { params }, { dataSources }) {
-      console.log('Fetching photos....');
+      console.log('Fetching photos....', dataSources);
       return await dataSources.ljpAPI.getPhotos(params);
     },
     async photo(_, { id }, { dataSources }) {

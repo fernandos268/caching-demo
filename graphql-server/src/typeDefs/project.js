@@ -33,7 +33,7 @@ module.exports = gql`
         created_date: String
         file_path: String
         footer_id: String
-        id: ID!
+        id: ID
         include_deficiency_photo: Boolean
         include_photo: Boolean
         is_assemblies_shared: Boolean

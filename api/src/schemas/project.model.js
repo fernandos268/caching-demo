@@ -33,8 +33,7 @@ export default function() {
       });
 
       model.defineStatic("getById", function(id = '') {
-        console.log('define id: ', id);
-        return this.filter({ id });
+        return this.filter({id});
       });
 
       model.defineStatic("addNode", function(node) {

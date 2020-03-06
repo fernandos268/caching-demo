@@ -1,6 +1,8 @@
 async function getPhotos(params) {
     try {
-        return await this.get(`/photo`, params)
+        console.log('getPhotos', params);
+        const result = await this.get(`/photo`, params)
+        return result
     } catch (err) {
         console.log('Error in fetching Photos: ', err)
         throw err

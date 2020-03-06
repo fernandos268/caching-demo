@@ -22,21 +22,33 @@ controller.getAll = async (req, res) => {
 }
 
 controller.getById = async (req, res) => {
-  try {
-    // console.log('req.params: ', req.params);
-    // console.log('orm.models: ', orm.models);
-    const [node] = await orm.models.Project.getById(req.params.id);
-    if (!node) {
-      throw new Error('Node no found')
-    }
-    logger.info(`Got node ${req.params.id}...`);
-    res.send(node);
-  }
-  catch (err) {
-    logger.error('Error in getting nodes- ' + err);
-    // res.send('Got error in getById');
-    res.status(500).send(err);
-  }
+  // try {
+  //   // console.log('req.params: ', req.params);
+  //   // console.log('orm.models: ', orm.models);
+  //   const [node] = await orm.models.Project.getById(req.params.id);
+  //   console.log('[node]: ', node);
+
+  //   if (!node) {
+  //     throw new Error('Node no found')
+  //   }
+  //   logger.info(`Got node ${req.params.id}...`);
+  //   res.send(node);
+  // }
+  // catch (err) {
+  //   logger.error('Error in getting nodes- ' + err);
+  //   // res.send('Got error in getById');
+  //   res.status(500).send(err);
+  // }
+
+  const [node] = await orm.models.Project.getById(req.params.id) || {}
+  console.log('[node]: ', node);
+
+  // if (!node) {
+  //   throw new Error('Node no found')
+  // }
+  logger.info(`Got node ${req.params.id}...`);
+  res.send(node);
+
 }
 
 controller.getVisits = async (req, res) => {

@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add uuid
+  /usr/local/bin/node /usr/local/bin/yarn add apollo-link-state
 
 PATH: 
   /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
@@ -44,7 +44,8 @@ npm manifest:
       "kafka-node": "^5.0.0",
       "obj-traverse": "^1.0.0",
       "redis": "^3.0.2",
-      "rethinkdbdash": "^2.3.31"
+      "rethinkdbdash": "^2.3.31",
+      "uuid": "^7.0.0"
     }
   }
 

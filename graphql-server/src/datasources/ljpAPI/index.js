@@ -18,8 +18,8 @@ module.exports = class ljpAPI extends RESTDataSource {
         return new Promise(async (resolve, reject) => {
             try {
                 const values = await Promise.all(
-                    ids.map(id => {
-                        return this.get(`/visit/${id}`);
+                    ids.map(async id => {
+                        return await this.get(`/visit/${id}`);
                     })
                 );
                 resolve(values);
@@ -33,8 +33,8 @@ module.exports = class ljpAPI extends RESTDataSource {
         return new Promise(async (resolve, reject) => {
             try {
                 const values = await Promise.all(
-                    ids.map(id => {
-                        return this.get(`/project/${id}`);
+                    ids.map(async id => {
+                        return await this.get(`/project/${id}`);
                     })
                 );
                 resolve(values);
@@ -48,8 +48,8 @@ module.exports = class ljpAPI extends RESTDataSource {
         return new Promise(async (resolve, reject) => {
             try {
                 const values = await Promise.all(
-                    ids.map(id => {
-                        return this.get(`/photo/${id}`);
+                    ids.map(async id => {
+                        return await this.get(`/photo/${id}`);
                     })
                 );
                 resolve(values);
