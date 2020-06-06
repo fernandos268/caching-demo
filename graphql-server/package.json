@@ -16,7 +16,7 @@
     "apollo-datasource-rest": "^0.7.0",
     "apollo-server": "^2.10.0",
     "apollo-server-cache-redis": "^1.1.5",
-    "apollo-server-express": "^2.10.0",
+    "apollo-server-express": "^2.14.2",
     "apollo-server-plugin-response-cache": "^0.3.11",
     "cors": "^2.8.5",
     "express": "^4.17.1",
