@@ -19,7 +19,7 @@
     "apollo-server-express": "^2.10.0",
     "apollo-server-plugin-response-cache": "^0.3.11",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "find-and": "^1.1.2",
     "ioredis": "^4.14.1",
     "obj-traverse": "^1.0.0",
